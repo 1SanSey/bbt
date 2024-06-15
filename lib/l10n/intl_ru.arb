@@ -1,0 +1,93 @@
+{
+    "BBTKirovApp": "BBT Kirov App",
+    "ok": "OK",
+    "authError": "Возникла ошибка при авторизации.",
+    "regError": "Возникла ошибка при регистрации.",
+    "authExecute": "Выполните авторизацию для входа в приложение!",
+    "login": "Логин",
+    "password": "Пароль",
+    "enter": "ВОЙТИ",
+    "signUp": "ЗАРЕГИСТРИРОВАТЬСЯ",
+    "save": "СОХРАНИТЬ",
+    "registerForEnter": "Зарегистрируйтесь для входа",
+    "successfully": "Успешно!",
+    "successfullyRegister": "Вы успешно зарегистрировались.",
+    "inputEmail": "Введите email (логин)",
+    "inputUserName": "Введите ФИО или духовное имя",
+    "inputPassword": "Введите пароль",
+    "main": "Главная",
+    "favourites": "Избранное",
+    "cart": "Корзина",
+    "popularBooks": "Популярные книги",
+    "error": "Ошибка!",
+    "booksNotLoaded": "Ошибка! Товары не загружены",
+    "emptyFavourites": "Список избранных книг пуст",
+    "price": "Цена: {price} ₽",
+    "@price": {
+        "placeholders": {
+            "price": {
+                "type": "int",
+                "optionalParameters": {
+                    "symbol": "₽"
+                }
+            }
+        }
+    },
+    "searchFromName": "Поиск по названию",
+    "resultsNotFound": "Результаты не найдены",
+    "myOrders": "Мои заказы",
+    "allOrders": "Все заказы",
+    "orderFrom": "Заказ от ",
+    "orderStructure": "Состав заказа",
+    "orderDate": "Дата заказа: ",
+    "orderSum": "Сумма заказа: {sum} ₽",
+    "@orderSum": {
+        "placeholders": {
+            "sum": {
+                "type": "int",
+                "optionalParameters": {
+                    "symbol": "₽"
+                }
+            }
+        }
+    },
+    "cartEmpty": "Ваша корзина пуста",
+    "totalSum": "Общая сумма: {sum} ₽",
+    "@totalSum": {
+        "placeholders": {
+            "sum": {
+                "type": "int",
+                "optionalParameters": {
+                    "symbol": "₽"
+                }
+            }
+        }
+    },
+    "sendOrder": "ОТПРАВИТЬ ЗАКАЗ",
+    "addToCart": "ДОБАВИТЬ В КОРЗИНУ",
+    "addToFavourites": "ДОБАВИТЬ В ИЗБРАННОЕ",
+    "exit": "Выход",
+    "applicationVersion": "1.0.0",
+    "applicationLegalese": "Sergey Ogarkov © 2024",
+    "aboutApp": "О приложении",
+    "lightTheme": "Светлая тема",
+    "darkTheme": "Темная тема",
+    "editUserInfo": "Редактировать данные",
+    "editUserName": "Изменить имя",
+    "editPassword": "Введите новый пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "passwordSuccessfulChange": "Пароль успешно изменен",
+    "nameSuccessfulChange": "Имя успешно изменено",
+    "passwordsNotMatch": "Пароли не совпадают",
+    "uploadNew": "Загрузить новую",
+    "delete": "Удалить",
+    "fromCamera": "Сделать снимок",
+    "fromGallery": "Выбрать из галереи",
+    "cancel": "Отмена",
+    "settings": "Настройки",
+    "cameraPermissionDenied": "Доступ к камере запрещён'",
+    "turnOnCameraPermission": "Пожалуйста, включите разрешение камеры в настройках",
+    "photoPermissionDenied": "Доступ к Фото запрещён'",
+    "turnOnPhotoPermission": "Пожалуйста, включите доступ к Фото в настройках",
+    "toolbarEditPhotoTitle": "Изменить фото"
+}
