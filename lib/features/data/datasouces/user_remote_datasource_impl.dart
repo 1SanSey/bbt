@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_catches_without_on_clauses
+
 import 'dart:developer';
 
 import 'package:bbt/core/error/exception.dart';
@@ -94,17 +96,55 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
 
   @override
   Future<void> updateDisplayName(String id, String newName) async {
-    final todo = ParseObject('_User')
+    final user = ParseObject('_User')
       ..objectId = id
       ..set('displayName', newName);
-    await todo.save();
+    await user.save();
   }
 
   @override
   Future<void> updatePassword(String id, String newPassword) async {
-    final todo = ParseObject('_User')
+    final user = ParseObject('_User')
       ..objectId = id
       ..set('password', newPassword);
-    await todo.save();
+    await user.save();
+  }
+
+  @override
+  Future<String> removePhoto(String id) async {
+    try {
+      final user = ParseObject('_User')
+        ..objectId = id
+        ..set('userphoto', null);
+      final res = await user.save();
+      if (res.success) {
+        log('removePhoto $id');
+        return '';
+      } else {
+        log(res.error!.message);
+        throw ServerException();
+      }
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<String> updatePhoto(ParseFile file, String id) async {
+    try {
+      final user = ParseObject('_User')
+        ..objectId = id
+        ..set('userphoto', file);
+      final res = await user.save();
+      if (res.success) {
+        log('updatePhoto $file $id');
+        return '${file.url}';
+      } else {
+        log(res.error!.message);
+        throw ServerException();
+      }
+    } catch (e) {
+      throw ServerException();
+    }
   }
 }

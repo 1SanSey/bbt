@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:bbt/features/presentation/bloc/edit_profile_photo_bloc/edit_profile_photo_bloc.dart';
 import 'package:bbt/features/presentation/ui/widgets/expand_tap_widget.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -102,9 +104,9 @@ class ProfilePhotoSourceButton extends StatelessWidget {
     ImageSource imageSource,
     String toolbarTitle,
   ) {
-    // ctx
-    //     .read<EditProfilePhotoBloc>()
-    //     .add(EditProfilePhotoEvent.editById(id, imageSource, toolbarTitle));
+    ctx
+        .read<UpdateUserPhotoBloc>()
+        .add(EditProfilePhotoEvent.editById(id, imageSource, toolbarTitle));
   }
 
   Future<void> requestPermission(

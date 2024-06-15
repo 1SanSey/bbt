@@ -34,6 +34,7 @@ import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
+import 'package:bbt/features/presentation/bloc/edit_profile_photo_bloc/edit_profile_photo_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/get_user_bloc/get_user_bloc.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
@@ -44,6 +45,7 @@ import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_d
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 final sl = GetIt.instance;
@@ -70,6 +72,7 @@ init() async {
     ..registerFactory(() => UpdateDisplayNameBloc(repo: sl()))
     ..registerFactory(() => UpdatePasswordBloc(repo: sl()))
     ..registerFactory(() => SendOrderBloc(ordersUseCase: sl()))
+    ..registerFactory(() => UpdateUserPhotoBloc(repository: sl(), picker: sl()))
 
 //UseCases
     ..registerLazySingleton(() => PopularUsecase(sl()))
@@ -124,6 +127,7 @@ init() async {
 //Core
     ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()))
     ..registerLazySingleton(() => LoggerService.inject)
+    ..registerLazySingleton<ImagePicker>(ImagePicker.new)
     ..registerLazySingleton<Dio>(Dio.new)
 
 //External

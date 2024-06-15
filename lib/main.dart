@@ -7,6 +7,7 @@ import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
+import 'package:bbt/features/presentation/bloc/edit_profile_photo_bloc/edit_profile_photo_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/get_user_bloc/get_user_bloc.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<GetUserBloc>(create: (context) => di.sl<GetUserBloc>()),
         BlocProvider<UpdateDisplayNameBloc>(create: (context) => di.sl<UpdateDisplayNameBloc>()),
         BlocProvider<UpdatePasswordBloc>(create: (context) => di.sl<UpdatePasswordBloc>()),
+        BlocProvider<UpdateUserPhotoBloc>(create: (context) => di.sl<UpdateUserPhotoBloc>()),
       ],
       child: BlocBuilder<ChangeThemeBloc, ThemeState>(
         builder: (context, state) {

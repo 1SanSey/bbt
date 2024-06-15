@@ -58,7 +58,7 @@ class AuthPageState extends State<EditUserPage> {
               state.mapOrNull(
                 updated: (state) {
                   final newName = _controllerUsername.text.trim();
-                  context.read<AuthBloc>().add(AuthEvent.update(newName));
+                  context.read<AuthBloc>().add(AuthEvent.updateName(newName));
                   AppSnackBar.showSnack(context, S.current.nameSuccessfulChange);
                 },
               );

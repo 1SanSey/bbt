@@ -28,7 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  parse_server_sdk_flutter: ^7.0.0
+  parse_server_sdk_flutter: ^8.0.0
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -52,18 +52,17 @@ dependencies:
   hive_flutter: ^1.1.0
   freezed_annotation: ^2.2.0
   json_serializable: ^6.8.0
-  meta: ^1.8.0
   intl: ^0.19.0
   path_provider: ^2.0.15
   flutter_dotenv: ^5.1.0
   dio: ^5.4.3+1
   logger: ^2.3.0
   permission_handler: ^11.3.1
-  image_cropper: ^4.0.1
   image_picker: ^1.1.2
   file_picker: ^8.0.5
 
 dev_dependencies:
+  meta: ^1.12.0
   hive_generator: ^2.0.0
   freezed: ^2.5.2
   build_runner: ^2.4.11

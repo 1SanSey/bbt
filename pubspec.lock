@@ -525,30 +525,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0"
-  image_cropper:
-    dependency: "direct main"
-    description:
-      name: image_cropper
-      sha256: "542c3453109d16bcc388e43ae2276044d2cd6a6d20c68bdcff2c94ab9363ea15"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.1"
-  image_cropper_for_web:
-    dependency: transitive
-    description:
-      name: image_cropper_for_web
-      sha256: "89c936aa772a35b69ca67b78049ae9fa163a4fb8da2f6dee3893db8883fb49d2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
-  image_cropper_platform_interface:
-    dependency: transitive
-    description:
-      name: image_cropper_platform_interface
-      sha256: b232175c132b2f7ede3e1f101652bcd635cb4079a77c6dded8e6d32e6578d685
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.0"
   image_picker:
     dependency: "direct main"
     description:
@@ -718,7 +694,7 @@ packages:
     source: hosted
     version: "0.8.0"
   meta:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: meta
       sha256: "7687075e408b093f36e6bbf6c91878cc0d4cd10f409506f7bc996f68220b9136"
@@ -733,14 +709,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  mime_type:
-    dependency: transitive
-    description:
-      name: mime_type
-      sha256: "2ad6e67d3d2de9ac0f8ef5352d998fd103cb21351ae8c02fb0c78b079b37d275"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   nested:
     dependency: transitive
     description:
@@ -785,18 +753,18 @@ packages:
     dependency: transitive
     description:
       name: parse_server_sdk
-      sha256: "838c5c41a8392dc0009ef975cfe2d75945bd1e88a3f761940b4ffd5bb8a4c339"
+      sha256: "15187f1030704c1842b02a6e0f398bfe1e1c46572deac192552ce83438b4ed69"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.3"
+    version: "6.4.0"
   parse_server_sdk_flutter:
     dependency: "direct main"
     description:
       name: parse_server_sdk_flutter
-      sha256: "2efd7f11bd32dfda26b04f45de94f3f12d900f619d532cd65dae49c5dd1760a0"
+      sha256: "0e073fa3fd0ce0e38c5d8aeeb7c183c8d64b3706ca00d526a1af0d7195c2f014"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.1"
+    version: "8.0.0"
   path:
     dependency: transitive
     description:

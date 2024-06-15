@@ -17,7 +17,8 @@ class AuthEvent with _$AuthEvent {
     required String password,
   }) = _LogInAuthEvent;
   const factory AuthEvent.logOut() = _LogOutAuthEvent;
-  const factory AuthEvent.update(String newName) = _UpdateAuthEvent;
+  const factory AuthEvent.updateName(String newName) = _UpdateNameAuthEvent;
+  const factory AuthEvent.updatePhoto(String newPhoto) = _UpdatePhotoAuthEvent;
 }
 
 @freezed
@@ -86,7 +87,8 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       (event, emitter) => event.map<Future<void>>(
         logIn: (event) => _logIn(event, emitter),
         logOut: (event) => _logOut(event, emitter),
-        update: (event) => _update(event, emitter),
+        updateName: (event) => _updateName(event, emitter),
+        updatePhoto: (event) => _updatePhoto(event, emitter),
       ),
       transformer: bloc_concurrency.droppable(),
     );
@@ -163,10 +165,15 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
     }
   }
 
-   Future<void> _update(_UpdateAuthEvent event, Emitter<AuthState> emitter) async {
-      emitter(AuthState.inProcess(user: state.user));
-emitter(AuthState.authenticated(user: state.user.copyWith(displayName: event.newName)));
-   }
+  Future<void> _updateName(_UpdateNameAuthEvent event, Emitter<AuthState> emitter) async {
+    emitter(AuthState.inProcess(user: state.user));
+    emitter(AuthState.authenticated(user: state.user.copyWith(displayName: event.newName)));
+  }
+
+  Future<void> _updatePhoto(_UpdatePhotoAuthEvent event, Emitter<AuthState> emitter) async {
+    emitter(AuthState.inProcess(user: state.user));
+    emitter(AuthState.authenticated(user: state.user.copyWith(photoURL: event.newPhoto)));
+  }
 
   @override
   AuthState? fromJson(Map<String, dynamic> json) {

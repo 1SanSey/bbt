@@ -20,21 +20,24 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String login, String password) logIn,
     required TResult Function() logOut,
-    required TResult Function(String newName) update,
+    required TResult Function(String newName) updateName,
+    required TResult Function(String newPhoto) updatePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String login, String password)? logIn,
     TResult? Function()? logOut,
-    TResult? Function(String newName)? update,
+    TResult? Function(String newName)? updateName,
+    TResult? Function(String newPhoto)? updatePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String login, String password)? logIn,
     TResult Function()? logOut,
-    TResult Function(String newName)? update,
+    TResult Function(String newName)? updateName,
+    TResult Function(String newPhoto)? updatePhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,21 +45,24 @@ mixin _$AuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LogInAuthEvent value) logIn,
     required TResult Function(_LogOutAuthEvent value) logOut,
-    required TResult Function(_UpdateAuthEvent value) update,
+    required TResult Function(_UpdateNameAuthEvent value) updateName,
+    required TResult Function(_UpdatePhotoAuthEvent value) updatePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LogInAuthEvent value)? logIn,
     TResult? Function(_LogOutAuthEvent value)? logOut,
-    TResult? Function(_UpdateAuthEvent value)? update,
+    TResult? Function(_UpdateNameAuthEvent value)? updateName,
+    TResult? Function(_UpdatePhotoAuthEvent value)? updatePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LogInAuthEvent value)? logIn,
     TResult Function(_LogOutAuthEvent value)? logOut,
-    TResult Function(_UpdateAuthEvent value)? update,
+    TResult Function(_UpdateNameAuthEvent value)? updateName,
+    TResult Function(_UpdatePhotoAuthEvent value)? updatePhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,7 +162,8 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String login, String password) logIn,
     required TResult Function() logOut,
-    required TResult Function(String newName) update,
+    required TResult Function(String newName) updateName,
+    required TResult Function(String newPhoto) updatePhoto,
   }) {
     return logIn(login, password);
   }
@@ -166,7 +173,8 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String login, String password)? logIn,
     TResult? Function()? logOut,
-    TResult? Function(String newName)? update,
+    TResult? Function(String newName)? updateName,
+    TResult? Function(String newPhoto)? updatePhoto,
   }) {
     return logIn?.call(login, password);
   }
@@ -176,7 +184,8 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String login, String password)? logIn,
     TResult Function()? logOut,
-    TResult Function(String newName)? update,
+    TResult Function(String newName)? updateName,
+    TResult Function(String newPhoto)? updatePhoto,
     required TResult orElse(),
   }) {
     if (logIn != null) {
@@ -190,7 +199,8 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LogInAuthEvent value) logIn,
     required TResult Function(_LogOutAuthEvent value) logOut,
-    required TResult Function(_UpdateAuthEvent value) update,
+    required TResult Function(_UpdateNameAuthEvent value) updateName,
+    required TResult Function(_UpdatePhotoAuthEvent value) updatePhoto,
   }) {
     return logIn(this);
   }
@@ -200,7 +210,8 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LogInAuthEvent value)? logIn,
     TResult? Function(_LogOutAuthEvent value)? logOut,
-    TResult? Function(_UpdateAuthEvent value)? update,
+    TResult? Function(_UpdateNameAuthEvent value)? updateName,
+    TResult? Function(_UpdatePhotoAuthEvent value)? updatePhoto,
   }) {
     return logIn?.call(this);
   }
@@ -210,7 +221,8 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LogInAuthEvent value)? logIn,
     TResult Function(_LogOutAuthEvent value)? logOut,
-    TResult Function(_UpdateAuthEvent value)? update,
+    TResult Function(_UpdateNameAuthEvent value)? updateName,
+    TResult Function(_UpdatePhotoAuthEvent value)? updatePhoto,
     required TResult orElse(),
   }) {
     if (logIn != null) {
@@ -273,7 +285,8 @@ class _$LogOutAuthEventImpl extends _LogOutAuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String login, String password) logIn,
     required TResult Function() logOut,
-    required TResult Function(String newName) update,
+    required TResult Function(String newName) updateName,
+    required TResult Function(String newPhoto) updatePhoto,
   }) {
     return logOut();
   }
@@ -283,7 +296,8 @@ class _$LogOutAuthEventImpl extends _LogOutAuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String login, String password)? logIn,
     TResult? Function()? logOut,
-    TResult? Function(String newName)? update,
+    TResult? Function(String newName)? updateName,
+    TResult? Function(String newPhoto)? updatePhoto,
   }) {
     return logOut?.call();
   }
@@ -293,7 +307,8 @@ class _$LogOutAuthEventImpl extends _LogOutAuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String login, String password)? logIn,
     TResult Function()? logOut,
-    TResult Function(String newName)? update,
+    TResult Function(String newName)? updateName,
+    TResult Function(String newPhoto)? updatePhoto,
     required TResult orElse(),
   }) {
     if (logOut != null) {
@@ -307,7 +322,8 @@ class _$LogOutAuthEventImpl extends _LogOutAuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LogInAuthEvent value) logIn,
     required TResult Function(_LogOutAuthEvent value) logOut,
-    required TResult Function(_UpdateAuthEvent value) update,
+    required TResult Function(_UpdateNameAuthEvent value) updateName,
+    required TResult Function(_UpdatePhotoAuthEvent value) updatePhoto,
   }) {
     return logOut(this);
   }
@@ -317,7 +333,8 @@ class _$LogOutAuthEventImpl extends _LogOutAuthEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LogInAuthEvent value)? logIn,
     TResult? Function(_LogOutAuthEvent value)? logOut,
-    TResult? Function(_UpdateAuthEvent value)? update,
+    TResult? Function(_UpdateNameAuthEvent value)? updateName,
+    TResult? Function(_UpdatePhotoAuthEvent value)? updatePhoto,
   }) {
     return logOut?.call(this);
   }
@@ -327,7 +344,8 @@ class _$LogOutAuthEventImpl extends _LogOutAuthEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LogInAuthEvent value)? logIn,
     TResult Function(_LogOutAuthEvent value)? logOut,
-    TResult Function(_UpdateAuthEvent value)? update,
+    TResult Function(_UpdateNameAuthEvent value)? updateName,
+    TResult Function(_UpdatePhotoAuthEvent value)? updatePhoto,
     required TResult orElse(),
   }) {
     if (logOut != null) {
@@ -343,20 +361,20 @@ abstract class _LogOutAuthEvent extends AuthEvent {
 }
 
 /// @nodoc
-abstract class _$$UpdateAuthEventImplCopyWith<$Res> {
-  factory _$$UpdateAuthEventImplCopyWith(_$UpdateAuthEventImpl value,
-          $Res Function(_$UpdateAuthEventImpl) then) =
-      __$$UpdateAuthEventImplCopyWithImpl<$Res>;
+abstract class _$$UpdateNameAuthEventImplCopyWith<$Res> {
+  factory _$$UpdateNameAuthEventImplCopyWith(_$UpdateNameAuthEventImpl value,
+          $Res Function(_$UpdateNameAuthEventImpl) then) =
+      __$$UpdateNameAuthEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String newName});
 }
 
 /// @nodoc
-class __$$UpdateAuthEventImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$UpdateAuthEventImpl>
-    implements _$$UpdateAuthEventImplCopyWith<$Res> {
-  __$$UpdateAuthEventImplCopyWithImpl(
-      _$UpdateAuthEventImpl _value, $Res Function(_$UpdateAuthEventImpl) _then)
+class __$$UpdateNameAuthEventImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$UpdateNameAuthEventImpl>
+    implements _$$UpdateNameAuthEventImplCopyWith<$Res> {
+  __$$UpdateNameAuthEventImplCopyWithImpl(_$UpdateNameAuthEventImpl _value,
+      $Res Function(_$UpdateNameAuthEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -364,7 +382,7 @@ class __$$UpdateAuthEventImplCopyWithImpl<$Res>
   $Res call({
     Object? newName = null,
   }) {
-    return _then(_$UpdateAuthEventImpl(
+    return _then(_$UpdateNameAuthEventImpl(
       null == newName
           ? _value.newName
           : newName // ignore: cast_nullable_to_non_nullable
@@ -375,22 +393,22 @@ class __$$UpdateAuthEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
-  const _$UpdateAuthEventImpl(this.newName) : super._();
+class _$UpdateNameAuthEventImpl extends _UpdateNameAuthEvent {
+  const _$UpdateNameAuthEventImpl(this.newName) : super._();
 
   @override
   final String newName;
 
   @override
   String toString() {
-    return 'AuthEvent.update(newName: $newName)';
+    return 'AuthEvent.updateName(newName: $newName)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateAuthEventImpl &&
+            other is _$UpdateNameAuthEventImpl &&
             (identical(other.newName, newName) || other.newName == newName));
   }
 
@@ -400,8 +418,8 @@ class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateAuthEventImplCopyWith<_$UpdateAuthEventImpl> get copyWith =>
-      __$$UpdateAuthEventImplCopyWithImpl<_$UpdateAuthEventImpl>(
+  _$$UpdateNameAuthEventImplCopyWith<_$UpdateNameAuthEventImpl> get copyWith =>
+      __$$UpdateNameAuthEventImplCopyWithImpl<_$UpdateNameAuthEventImpl>(
           this, _$identity);
 
   @override
@@ -409,9 +427,10 @@ class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String login, String password) logIn,
     required TResult Function() logOut,
-    required TResult Function(String newName) update,
+    required TResult Function(String newName) updateName,
+    required TResult Function(String newPhoto) updatePhoto,
   }) {
-    return update(newName);
+    return updateName(newName);
   }
 
   @override
@@ -419,9 +438,10 @@ class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String login, String password)? logIn,
     TResult? Function()? logOut,
-    TResult? Function(String newName)? update,
+    TResult? Function(String newName)? updateName,
+    TResult? Function(String newPhoto)? updatePhoto,
   }) {
-    return update?.call(newName);
+    return updateName?.call(newName);
   }
 
   @override
@@ -429,11 +449,12 @@ class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String login, String password)? logIn,
     TResult Function()? logOut,
-    TResult Function(String newName)? update,
+    TResult Function(String newName)? updateName,
+    TResult Function(String newPhoto)? updatePhoto,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update(newName);
+    if (updateName != null) {
+      return updateName(newName);
     }
     return orElse();
   }
@@ -443,9 +464,10 @@ class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LogInAuthEvent value) logIn,
     required TResult Function(_LogOutAuthEvent value) logOut,
-    required TResult Function(_UpdateAuthEvent value) update,
+    required TResult Function(_UpdateNameAuthEvent value) updateName,
+    required TResult Function(_UpdatePhotoAuthEvent value) updatePhoto,
   }) {
-    return update(this);
+    return updateName(this);
   }
 
   @override
@@ -453,9 +475,10 @@ class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LogInAuthEvent value)? logIn,
     TResult? Function(_LogOutAuthEvent value)? logOut,
-    TResult? Function(_UpdateAuthEvent value)? update,
+    TResult? Function(_UpdateNameAuthEvent value)? updateName,
+    TResult? Function(_UpdatePhotoAuthEvent value)? updatePhoto,
   }) {
-    return update?.call(this);
+    return updateName?.call(this);
   }
 
   @override
@@ -463,24 +486,176 @@ class _$UpdateAuthEventImpl extends _UpdateAuthEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LogInAuthEvent value)? logIn,
     TResult Function(_LogOutAuthEvent value)? logOut,
-    TResult Function(_UpdateAuthEvent value)? update,
+    TResult Function(_UpdateNameAuthEvent value)? updateName,
+    TResult Function(_UpdatePhotoAuthEvent value)? updatePhoto,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update(this);
+    if (updateName != null) {
+      return updateName(this);
     }
     return orElse();
   }
 }
 
-abstract class _UpdateAuthEvent extends AuthEvent {
-  const factory _UpdateAuthEvent(final String newName) = _$UpdateAuthEventImpl;
-  const _UpdateAuthEvent._() : super._();
+abstract class _UpdateNameAuthEvent extends AuthEvent {
+  const factory _UpdateNameAuthEvent(final String newName) =
+      _$UpdateNameAuthEventImpl;
+  const _UpdateNameAuthEvent._() : super._();
 
   String get newName;
   @JsonKey(ignore: true)
-  _$$UpdateAuthEventImplCopyWith<_$UpdateAuthEventImpl> get copyWith =>
+  _$$UpdateNameAuthEventImplCopyWith<_$UpdateNameAuthEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdatePhotoAuthEventImplCopyWith<$Res> {
+  factory _$$UpdatePhotoAuthEventImplCopyWith(_$UpdatePhotoAuthEventImpl value,
+          $Res Function(_$UpdatePhotoAuthEventImpl) then) =
+      __$$UpdatePhotoAuthEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String newPhoto});
+}
+
+/// @nodoc
+class __$$UpdatePhotoAuthEventImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$UpdatePhotoAuthEventImpl>
+    implements _$$UpdatePhotoAuthEventImplCopyWith<$Res> {
+  __$$UpdatePhotoAuthEventImplCopyWithImpl(_$UpdatePhotoAuthEventImpl _value,
+      $Res Function(_$UpdatePhotoAuthEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPhoto = null,
+  }) {
+    return _then(_$UpdatePhotoAuthEventImpl(
+      null == newPhoto
+          ? _value.newPhoto
+          : newPhoto // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdatePhotoAuthEventImpl extends _UpdatePhotoAuthEvent {
+  const _$UpdatePhotoAuthEventImpl(this.newPhoto) : super._();
+
+  @override
+  final String newPhoto;
+
+  @override
+  String toString() {
+    return 'AuthEvent.updatePhoto(newPhoto: $newPhoto)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdatePhotoAuthEventImpl &&
+            (identical(other.newPhoto, newPhoto) ||
+                other.newPhoto == newPhoto));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newPhoto);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdatePhotoAuthEventImplCopyWith<_$UpdatePhotoAuthEventImpl>
+      get copyWith =>
+          __$$UpdatePhotoAuthEventImplCopyWithImpl<_$UpdatePhotoAuthEventImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String login, String password) logIn,
+    required TResult Function() logOut,
+    required TResult Function(String newName) updateName,
+    required TResult Function(String newPhoto) updatePhoto,
+  }) {
+    return updatePhoto(newPhoto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String login, String password)? logIn,
+    TResult? Function()? logOut,
+    TResult? Function(String newName)? updateName,
+    TResult? Function(String newPhoto)? updatePhoto,
+  }) {
+    return updatePhoto?.call(newPhoto);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String login, String password)? logIn,
+    TResult Function()? logOut,
+    TResult Function(String newName)? updateName,
+    TResult Function(String newPhoto)? updatePhoto,
+    required TResult orElse(),
+  }) {
+    if (updatePhoto != null) {
+      return updatePhoto(newPhoto);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LogInAuthEvent value) logIn,
+    required TResult Function(_LogOutAuthEvent value) logOut,
+    required TResult Function(_UpdateNameAuthEvent value) updateName,
+    required TResult Function(_UpdatePhotoAuthEvent value) updatePhoto,
+  }) {
+    return updatePhoto(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LogInAuthEvent value)? logIn,
+    TResult? Function(_LogOutAuthEvent value)? logOut,
+    TResult? Function(_UpdateNameAuthEvent value)? updateName,
+    TResult? Function(_UpdatePhotoAuthEvent value)? updatePhoto,
+  }) {
+    return updatePhoto?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LogInAuthEvent value)? logIn,
+    TResult Function(_LogOutAuthEvent value)? logOut,
+    TResult Function(_UpdateNameAuthEvent value)? updateName,
+    TResult Function(_UpdatePhotoAuthEvent value)? updatePhoto,
+    required TResult orElse(),
+  }) {
+    if (updatePhoto != null) {
+      return updatePhoto(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdatePhotoAuthEvent extends AuthEvent {
+  const factory _UpdatePhotoAuthEvent(final String newPhoto) =
+      _$UpdatePhotoAuthEventImpl;
+  const _UpdatePhotoAuthEvent._() : super._();
+
+  String get newPhoto;
+  @JsonKey(ignore: true)
+  _$$UpdatePhotoAuthEventImplCopyWith<_$UpdatePhotoAuthEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 AuthState _$AuthStateFromJson(Map<String, dynamic> json) {
