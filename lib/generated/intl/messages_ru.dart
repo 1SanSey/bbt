@@ -89,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Пароли не совпадают"),
         "photoPermissionDenied":
             MessageLookupByLibrary.simpleMessage("Доступ к Фото запрещён\'"),
+        "photoSuccessfulChange":
+            MessageLookupByLibrary.simpleMessage("Фото успешно изменено"),
         "popularBooks":
             MessageLookupByLibrary.simpleMessage("Популярные книги"),
         "price": m1,

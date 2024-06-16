@@ -14,17 +14,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
-part 'edit_profile_photo_bloc.freezed.dart';
+part 'update_user_photo_bloc.freezed.dart';
 
-class UpdateUserPhotoBloc extends Bloc<EditProfilePhotoEvent, EditProfilePhotoState> {
+class UpdateUserPhotoBloc extends Bloc<UpdateUserPhotoEvent, UpdateUserPhotoState> {
   final IUserRepository repository;
   final ImagePicker picker;
 
   UpdateUserPhotoBloc({
     required this.repository,
     required this.picker,
-  }) : super(const EditProfilePhotoState.empty()) {
-    on<EditProfilePhotoEvent>(
+  }) : super(const UpdateUserPhotoState.empty()) {
+    on<UpdateUserPhotoEvent>(
       (event, emit) => event.map(
         editById: (event) => _onEditEvent(event, emit),
         removeById: (event) => _onRemoveEvent(event, emit),
@@ -37,7 +37,7 @@ class UpdateUserPhotoBloc extends Bloc<EditProfilePhotoEvent, EditProfilePhotoSt
     _EditByIdEvent event,
     Emitter emit,
   ) async {
-    emit(const EditProfilePhotoState.updating());
+    emit(const UpdateUserPhotoState.updating());
 
     Uint8List? bytes;
     ParseFile? parseFile;
@@ -51,7 +51,7 @@ class UpdateUserPhotoBloc extends Bloc<EditProfilePhotoEvent, EditProfilePhotoSt
       final XFile? image = await picker.pickImage(source: event.source);
 
       if (image == null) {
-        emit(const EditProfilePhotoState.empty());
+        emit(const UpdateUserPhotoState.empty());
 
         return;
       }
@@ -60,11 +60,11 @@ class UpdateUserPhotoBloc extends Bloc<EditProfilePhotoEvent, EditProfilePhotoSt
       // final file = await ImageCropper().cropImage(sourcePath: image.path, uiSettings: uiSettings);
       bytes = await file.readAsBytes();
     } on PlatformException {
-      emit(const EditProfilePhotoState.empty());
+      emit(const UpdateUserPhotoState.empty());
     }
 
     if (bytes == null) {
-      emit(const EditProfilePhotoState.done());
+      emit(const UpdateUserPhotoState.done());
 
       return;
     }
@@ -74,9 +74,9 @@ class UpdateUserPhotoBloc extends Bloc<EditProfilePhotoEvent, EditProfilePhotoSt
     final failureOrString = await repository.updatePhoto(parseFile!, event.id);
 
     failureOrString
-        .fold((failure) => emit(EditProfilePhotoState.error(error: mapFailureToMessage(failure))),
+        .fold((failure) => emit(UpdateUserPhotoState.error(error: mapFailureToMessage(failure))),
             (photo) {
-      emit(const EditProfilePhotoState.done());
+      emit(const UpdateUserPhotoState.done());
       sl<AuthBloc>().add(AuthEvent.updatePhoto(photo));
     });
   }
@@ -85,21 +85,21 @@ class UpdateUserPhotoBloc extends Bloc<EditProfilePhotoEvent, EditProfilePhotoSt
     _RemoveByIdEvent event,
     Emitter emit,
   ) async {
-    emit(const EditProfilePhotoState.updating());
+    emit(const UpdateUserPhotoState.updating());
     final failureOrString = await repository.removePhoto(event.id);
 
     failureOrString
-        .fold((failure) => emit(EditProfilePhotoState.error(error: mapFailureToMessage(failure))),
+        .fold((failure) => emit(UpdateUserPhotoState.error(error: mapFailureToMessage(failure))),
             (photo) {
-      emit(const EditProfilePhotoState.done());
+      emit(const UpdateUserPhotoState.done());
       sl<AuthBloc>().add(AuthEvent.updatePhoto(photo));
     });
   }
 }
 
 @freezed
-class EditProfilePhotoState with _$EditProfilePhotoState {
-  const EditProfilePhotoState._();
+class UpdateUserPhotoState with _$UpdateUserPhotoState {
+  const UpdateUserPhotoState._();
 
   bool get isDone => maybeMap<bool>(
         orElse: () => false,
@@ -121,28 +121,28 @@ class EditProfilePhotoState with _$EditProfilePhotoState {
         error: (_) => true,
       );
 
-  const factory EditProfilePhotoState.empty() = _EmptyProfilePhotoState;
+  const factory UpdateUserPhotoState.empty() = _EmptyProfilePhotoState;
 
-  const factory EditProfilePhotoState.updating() = _UpdatingProfilePhotoState;
+  const factory UpdateUserPhotoState.updating() = _UpdatingProfilePhotoState;
 
-  const factory EditProfilePhotoState.canceled() = _CanceledProfilePhotoState;
+  const factory UpdateUserPhotoState.canceled() = _CanceledProfilePhotoState;
 
-  const factory EditProfilePhotoState.done() = _DoneProfilePhotoState;
+  const factory UpdateUserPhotoState.done() = _DoneProfilePhotoState;
 
-  const factory EditProfilePhotoState.error({
+  const factory UpdateUserPhotoState.error({
     required String error,
   }) = _ErrorProfilePhotoState;
 }
 
 @freezed
-class EditProfilePhotoEvent with _$EditProfilePhotoEvent {
-  const EditProfilePhotoEvent._();
+class UpdateUserPhotoEvent with _$UpdateUserPhotoEvent {
+  const UpdateUserPhotoEvent._();
 
-  const factory EditProfilePhotoEvent.editById(
+  const factory UpdateUserPhotoEvent.editById(
     String id,
     ImageSource source,
     String toolbarTitle,
   ) = _EditByIdEvent;
 
-  const factory EditProfilePhotoEvent.removeById(String id) = _RemoveByIdEvent;
+  const factory UpdateUserPhotoEvent.removeById(String id) = _RemoveByIdEvent;
 }

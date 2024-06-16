@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:bbt/features/presentation/bloc/edit_profile_photo_bloc/edit_profile_photo_bloc.dart';
+import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/ui/widgets/expand_tap_widget.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +106,7 @@ class ProfilePhotoSourceButton extends StatelessWidget {
   ) {
     ctx
         .read<UpdateUserPhotoBloc>()
-        .add(EditProfilePhotoEvent.editById(id, imageSource, toolbarTitle));
+        .add(UpdateUserPhotoEvent.editById(id, imageSource, toolbarTitle));
   }
 
   Future<void> requestPermission(

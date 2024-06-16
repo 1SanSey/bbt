@@ -78,6 +78,7 @@
     "confirmPassword": "Подтвердите пароль",
     "passwordSuccessfulChange": "Пароль успешно изменен",
     "nameSuccessfulChange": "Имя успешно изменено",
+    "photoSuccessfulChange": "Фото успешно изменено",
     "passwordsNotMatch": "Пароли не совпадают",
     "uploadNew": "Загрузить новую",
     "delete": "Удалить",

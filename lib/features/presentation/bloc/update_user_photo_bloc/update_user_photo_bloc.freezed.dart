@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'edit_profile_photo_bloc.dart';
+part of 'update_user_photo_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$EditProfilePhotoState {
+mixin _$UpdateUserPhotoState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
@@ -75,17 +75,17 @@ mixin _$EditProfilePhotoState {
 }
 
 /// @nodoc
-abstract class $EditProfilePhotoStateCopyWith<$Res> {
-  factory $EditProfilePhotoStateCopyWith(EditProfilePhotoState value,
-          $Res Function(EditProfilePhotoState) then) =
-      _$EditProfilePhotoStateCopyWithImpl<$Res, EditProfilePhotoState>;
+abstract class $UpdateUserPhotoStateCopyWith<$Res> {
+  factory $UpdateUserPhotoStateCopyWith(UpdateUserPhotoState value,
+          $Res Function(UpdateUserPhotoState) then) =
+      _$UpdateUserPhotoStateCopyWithImpl<$Res, UpdateUserPhotoState>;
 }
 
 /// @nodoc
-class _$EditProfilePhotoStateCopyWithImpl<$Res,
-        $Val extends EditProfilePhotoState>
-    implements $EditProfilePhotoStateCopyWith<$Res> {
-  _$EditProfilePhotoStateCopyWithImpl(this._value, this._then);
+class _$UpdateUserPhotoStateCopyWithImpl<$Res,
+        $Val extends UpdateUserPhotoState>
+    implements $UpdateUserPhotoStateCopyWith<$Res> {
+  _$UpdateUserPhotoStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -103,7 +103,7 @@ abstract class _$$EmptyProfilePhotoStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$EmptyProfilePhotoStateImplCopyWithImpl<$Res>
-    extends _$EditProfilePhotoStateCopyWithImpl<$Res,
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
         _$EmptyProfilePhotoStateImpl>
     implements _$$EmptyProfilePhotoStateImplCopyWith<$Res> {
   __$$EmptyProfilePhotoStateImplCopyWithImpl(
@@ -120,13 +120,13 @@ class _$EmptyProfilePhotoStateImpl extends _EmptyProfilePhotoState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfilePhotoState.empty()';
+    return 'UpdateUserPhotoState.empty()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'EditProfilePhotoState.empty'));
+    properties.add(DiagnosticsProperty('type', 'UpdateUserPhotoState.empty'));
   }
 
   @override
@@ -220,7 +220,7 @@ class _$EmptyProfilePhotoStateImpl extends _EmptyProfilePhotoState
   }
 }
 
-abstract class _EmptyProfilePhotoState extends EditProfilePhotoState {
+abstract class _EmptyProfilePhotoState extends UpdateUserPhotoState {
   const factory _EmptyProfilePhotoState() = _$EmptyProfilePhotoStateImpl;
   const _EmptyProfilePhotoState._() : super._();
 }
@@ -235,7 +235,7 @@ abstract class _$$UpdatingProfilePhotoStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpdatingProfilePhotoStateImplCopyWithImpl<$Res>
-    extends _$EditProfilePhotoStateCopyWithImpl<$Res,
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
         _$UpdatingProfilePhotoStateImpl>
     implements _$$UpdatingProfilePhotoStateImplCopyWith<$Res> {
   __$$UpdatingProfilePhotoStateImplCopyWithImpl(
@@ -252,14 +252,14 @@ class _$UpdatingProfilePhotoStateImpl extends _UpdatingProfilePhotoState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfilePhotoState.updating()';
+    return 'UpdateUserPhotoState.updating()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-        .add(DiagnosticsProperty('type', 'EditProfilePhotoState.updating'));
+        .add(DiagnosticsProperty('type', 'UpdateUserPhotoState.updating'));
   }
 
   @override
@@ -353,7 +353,7 @@ class _$UpdatingProfilePhotoStateImpl extends _UpdatingProfilePhotoState
   }
 }
 
-abstract class _UpdatingProfilePhotoState extends EditProfilePhotoState {
+abstract class _UpdatingProfilePhotoState extends UpdateUserPhotoState {
   const factory _UpdatingProfilePhotoState() = _$UpdatingProfilePhotoStateImpl;
   const _UpdatingProfilePhotoState._() : super._();
 }
@@ -368,7 +368,7 @@ abstract class _$$CanceledProfilePhotoStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$CanceledProfilePhotoStateImplCopyWithImpl<$Res>
-    extends _$EditProfilePhotoStateCopyWithImpl<$Res,
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
         _$CanceledProfilePhotoStateImpl>
     implements _$$CanceledProfilePhotoStateImplCopyWith<$Res> {
   __$$CanceledProfilePhotoStateImplCopyWithImpl(
@@ -385,14 +385,14 @@ class _$CanceledProfilePhotoStateImpl extends _CanceledProfilePhotoState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfilePhotoState.canceled()';
+    return 'UpdateUserPhotoState.canceled()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-        .add(DiagnosticsProperty('type', 'EditProfilePhotoState.canceled'));
+        .add(DiagnosticsProperty('type', 'UpdateUserPhotoState.canceled'));
   }
 
   @override
@@ -486,7 +486,7 @@ class _$CanceledProfilePhotoStateImpl extends _CanceledProfilePhotoState
   }
 }
 
-abstract class _CanceledProfilePhotoState extends EditProfilePhotoState {
+abstract class _CanceledProfilePhotoState extends UpdateUserPhotoState {
   const factory _CanceledProfilePhotoState() = _$CanceledProfilePhotoStateImpl;
   const _CanceledProfilePhotoState._() : super._();
 }
@@ -501,7 +501,7 @@ abstract class _$$DoneProfilePhotoStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DoneProfilePhotoStateImplCopyWithImpl<$Res>
-    extends _$EditProfilePhotoStateCopyWithImpl<$Res,
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
         _$DoneProfilePhotoStateImpl>
     implements _$$DoneProfilePhotoStateImplCopyWith<$Res> {
   __$$DoneProfilePhotoStateImplCopyWithImpl(_$DoneProfilePhotoStateImpl _value,
@@ -517,13 +517,13 @@ class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfilePhotoState.done()';
+    return 'UpdateUserPhotoState.done()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'EditProfilePhotoState.done'));
+    properties.add(DiagnosticsProperty('type', 'UpdateUserPhotoState.done'));
   }
 
   @override
@@ -617,7 +617,7 @@ class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
   }
 }
 
-abstract class _DoneProfilePhotoState extends EditProfilePhotoState {
+abstract class _DoneProfilePhotoState extends UpdateUserPhotoState {
   const factory _DoneProfilePhotoState() = _$DoneProfilePhotoStateImpl;
   const _DoneProfilePhotoState._() : super._();
 }
@@ -634,7 +634,7 @@ abstract class _$$ErrorProfilePhotoStateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorProfilePhotoStateImplCopyWithImpl<$Res>
-    extends _$EditProfilePhotoStateCopyWithImpl<$Res,
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
         _$ErrorProfilePhotoStateImpl>
     implements _$$ErrorProfilePhotoStateImplCopyWith<$Res> {
   __$$ErrorProfilePhotoStateImplCopyWithImpl(
@@ -667,14 +667,14 @@ class _$ErrorProfilePhotoStateImpl extends _ErrorProfilePhotoState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfilePhotoState.error(error: $error)';
+    return 'UpdateUserPhotoState.error(error: $error)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'EditProfilePhotoState.error'))
+      ..add(DiagnosticsProperty('type', 'UpdateUserPhotoState.error'))
       ..add(DiagnosticsProperty('error', error));
   }
 
@@ -777,7 +777,7 @@ class _$ErrorProfilePhotoStateImpl extends _ErrorProfilePhotoState
   }
 }
 
-abstract class _ErrorProfilePhotoState extends EditProfilePhotoState {
+abstract class _ErrorProfilePhotoState extends UpdateUserPhotoState {
   const factory _ErrorProfilePhotoState({required final String error}) =
       _$ErrorProfilePhotoStateImpl;
   const _ErrorProfilePhotoState._() : super._();
@@ -789,7 +789,7 @@ abstract class _ErrorProfilePhotoState extends EditProfilePhotoState {
 }
 
 /// @nodoc
-mixin _$EditProfilePhotoEvent {
+mixin _$UpdateUserPhotoEvent {
   String get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -835,24 +835,24 @@ mixin _$EditProfilePhotoEvent {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $EditProfilePhotoEventCopyWith<EditProfilePhotoEvent> get copyWith =>
+  $UpdateUserPhotoEventCopyWith<UpdateUserPhotoEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EditProfilePhotoEventCopyWith<$Res> {
-  factory $EditProfilePhotoEventCopyWith(EditProfilePhotoEvent value,
-          $Res Function(EditProfilePhotoEvent) then) =
-      _$EditProfilePhotoEventCopyWithImpl<$Res, EditProfilePhotoEvent>;
+abstract class $UpdateUserPhotoEventCopyWith<$Res> {
+  factory $UpdateUserPhotoEventCopyWith(UpdateUserPhotoEvent value,
+          $Res Function(UpdateUserPhotoEvent) then) =
+      _$UpdateUserPhotoEventCopyWithImpl<$Res, UpdateUserPhotoEvent>;
   @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class _$EditProfilePhotoEventCopyWithImpl<$Res,
-        $Val extends EditProfilePhotoEvent>
-    implements $EditProfilePhotoEventCopyWith<$Res> {
-  _$EditProfilePhotoEventCopyWithImpl(this._value, this._then);
+class _$UpdateUserPhotoEventCopyWithImpl<$Res,
+        $Val extends UpdateUserPhotoEvent>
+    implements $UpdateUserPhotoEventCopyWith<$Res> {
+  _$UpdateUserPhotoEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -875,7 +875,7 @@ class _$EditProfilePhotoEventCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$EditByIdEventImplCopyWith<$Res>
-    implements $EditProfilePhotoEventCopyWith<$Res> {
+    implements $UpdateUserPhotoEventCopyWith<$Res> {
   factory _$$EditByIdEventImplCopyWith(
           _$EditByIdEventImpl value, $Res Function(_$EditByIdEventImpl) then) =
       __$$EditByIdEventImplCopyWithImpl<$Res>;
@@ -886,7 +886,7 @@ abstract class _$$EditByIdEventImplCopyWith<$Res>
 
 /// @nodoc
 class __$$EditByIdEventImplCopyWithImpl<$Res>
-    extends _$EditProfilePhotoEventCopyWithImpl<$Res, _$EditByIdEventImpl>
+    extends _$UpdateUserPhotoEventCopyWithImpl<$Res, _$EditByIdEventImpl>
     implements _$$EditByIdEventImplCopyWith<$Res> {
   __$$EditByIdEventImplCopyWithImpl(
       _$EditByIdEventImpl _value, $Res Function(_$EditByIdEventImpl) _then)
@@ -931,14 +931,14 @@ class _$EditByIdEventImpl extends _EditByIdEvent with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfilePhotoEvent.editById(id: $id, source: $source, toolbarTitle: $toolbarTitle)';
+    return 'UpdateUserPhotoEvent.editById(id: $id, source: $source, toolbarTitle: $toolbarTitle)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'EditProfilePhotoEvent.editById'))
+      ..add(DiagnosticsProperty('type', 'UpdateUserPhotoEvent.editById'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('source', source))
       ..add(DiagnosticsProperty('toolbarTitle', toolbarTitle));
@@ -1031,7 +1031,7 @@ class _$EditByIdEventImpl extends _EditByIdEvent with DiagnosticableTreeMixin {
   }
 }
 
-abstract class _EditByIdEvent extends EditProfilePhotoEvent {
+abstract class _EditByIdEvent extends UpdateUserPhotoEvent {
   const factory _EditByIdEvent(final String id, final ImageSource source,
       final String toolbarTitle) = _$EditByIdEventImpl;
   const _EditByIdEvent._() : super._();
@@ -1048,7 +1048,7 @@ abstract class _EditByIdEvent extends EditProfilePhotoEvent {
 
 /// @nodoc
 abstract class _$$RemoveByIdEventImplCopyWith<$Res>
-    implements $EditProfilePhotoEventCopyWith<$Res> {
+    implements $UpdateUserPhotoEventCopyWith<$Res> {
   factory _$$RemoveByIdEventImplCopyWith(_$RemoveByIdEventImpl value,
           $Res Function(_$RemoveByIdEventImpl) then) =
       __$$RemoveByIdEventImplCopyWithImpl<$Res>;
@@ -1059,7 +1059,7 @@ abstract class _$$RemoveByIdEventImplCopyWith<$Res>
 
 /// @nodoc
 class __$$RemoveByIdEventImplCopyWithImpl<$Res>
-    extends _$EditProfilePhotoEventCopyWithImpl<$Res, _$RemoveByIdEventImpl>
+    extends _$UpdateUserPhotoEventCopyWithImpl<$Res, _$RemoveByIdEventImpl>
     implements _$$RemoveByIdEventImplCopyWith<$Res> {
   __$$RemoveByIdEventImplCopyWithImpl(
       _$RemoveByIdEventImpl _value, $Res Function(_$RemoveByIdEventImpl) _then)
@@ -1090,14 +1090,14 @@ class _$RemoveByIdEventImpl extends _RemoveByIdEvent
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditProfilePhotoEvent.removeById(id: $id)';
+    return 'UpdateUserPhotoEvent.removeById(id: $id)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'EditProfilePhotoEvent.removeById'))
+      ..add(DiagnosticsProperty('type', 'UpdateUserPhotoEvent.removeById'))
       ..add(DiagnosticsProperty('id', id));
   }
 
@@ -1186,7 +1186,7 @@ class _$RemoveByIdEventImpl extends _RemoveByIdEvent
   }
 }
 
-abstract class _RemoveByIdEvent extends EditProfilePhotoEvent {
+abstract class _RemoveByIdEvent extends UpdateUserPhotoEvent {
   const factory _RemoveByIdEvent(final String id) = _$RemoveByIdEventImpl;
   const _RemoveByIdEvent._() : super._();
 

@@ -540,6 +540,16 @@ class S {
     );
   }
 
+  /// `Фото успешно изменено`
+  String get photoSuccessfulChange {
+    return Intl.message(
+      'Фото успешно изменено',
+      name: 'photoSuccessfulChange',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Пароли не совпадают`
   String get passwordsNotMatch {
     return Intl.message(

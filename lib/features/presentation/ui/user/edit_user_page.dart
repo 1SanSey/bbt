@@ -1,4 +1,5 @@
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
@@ -71,99 +72,110 @@ class AuthPageState extends State<EditUserPage> {
                   },
                 );
               },
-              child: CurrentUserBuilder(builder: (user) {
-                _controllerUsername = TextEditingController(text: user.displayName);
+              child: BlocListener<UpdateUserPhotoBloc, UpdateUserPhotoState>(
+                listener: (context, state) {
+                  state.mapOrNull(
+                    done: (state) {
+                      AppSnackBar.showSnack(context, S.current.photoSuccessfulChange);
+                    },
+                    error: (state) {
+                      AppSnackBar.showSnack(context, S.current.error);
+                    },
+                  );
+                },
+                child: CurrentUserBuilder(builder: (user) {
+                  _controllerUsername = TextEditingController(text: user.displayName);
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: Column(
-                    children: [
-                      CurrentAccountPicture(
-                        userName: user.displayName,
-                        photoURL: user.photoURL,
-                        borderRadius: 20,
-                        size: 150,
-                        isDrawer: false,
-                        onTap: () {
-                          user.photoURL.isNotEmpty
-                              ? showEditProfileImageBottomSheet(user.uid)
-                              : choiceSourcePhotoBottomSheet(user.uid);
-                        },
-                      ),
-                      const SizedBox(height: 60),
-                      AuthTextField(
-                        labelText: S.current.editUserName,
-                        controller: _controllerUsername,
-                        focusNode: _focusNodeUsername,
-                      ),
-                      const SizedBox(height: 8),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            final newName = _controllerUsername.text.trim();
-                            context
-                                .read<UpdateDisplayNameBloc>()
-                                .add(UpdateDisplayNameEvent.update(id: user.uid, newName: newName));
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    child: Column(
+                      children: [
+                        CurrentAccountPicture(
+                          userName: user.displayName,
+                          photoURL: user.photoURL,
+                          borderRadius: 20,
+                          size: 150,
+                          isDrawer: false,
+                          onTap: () {
+                            user.photoURL.isNotEmpty
+                                ? showEditProfileImageBottomSheet(user.uid)
+                                : choiceSourcePhotoBottomSheet(user.uid);
                           },
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Theme.of(context).primaryColor,
-                            textStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                          ),
-                          child: Text(S.current.save),
                         ),
-                      ),
-                      const SizedBox(height: 60),
-                      Divider(
-                        color: Theme.of(context).primaryColorDark,
-                        thickness: 1,
-                      ),
-                      const SizedBox(height: 60),
-                      AuthTextField(
-                        labelText: S.current.editPassword,
-                        controller: _controllerPassword,
-                        focusNode: _focusNodePassword,
-                        obscureText: true,
-                      ),
-                      const SizedBox(height: 8),
-                      AuthTextField(
-                        labelText: S.current.confirmPassword,
-                        controller: _controllerConfirmPassword,
-                        focusNode: _focusNodeConfirmPassword,
-                        obscureText: true,
-                      ),
-                      const SizedBox(height: 8),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            final password = _controllerPassword.text.trim();
-                            final confirmPassword = _controllerConfirmPassword.text.trim();
+                        const SizedBox(height: 60),
+                        AuthTextField(
+                          labelText: S.current.editUserName,
+                          controller: _controllerUsername,
+                          focusNode: _focusNodeUsername,
+                        ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              final newName = _controllerUsername.text.trim();
+                              context.read<UpdateDisplayNameBloc>().add(
+                                  UpdateDisplayNameEvent.update(id: user.uid, newName: newName));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              textStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                            ),
+                            child: Text(S.current.save),
+                          ),
+                        ),
+                        const SizedBox(height: 60),
+                        Divider(
+                          color: Theme.of(context).primaryColorDark,
+                          thickness: 1,
+                        ),
+                        const SizedBox(height: 60),
+                        AuthTextField(
+                          labelText: S.current.editPassword,
+                          controller: _controllerPassword,
+                          focusNode: _focusNodePassword,
+                          obscureText: true,
+                        ),
+                        const SizedBox(height: 8),
+                        AuthTextField(
+                          labelText: S.current.confirmPassword,
+                          controller: _controllerConfirmPassword,
+                          focusNode: _focusNodeConfirmPassword,
+                          obscureText: true,
+                        ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              final password = _controllerPassword.text.trim();
+                              final confirmPassword = _controllerConfirmPassword.text.trim();
 
-                            if (password == confirmPassword) {
-                              context.read<UpdatePasswordBloc>().add(
-                                  UpdatePasswordEvent.update(id: user.uid, password: password));
-                            } else {
-                              AppSnackBar.showSnack(context, S.current.passwordsNotMatch);
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Theme.of(context).primaryColor,
-                            textStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              if (password == confirmPassword) {
+                                context.read<UpdatePasswordBloc>().add(
+                                    UpdatePasswordEvent.update(id: user.uid, password: password));
+                              } else {
+                                AppSnackBar.showSnack(context, S.current.passwordsNotMatch);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              textStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                            ),
+                            child: Text(S.current.save),
                           ),
-                          child: Text(S.current.save),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
+                      ],
+                    ),
+                  );
+                }),
+              ),
             ),
           ),
         ),
@@ -174,7 +186,6 @@ class AuthPageState extends State<EditUserPage> {
   void showEditProfileImageBottomSheet(String id) {
     FocusManager.instance.primaryFocus?.unfocus();
     final theme = Theme.of(context);
-    final ThemeData defaultTheme = Theme.of(context);
     final localizedStrings = S.current;
 
     showModalBottomSheet<void>(
@@ -191,7 +202,7 @@ class AuthPageState extends State<EditUserPage> {
       builder: (context) {
         return SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -203,29 +214,63 @@ class AuthPageState extends State<EditUserPage> {
                   },
                   child: Column(
                     children: [
-                      const SizedBox(height: 6),
-                      Text(
-                        localizedStrings.uploadNew,
-                        style: TextStyle(fontSize: 18, color: theme.primaryColor),
+                      Row(
+                        children: [
+                          Container(
+                            width: 44,
+                            height: 44,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Icon(
+                                size: 18,
+                                Icons.photo_camera,
+                                color: theme.primaryColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Text(localizedStrings.uploadNew,
+                              style: TextStyle(fontSize: 18, color: theme.primaryColor)),
+                        ],
                       ),
-                      const SizedBox(height: 16),
                     ],
                   ),
                 ),
-                Container(
-                  height: 1,
-                  color: defaultTheme.dividerColor,
-                ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 12),
                 ExpandTapWidget(
                   tapPadding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                   onTap: () {
                     Navigator.of(context).pop();
-                    showDeletePhotoPopUp();
+                    context.read<UpdateUserPhotoBloc>().add(UpdateUserPhotoEvent.removeById(id));
                   },
-                  child: Text(
-                    localizedStrings.delete,
-                    style: TextStyle(fontSize: 18, color: theme.primaryColor),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 44,
+                            height: 44,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Icon(
+                                size: 18,
+                                Icons.delete,
+                                color: theme.primaryColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Text(localizedStrings.delete,
+                              style: TextStyle(fontSize: 18, color: theme.primaryColor)),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -276,13 +321,6 @@ class AuthPageState extends State<EditUserPage> {
         );
       },
     );
-  }
-
-  void showDeletePhotoPopUp() {
-    // showDialog<void>(
-    //   context: context,
-    //   builder: (context) => DeletePhotoPopup(id: widget.id),
-    // );
   }
 
   @override
