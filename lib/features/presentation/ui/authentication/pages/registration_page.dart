@@ -5,6 +5,7 @@ import 'package:bbt/features/presentation/bloc/reg_bloc/registration_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/ui/authentication/widgets/auth_text_field.dart';
 import 'package:bbt/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,11 +40,13 @@ class RegistrationPageState extends State<RegistrationPage> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(S.current.BBTKirovApp),
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-        ),
+        appBar: kIsWeb
+            ? null
+            : AppBar(
+                title: Text(S.current.BBTKirovApp),
+                centerTitle: true,
+                automaticallyImplyLeading: false,
+              ),
         body: BlocListener<RegistrationBloc, RegistrationState>(
           listener: (context, state) {
             state.mapOrNull(
@@ -96,79 +99,81 @@ class RegistrationPageState extends State<RegistrationPage> {
           child: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(
-                    height: 200,
-                    child: BlocBuilder<ChangeThemeBloc, ThemeState>(
-                      builder: (context, state) {
-                        return Image.asset(
-                          state.isDark ? AppConstants.bbtLogoDark : AppConstants.bbtLogo,
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Center(
-                    child: Text(
-                      S.current.registerForEnter,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  AuthTextField(
-                    controller: _controllerEmail,
-                    focusNode: _focusNodeEmail,
-                    labelText: S.current.inputEmail,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  AuthTextField(
-                    controller: _controllerUsername,
-                    focusNode: _focusNodeUsername,
-                    labelText: S.current.inputUserName,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  AuthTextField(
-                    controller: _controllerPassword,
-                    focusNode: _focusNodePassword,
-                    obscureText: true,
-                    labelText: S.current.inputPassword,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        final login = _controllerEmail.text.trim();
-                        final userName = _controllerUsername.text.trim();
-                        final password = _controllerPassword.text.trim();
-                        context
-                            .read<RegistrationBloc>()
-                            .add(RegistrationEvent.register(login: login, password: password, userName: userName));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Theme.of(context).primaryColor,
-                        fixedSize: const Size(320, 50),
-                        textStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              child: SizedBox(
+                width: kIsWeb ? 412 : null,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 200,
+                      child: BlocBuilder<ChangeThemeBloc, ThemeState>(
+                        builder: (context, state) {
+                          return Image.asset(
+                            state.isDark ? AppConstants.bbtLogoDark : AppConstants.bbtLogo,
+                          );
+                        },
                       ),
-                      child: Text(S.current.signUp),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                ],
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Center(
+                      child: Text(
+                        S.current.registerForEnter,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    AuthTextField(
+                      controller: _controllerEmail,
+                      focusNode: _focusNodeEmail,
+                      labelText: S.current.inputEmail,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    AuthTextField(
+                      controller: _controllerUsername,
+                      focusNode: _focusNodeUsername,
+                      labelText: S.current.inputUserName,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    AuthTextField(
+                      controller: _controllerPassword,
+                      focusNode: _focusNodePassword,
+                      obscureText: true,
+                      labelText: S.current.inputPassword,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final login = _controllerEmail.text.trim();
+                          final userName = _controllerUsername.text.trim();
+                          final password = _controllerPassword.text.trim();
+                          context.read<RegistrationBloc>().add(RegistrationEvent.register(
+                              login: login, password: password, userName: userName));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Theme.of(context).primaryColor,
+                          fixedSize: const Size(320, 50),
+                          textStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        ),
+                        child: Text(S.current.signUp),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
           ),

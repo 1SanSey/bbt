@@ -113,15 +113,24 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
   @override
   Future<String> removePhoto(String id) async {
     try {
-      final user = ParseObject('_User')
-        ..objectId = id
-        ..set('userphoto', null);
-      final res = await user.save();
-      if (res.success) {
-        log('removePhoto $id');
-        return '';
+      final queryImage = QueryBuilder<ParseObject>(ParseObject('Image'))
+        ..whereEqualTo('user', (ParseObject('_User')..objectId = id).toPointer());
+      final apiResponse = await queryImage.query();
+
+      if (apiResponse.success && apiResponse.results != null) {
+        final image = ParseObject('Image')
+          ..objectId = (apiResponse.results as List<ParseObject>).first.objectId
+          ..set('photo', null);
+        final res = await image.save();
+        if (res.success) {
+          log('removePhoto $id');
+          return '';
+        } else {
+          log(res.error!.message);
+          throw ServerException();
+        }
       } else {
-        log(res.error!.message);
+        log(apiResponse.error!.message);
         throw ServerException();
       }
     } catch (e) {
@@ -132,15 +141,25 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
   @override
   Future<String> updatePhoto(ParseFile file, String id) async {
     try {
-      final user = ParseObject('_User')
-        ..objectId = id
-        ..set('userphoto', file);
-      final res = await user.save();
-      if (res.success) {
-        log('updatePhoto $file $id');
-        return '${file.url}';
+      await file.save();
+      final queryImage = QueryBuilder<ParseObject>(ParseObject('Image'))
+        ..whereEqualTo('user', (ParseObject('_User')..objectId = id).toPointer());
+      final apiResponse = await queryImage.query();
+
+      if (apiResponse.success && apiResponse.results != null) {
+        final image = ParseObject('Image')
+          ..objectId = (apiResponse.results as List<ParseObject>).first.objectId
+          ..set('photo', file);
+        final res = await image.save();
+        if (res.success) {
+          log('removePhoto $id');
+          return '';
+        } else {
+          log(res.error!.message);
+          throw ServerException();
+        }
       } else {
-        log(res.error!.message);
+        log(apiResponse.error!.message);
         throw ServerException();
       }
     } catch (e) {

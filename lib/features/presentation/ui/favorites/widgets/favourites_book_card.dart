@@ -3,6 +3,7 @@ import 'package:bbt/features/domain/entities/cart_book_entity.dart';
 import 'package:bbt/features/domain/entities/favorites_book_entity.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,7 @@ class FavouritesBookCard extends StatelessWidget {
                   width: 10,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.6,
+                  width: kIsWeb ? null : MediaQuery.of(context).size.width * 0.6,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -26,7 +26,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     required this.allBooks,
     required this.culinaryBooks,
     required this.searchBooks,
-  }) : super(CategoryBooksEmpty()) {
+  }) : super(const CategoryBooksEmpty()) {
     on<CategoryLoadAllBooksEvent>(_onEventAllBooks, transformer: droppable());
     on<CategoryLoadBooksBySizeEvent>(
       _onEventBooksBySize,
@@ -48,14 +48,15 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategoryLoadAllBooksEvent event,
     Emitter<CategoryState> emit,
   ) async {
-    emit(CategoryBooksLoading());
+    emit(CategoryBooksLoading(currentIndex: event.index));
 
     final failureOrBooks = await allBooks();
 
     failureOrBooks.fold(
-      (failure) => emit(CategoryBooksError(message: mapFailureToMessage(failure))),
+      (failure) => emit(
+          CategoryBooksError(message: mapFailureToMessage(failure), currentIndex: event.index)),
       (books) {
-        emit(CategoryBooksLoaded(books: books));
+        emit(CategoryBooksLoaded(books: books, currentIndex: event.index));
       },
     );
   }
@@ -64,14 +65,15 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategoryLoadBooksBySizeEvent event,
     Emitter<CategoryState> emit,
   ) async {
-    emit(CategoryBooksLoading());
+    emit(CategoryBooksLoading(currentIndex: event.index));
 
     final failureOrBooks = await booksBySize(BookSizeParams(size: event.param));
 
     failureOrBooks.fold(
-      (failure) => emit(CategoryBooksError(message: mapFailureToMessage(failure))),
+      (failure) => emit(
+          CategoryBooksError(message: mapFailureToMessage(failure), currentIndex: event.index)),
       (books) {
-        emit(CategoryBooksLoaded(books: books));
+        emit(CategoryBooksLoaded(books: books, currentIndex: event.index));
       },
     );
   }
@@ -80,14 +82,15 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategoryLoadBooksByNameEvent event,
     Emitter<CategoryState> emit,
   ) async {
-    emit(CategoryBooksLoading());
+    emit(CategoryBooksLoading(currentIndex: event.index));
 
     final failureOrBooks = await booksByName(BookNameParams(name: event.param));
 
     failureOrBooks.fold(
-      (failure) => emit(CategoryBooksError(message: mapFailureToMessage(failure))),
+      (failure) => emit(
+          CategoryBooksError(message: mapFailureToMessage(failure), currentIndex: event.index)),
       (books) {
-        emit(CategoryBooksLoaded(books: books));
+        emit(CategoryBooksLoaded(books: books, currentIndex: event.index));
       },
     );
   }
@@ -96,14 +99,15 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategoryLoadBooksSetEvent event,
     Emitter<CategoryState> emit,
   ) async {
-    emit(CategoryBooksLoading());
+    emit(CategoryBooksLoading(currentIndex: event.index));
 
     final failureOrBooks = await setBooks(BookSetParams(singleOrSet: event.param));
 
     failureOrBooks.fold(
-      (failure) => emit(CategoryBooksError(message: mapFailureToMessage(failure))),
+      (failure) => emit(
+          CategoryBooksError(message: mapFailureToMessage(failure), currentIndex: event.index)),
       (books) {
-        emit(CategoryBooksLoaded(books: books));
+        emit(CategoryBooksLoaded(books: books, currentIndex: event.index));
       },
     );
   }
@@ -112,14 +116,15 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategoryLoadCulinaryBooksEvent event,
     Emitter<CategoryState> emit,
   ) async {
-    emit(CategoryBooksLoading());
+    emit(CategoryBooksLoading(currentIndex: event.index));
 
     final failureOrBooks = await culinaryBooks();
 
     failureOrBooks.fold(
-      (failure) => emit(CategoryBooksError(message: mapFailureToMessage(failure))),
+      (failure) => emit(
+          CategoryBooksError(message: mapFailureToMessage(failure), currentIndex: event.index)),
       (books) {
-        emit(CategoryBooksLoaded(books: books));
+        emit(CategoryBooksLoaded(books: books, currentIndex: event.index));
       },
     );
   }
@@ -128,7 +133,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     CategorySearchBooksEvent event,
     Emitter<CategoryState> emit,
   ) async {
-    emit(CategoryBooksLoading());
+    emit(CategoryBooksLoading(currentIndex: state.currentIndex));
 
     final failureOrBooks = await searchBooks(SearchBooksParams(query: event.query));
 

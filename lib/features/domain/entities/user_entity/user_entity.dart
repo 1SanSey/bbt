@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_final_parameters, sort_unnamed_constructors_first
 
 import 'package:bbt/core/app_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
@@ -34,7 +35,9 @@ class UserEntity with _$UserEntity {
       uid: user.get<String>('objectId') ?? '',
       email: user.get<String>('username') ?? '',
       displayName: user.get<String>('displayName') ?? '',
-      photoURL: user.get<ParseFile>('userphoto')?.url ?? '',
+      photoURL: kIsWeb
+          ? user.get<ParseWebFile>('userphoto')?.url ?? ''
+          : user.get<ParseFile>('userphoto')?.url ?? '',
     );
   }
 }

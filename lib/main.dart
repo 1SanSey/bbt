@@ -7,21 +7,23 @@ import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
-import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/get_user_bloc/get_user_bloc.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/send_order_bloc/send_order_bloc.dart';
 import 'package:bbt/features/presentation/bloc/reg_bloc/registration_bloc.dart';
+import 'package:bbt/features/presentation/bloc/sidebar_visibility_bloc/sidebar_visibility_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
+import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/navigation/route_builder.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:bbt/service_locator.dart' as di;
 import 'package:bbt/service_locator.dart';
 import 'package:bbt/utils/app_bloc_observer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,8 +41,10 @@ void main() {
       await InitDatasources.instance.initHive();
       await di.init();
 
-      HydratedBloc.storage =
-          await HydratedStorage.build(storageDirectory: await getApplicationDocumentsDirectory());
+      HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory:
+            kIsWeb ? HydratedStorage.webStorageDirectory : await getTemporaryDirectory(),
+      );
 
       Bloc.observer = AppBlocObserver.instance();
 
@@ -76,6 +80,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<UpdateDisplayNameBloc>(create: (context) => di.sl<UpdateDisplayNameBloc>()),
         BlocProvider<UpdatePasswordBloc>(create: (context) => di.sl<UpdatePasswordBloc>()),
         BlocProvider<UpdateUserPhotoBloc>(create: (context) => di.sl<UpdateUserPhotoBloc>()),
+        BlocProvider<SidebarVisibilityBloc>(create: (context) => di.sl<SidebarVisibilityBloc>()),
       ],
       child: BlocBuilder<ChangeThemeBloc, ThemeState>(
         builder: (context, state) {

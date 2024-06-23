@@ -1,4 +1,3 @@
-import 'package:bbt/core/platform/network_info.dart';
 import 'package:bbt/features/data/i_datasources/i_books_local_datasource.dart';
 import 'package:bbt/features/data/i_datasources/i_orders_remote_datasource.dart';
 import 'package:bbt/features/data/models/cart_book_model/cart_book_model.dart';
@@ -8,11 +7,9 @@ import 'package:bbt/features/domain/repositories/i_cart_repository.dart';
 class CartRepositoryImpl implements ICartRepository {
   final IBooksLocalDatasource localDataSource;
   final IOrdersRemoteDatasource remoteDataSource;
-  final NetworkInfo networkInfo;
 
   CartRepositoryImpl({
     required this.remoteDataSource,
-    required this.networkInfo,
     required this.localDataSource,
   });
 

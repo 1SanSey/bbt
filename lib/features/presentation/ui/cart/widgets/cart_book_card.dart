@@ -2,6 +2,7 @@ import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/domain/entities/cart_book_entity.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,7 +44,7 @@ class CartBookCard extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: 10),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
+              width: kIsWeb ? 320 : MediaQuery.of(context).size.width * 0.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,

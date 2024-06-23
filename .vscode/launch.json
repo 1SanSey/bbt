@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "bbt",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "bbt (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "bbt (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Flutter for web HTML render",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": [
+              "-d",
+              "chrome",
+              "--web-port","8080",
+              "--web-enable-expression-evaluation",
+              "--web-renderer", 
+              "html"
+            ]
+        },
+        {
+            "name": "Flutter for web Canvas render",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": [
+              "-d",
+              "chrome",
+              "--web-port","8080",
+              "--web-enable-expression-evaluation"
+            ]
+        },
+    ]
+}

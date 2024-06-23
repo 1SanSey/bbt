@@ -1,7 +1,7 @@
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
-import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
+import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/ui/authentication/widgets/auth_text_field.dart';
 import 'package:bbt/features/presentation/ui/user/widgets/profile_photo_source_button.dart';
@@ -10,6 +10,7 @@ import 'package:bbt/features/presentation/ui/widgets/current_account_picture.dar
 import 'package:bbt/features/presentation/ui/widgets/current_user_builder.dart';
 import 'package:bbt/features/presentation/ui/widgets/expand_tap_widget.dart';
 import 'package:bbt/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -44,137 +45,143 @@ class AuthPageState extends State<EditUserPage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(S.current.editUserInfo),
-          centerTitle: true,
-          leading: IconButton(
-            onPressed: NavigationManager.instance.pop,
-            icon: const Icon(Icons.close),
+      child: SizedBox(
+        width: kIsWeb ? 512 : null,
+        height: kIsWeb ? MediaQuery.sizeOf(context).height : null,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(S.current.editUserInfo),
+            centerTitle: true,
+            leading: IconButton(
+              onPressed: NavigationManager.instance.pop,
+              icon: const Icon(Icons.close),
+            ),
           ),
-        ),
-        body: SingleChildScrollView(
-          child: BlocListener<UpdateDisplayNameBloc, UpdateDisplayNameState>(
-            listener: (context, state) {
-              state.mapOrNull(
-                updated: (state) {
-                  final newName = _controllerUsername.text.trim();
-                  context.read<AuthBloc>().add(AuthEvent.updateName(newName));
-                  AppSnackBar.showSnack(context, S.current.nameSuccessfulChange);
-                },
-              );
-            },
-            child: BlocListener<UpdatePasswordBloc, UpdatePasswordState>(
+          body: SingleChildScrollView(
+            child: BlocListener<UpdateDisplayNameBloc, UpdateDisplayNameState>(
               listener: (context, state) {
                 state.mapOrNull(
                   updated: (state) {
-                    AppSnackBar.showSnack(context, S.current.passwordSuccessfulChange);
+                    final newName = _controllerUsername.text.trim();
+                    context.read<AuthBloc>().add(AuthEvent.updateName(newName));
+                    AppSnackBar.showSnack(context, S.current.nameSuccessfulChange);
                   },
                 );
               },
-              child: BlocListener<UpdateUserPhotoBloc, UpdateUserPhotoState>(
+              child: BlocListener<UpdatePasswordBloc, UpdatePasswordState>(
                 listener: (context, state) {
                   state.mapOrNull(
-                    done: (state) {
-                      AppSnackBar.showSnack(context, S.current.photoSuccessfulChange);
-                    },
-                    error: (state) {
-                      AppSnackBar.showSnack(context, S.current.error);
+                    updated: (state) {
+                      AppSnackBar.showSnack(context, S.current.passwordSuccessfulChange);
                     },
                   );
                 },
-                child: CurrentUserBuilder(builder: (user) {
-                  _controllerUsername = TextEditingController(text: user.displayName);
+                child: BlocListener<UpdateUserPhotoBloc, UpdateUserPhotoState>(
+                  listener: (context, state) {
+                    state.mapOrNull(
+                      done: (state) {
+                        AppSnackBar.showSnack(context, S.current.photoSuccessfulChange);
+                      },
+                      error: (state) {
+                        AppSnackBar.showSnack(context, S.current.error);
+                      },
+                    );
+                  },
+                  child: CurrentUserBuilder(builder: (user) {
+                    _controllerUsername = TextEditingController(text: user.displayName);
 
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                    child: Column(
-                      children: [
-                        CurrentAccountPicture(
-                          userName: user.displayName,
-                          photoURL: user.photoURL,
-                          borderRadius: 20,
-                          size: 150,
-                          isDrawer: false,
-                          onTap: () {
-                            user.photoURL.isNotEmpty
-                                ? showEditProfileImageBottomSheet(user.uid)
-                                : choiceSourcePhotoBottomSheet(user.uid);
-                          },
-                        ),
-                        const SizedBox(height: 60),
-                        AuthTextField(
-                          labelText: S.current.editUserName,
-                          controller: _controllerUsername,
-                          focusNode: _focusNodeUsername,
-                        ),
-                        const SizedBox(height: 8),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              final newName = _controllerUsername.text.trim();
-                              context.read<UpdateDisplayNameBloc>().add(
-                                  UpdateDisplayNameEvent.update(id: user.uid, newName: newName));
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      child: Column(
+                        children: [
+                          CurrentAccountPicture(
+                            userName: user.displayName,
+                            photoURL: user.photoURL,
+                            borderRadius: 20,
+                            size: 150,
+                            isDrawer: false,
+                            onTap: () {
+                              user.photoURL.isNotEmpty
+                                  ? showEditProfileImageBottomSheet(user.uid)
+                                  : choiceSourcePhotoBottomSheet(user.uid);
                             },
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Theme.of(context).primaryColor,
-                              textStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                            ),
-                            child: Text(S.current.save),
                           ),
-                        ),
-                        const SizedBox(height: 60),
-                        Divider(
-                          color: Theme.of(context).primaryColorDark,
-                          thickness: 1,
-                        ),
-                        const SizedBox(height: 60),
-                        AuthTextField(
-                          labelText: S.current.editPassword,
-                          controller: _controllerPassword,
-                          focusNode: _focusNodePassword,
-                          obscureText: true,
-                        ),
-                        const SizedBox(height: 8),
-                        AuthTextField(
-                          labelText: S.current.confirmPassword,
-                          controller: _controllerConfirmPassword,
-                          focusNode: _focusNodeConfirmPassword,
-                          obscureText: true,
-                        ),
-                        const SizedBox(height: 8),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              final password = _controllerPassword.text.trim();
-                              final confirmPassword = _controllerConfirmPassword.text.trim();
+                          const SizedBox(height: 60),
+                          AuthTextField(
+                            labelText: S.current.editUserName,
+                            controller: _controllerUsername,
+                            focusNode: _focusNodeUsername,
+                          ),
+                          const SizedBox(height: 8),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                final newName = _controllerUsername.text.trim();
+                                context.read<UpdateDisplayNameBloc>().add(
+                                    UpdateDisplayNameEvent.update(id: user.uid, newName: newName));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: Theme.of(context).primaryColor,
+                                textStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                                shape:
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Text(S.current.save),
+                            ),
+                          ),
+                          const SizedBox(height: 60),
+                          Divider(
+                            color: Theme.of(context).primaryColorDark,
+                            thickness: 1,
+                          ),
+                          const SizedBox(height: 60),
+                          AuthTextField(
+                            labelText: S.current.editPassword,
+                            controller: _controllerPassword,
+                            focusNode: _focusNodePassword,
+                            obscureText: true,
+                          ),
+                          const SizedBox(height: 8),
+                          AuthTextField(
+                            labelText: S.current.confirmPassword,
+                            controller: _controllerConfirmPassword,
+                            focusNode: _focusNodeConfirmPassword,
+                            obscureText: true,
+                          ),
+                          const SizedBox(height: 8),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                final password = _controllerPassword.text.trim();
+                                final confirmPassword = _controllerConfirmPassword.text.trim();
 
-                              if (password == confirmPassword) {
-                                context.read<UpdatePasswordBloc>().add(
-                                    UpdatePasswordEvent.update(id: user.uid, password: password));
-                              } else {
-                                AppSnackBar.showSnack(context, S.current.passwordsNotMatch);
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Theme.of(context).primaryColor,
-                              textStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                if (password == confirmPassword) {
+                                  context.read<UpdatePasswordBloc>().add(
+                                      UpdatePasswordEvent.update(id: user.uid, password: password));
+                                } else {
+                                  AppSnackBar.showSnack(context, S.current.passwordsNotMatch);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: Theme.of(context).primaryColor,
+                                textStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                                shape:
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Text(S.current.save),
                             ),
-                            child: Text(S.current.save),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
+                        ],
+                      ),
+                    );
+                  }),
+                ),
               ),
             ),
           ),

@@ -1,30 +1,41 @@
 part of 'category_bloc.dart';
 
-abstract class CategoryState extends Equatable {
-  const CategoryState();
+sealed class CategoryState extends Equatable {
+  final int currentIndex;
+  const CategoryState({this.currentIndex = 0});
 
   @override
   List<Object?> get props => [];
 }
 
-class CategoryBooksEmpty extends CategoryState {}
+class CategoryBooksEmpty extends CategoryState {
+  const CategoryBooksEmpty({super.currentIndex});
 
-class CategoryBooksLoading extends CategoryState {}
+  @override
+  List<Object?> get props => [];
+}
+
+class CategoryBooksLoading extends CategoryState {
+  const CategoryBooksLoading({super.currentIndex});
+
+  @override
+  List<Object?> get props => [];
+}
 
 class CategoryBooksLoaded extends CategoryState {
   final List<BookEntity> books;
 
-  const CategoryBooksLoaded({required this.books});
+  const CategoryBooksLoaded({required this.books, super.currentIndex});
 
   @override
-  List<Object?> get props => [books];
+  List<Object?> get props => [books, currentIndex];
 }
 
 class CategoryBooksError extends CategoryState {
   final String message;
 
-  const CategoryBooksError({required this.message});
+  const CategoryBooksError({required this.message, super.currentIndex});
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [message, currentIndex];
 }

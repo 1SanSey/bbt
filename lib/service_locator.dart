@@ -34,16 +34,18 @@ import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
-import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/get_user_bloc/get_user_bloc.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/send_order_bloc/send_order_bloc.dart';
 import 'package:bbt/features/presentation/bloc/reg_bloc/registration_bloc.dart';
+import 'package:bbt/features/presentation/bloc/sidebar_visibility_bloc/sidebar_visibility_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
+import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -73,6 +75,7 @@ init() async {
     ..registerFactory(() => UpdatePasswordBloc(repo: sl()))
     ..registerFactory(() => SendOrderBloc(ordersUseCase: sl()))
     ..registerFactory(() => UpdateUserPhotoBloc(repository: sl(), picker: sl()))
+    ..registerFactory(SidebarVisibilityBloc.new)
 
 //UseCases
     ..registerLazySingleton(() => PopularUsecase(sl()))
@@ -95,10 +98,10 @@ init() async {
       () => CategoriesRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
     )
     ..registerLazySingleton<ICartRepository>(
-      () => CartRepositoryImpl(localDataSource: sl(), remoteDataSource: sl(), networkInfo: sl()),
+      () => CartRepositoryImpl(localDataSource: sl(), remoteDataSource: sl()),
     )
     ..registerLazySingleton<IFavouritesRepository>(
-      () => FavouritesRepositoryImpl(hiveDataSource: sl(), networkInfo: sl()),
+      () => FavouritesRepositoryImpl(hiveDataSource: sl()),
     )
     ..registerLazySingleton<IAuthRepository>(
       () => AuthRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
@@ -125,11 +128,17 @@ init() async {
     )
 
 //Core
-    ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()))
     ..registerLazySingleton(() => LoggerService.inject)
     ..registerLazySingleton<ImagePicker>(ImagePicker.new)
     ..registerLazySingleton<Dio>(Dio.new)
+    ..registerLazySingleton<NetworkInfo>(() => kIsWeb ? NetworkInfoWeb() : NetworkInfoImpl(sl()));
 
 //External
-    ..registerLazySingleton(InternetConnectionChecker.new);
+  Future<void> externalDi() async {
+    if (!kIsWeb) {
+      sl.registerLazySingleton(InternetConnectionChecker.new);
+    }
+  }
+
+  await externalDi();
 }

@@ -20,12 +20,12 @@ class CategoryPage extends StatefulWidget {
   State<CategoryPage> createState() => _CategoryPageState();
 }
 
-late String query;
-List<BookEntity> categoryBooks = [];
-late bool error;
-String? errorText;
-
 class _CategoryPageState extends State<CategoryPage> {
+  late String query;
+  List<BookEntity> categoryBooks = [];
+  late bool error;
+  String? errorText;
+
   @override
   void initState() {
     super.initState();
