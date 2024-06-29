@@ -1,3 +1,4 @@
+import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
@@ -52,10 +53,22 @@ class AuthPageState extends State<EditUserPage> {
           appBar: AppBar(
             title: Text(S.current.editUserInfo),
             centerTitle: true,
-            leading: IconButton(
-              onPressed: NavigationManager.instance.pop,
-              icon: const Icon(Icons.close),
-            ),
+            leading: kIsWeb
+                ? MaterialButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: const CircleBorder(),
+                    onPressed: () {},
+                    minWidth: 36,
+                    padding: const EdgeInsets.all(6),
+                    child: const Icon(
+                      Icons.close,
+                      color: AppColors.greyColor2,
+                    ),
+                  )
+                : IconButton(
+                    onPressed: NavigationManager.instance.pop,
+                    icon: const Icon(Icons.close),
+                  ),
           ),
           body: SingleChildScrollView(
             child: BlocListener<UpdateDisplayNameBloc, UpdateDisplayNameState>(

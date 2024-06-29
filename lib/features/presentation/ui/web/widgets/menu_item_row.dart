@@ -2,11 +2,11 @@ import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/presentation/ui/web/widgets/on_hover.dart';
 import 'package:flutter/material.dart';
 
-class MenuItemRow extends StatelessWidget {
+class MenuItem extends StatelessWidget {
   final (String, String, String) item;
   final Duration duration = const Duration(milliseconds: 250);
   final bool isActive;
-  const MenuItemRow({
+  const MenuItem({
     Key? key,
     required this.item,
     required this.isActive,

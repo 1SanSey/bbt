@@ -9,37 +9,32 @@ abstract class CategoryEvent extends Equatable {
 
 class CategoryLoadAllBooksEvent extends CategoryEvent {
   final String param;
-  final int index;
 
-  const CategoryLoadAllBooksEvent({this.index = 0, required this.param});
+  const CategoryLoadAllBooksEvent({required this.param});
 }
 
 class CategoryLoadBooksBySizeEvent extends CategoryEvent {
   final String param;
-  final int index;
 
-  const CategoryLoadBooksBySizeEvent({this.index = 0, required this.param});
+  const CategoryLoadBooksBySizeEvent({required this.param});
 }
 
 class CategoryLoadBooksByNameEvent extends CategoryEvent {
   final String param;
-  final int index;
 
-  const CategoryLoadBooksByNameEvent({this.index = 0, required this.param});
+  const CategoryLoadBooksByNameEvent({required this.param});
 }
 
 class CategoryLoadBooksSetEvent extends CategoryEvent {
   final String param;
-  final int index;
 
-  const CategoryLoadBooksSetEvent({this.index = 0, required this.param});
+  const CategoryLoadBooksSetEvent({required this.param});
 }
 
 class CategoryLoadCulinaryBooksEvent extends CategoryEvent {
   final String param;
-  final int index;
 
-  const CategoryLoadCulinaryBooksEvent({this.index = 0, required this.param});
+  const CategoryLoadCulinaryBooksEvent({required this.param});
 }
 
 class CategorySearchBooksEvent extends CategoryEvent {

@@ -3,7 +3,7 @@ import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/data/models/cart_book_model/cart_book_model.dart';
 import 'package:bbt/features/domain/entities/book_entity.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
-import 'package:bbt/features/presentation/bloc/sidebar_visibility_bloc/sidebar_visibility_bloc.dart';
+import 'package:bbt/features/presentation/bloc/navigation_web_cubit.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class BookCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (kIsWeb) {
-          context.read<SidebarVisibilityBloc>().add(OpenBookDetail(true, book: book));
+          context.read<NavigationWebCubit>().changePage(10, book: book);
         } else {
           NavigationManager.instance.goBookDetailPage(book);
         }

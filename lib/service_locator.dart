@@ -37,6 +37,7 @@ import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bl
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/get_user_bloc/get_user_bloc.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
+import 'package:bbt/features/presentation/bloc/navigation_web_cubit.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/send_order_bloc/send_order_bloc.dart';
 import 'package:bbt/features/presentation/bloc/reg_bloc/registration_bloc.dart';
@@ -76,6 +77,7 @@ init() async {
     ..registerFactory(() => SendOrderBloc(ordersUseCase: sl()))
     ..registerFactory(() => UpdateUserPhotoBloc(repository: sl(), picker: sl()))
     ..registerFactory(SidebarVisibilityBloc.new)
+    ..registerFactory(NavigationWebCubit.new)
 
 //UseCases
     ..registerLazySingleton(() => PopularUsecase(sl()))

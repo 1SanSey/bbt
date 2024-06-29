@@ -10,6 +10,7 @@ import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bl
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/get_user_bloc/get_user_bloc.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
+import 'package:bbt/features/presentation/bloc/navigation_web_cubit.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/send_order_bloc/send_order_bloc.dart';
 import 'package:bbt/features/presentation/bloc/reg_bloc/registration_bloc.dart';
@@ -81,6 +82,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<UpdatePasswordBloc>(create: (context) => di.sl<UpdatePasswordBloc>()),
         BlocProvider<UpdateUserPhotoBloc>(create: (context) => di.sl<UpdateUserPhotoBloc>()),
         BlocProvider<SidebarVisibilityBloc>(create: (context) => di.sl<SidebarVisibilityBloc>()),
+        BlocProvider<NavigationWebCubit>(create: (context) => di.sl<NavigationWebCubit>()),
       ],
       child: BlocBuilder<ChangeThemeBloc, ThemeState>(
         builder: (context, state) {
