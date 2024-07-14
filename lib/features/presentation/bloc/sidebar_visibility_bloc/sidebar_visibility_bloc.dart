@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bbt/features/domain/entities/book_entity.dart';
+import 'package:bbt/features/domain/entities/order_entity.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,18 +16,8 @@ class SidebarVisibilityBloc extends Bloc<SidebarVisibilityEvent, SidebarVisibili
       transformer: bloc_concurrency.droppable(),
     );
 
-    on<OpenFavourites>(
-      _changeFavouritesVisibility,
-      transformer: bloc_concurrency.droppable(),
-    );
-
-    on<OpenCart>(
-      _changeCartVisibility,
-      transformer: bloc_concurrency.droppable(),
-    );
-
-    on<OpenBookDetail>(
-      _changeBookDetailVisibility,
+    on<OpenOrderDetail>(
+      _changeOrderDetailVisibility,
       transformer: bloc_concurrency.droppable(),
     );
   }
@@ -39,25 +29,11 @@ class SidebarVisibilityBloc extends Bloc<SidebarVisibilityEvent, SidebarVisibili
     emit(ProfileVisibilityState(isActive: event.isActive));
   }
 
-  FutureOr<void> _changeFavouritesVisibility(
-    OpenFavourites event,
+  FutureOr<void> _changeOrderDetailVisibility(
+    OpenOrderDetail event,
     Emitter<SidebarVisibilityState> emit,
   ) async {
-    emit(FavouritesVisibilityState(isActive: event.isActive));
-  }
-
-  FutureOr<void> _changeCartVisibility(
-    OpenCart event,
-    Emitter<SidebarVisibilityState> emit,
-  ) async {
-    emit(CartVisibilityState(isActive: event.isActive));
-  }
-
-  FutureOr<void> _changeBookDetailVisibility(
-    OpenBookDetail event,
-    Emitter<SidebarVisibilityState> emit,
-  ) async {
-    emit(BookDetailVisibilityState(event.isActive, event.book));
+    emit(OrderDetailVisibilityState(event.isActive, event.order));
   }
 }
 
@@ -69,23 +45,11 @@ class OpenProfile extends SidebarVisibilityEvent {
   OpenProfile(this.isActive);
 }
 
-class OpenFavourites extends SidebarVisibilityEvent {
+class OpenOrderDetail extends SidebarVisibilityEvent {
   final bool isActive;
+  final OrderEntity? order;
 
-  OpenFavourites(this.isActive);
-}
-
-class OpenBookDetail extends SidebarVisibilityEvent {
-  final bool isActive;
-  final BookEntity? book;
-
-  OpenBookDetail(this.isActive, {this.book});
-}
-
-class OpenCart extends SidebarVisibilityEvent {
-  final bool isActive;
-
-  OpenCart(this.isActive);
+  OpenOrderDetail(this.isActive, {this.order});
 }
 
 sealed class SidebarVisibilityState extends Equatable {}
@@ -99,30 +63,12 @@ class ProfileVisibilityState extends SidebarVisibilityState {
   List<Object?> get props => [isActive];
 }
 
-class FavouritesVisibilityState extends SidebarVisibilityState {
+class OrderDetailVisibilityState extends SidebarVisibilityState {
   final bool isActive;
+  final OrderEntity? order;
 
-  FavouritesVisibilityState({required this.isActive});
+  OrderDetailVisibilityState(this.isActive, this.order);
 
   @override
-  List<Object?> get props => [isActive];
-}
-
-class CartVisibilityState extends SidebarVisibilityState {
-  final bool isActive;
-
-  CartVisibilityState({required this.isActive});
-
-  @override
-  List<Object?> get props => [isActive];
-}
-
-class BookDetailVisibilityState extends SidebarVisibilityState {
-  final bool isActive;
-  final BookEntity? book;
-
-  BookDetailVisibilityState(this.isActive, this.book);
-
-  @override
-  List<Object?> get props => [isActive, book];
+  List<Object?> get props => [isActive, order];
 }

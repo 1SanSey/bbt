@@ -17,7 +17,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditUserPage extends StatefulWidget {
-  const EditUserPage({super.key});
+  final PageController? pageController;
+
+  const EditUserPage({super.key, this.pageController});
 
   @override
   AuthPageState createState() => AuthPageState();
@@ -50,26 +52,16 @@ class AuthPageState extends State<EditUserPage> {
         width: kIsWeb ? 512 : null,
         height: kIsWeb ? MediaQuery.sizeOf(context).height : null,
         child: Scaffold(
-          appBar: AppBar(
-            title: Text(S.current.editUserInfo),
-            centerTitle: true,
-            leading: kIsWeb
-                ? MaterialButton(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: const CircleBorder(),
-                    onPressed: () {},
-                    minWidth: 36,
-                    padding: const EdgeInsets.all(6),
-                    child: const Icon(
-                      Icons.close,
-                      color: AppColors.greyColor2,
-                    ),
-                  )
-                : IconButton(
+          appBar: kIsWeb
+              ? null
+              : AppBar(
+                  title: Text(S.current.editUserInfo),
+                  centerTitle: true,
+                  leading: IconButton(
                     onPressed: NavigationManager.instance.pop,
                     icon: const Icon(Icons.close),
                   ),
-          ),
+                ),
           body: SingleChildScrollView(
             child: BlocListener<UpdateDisplayNameBloc, UpdateDisplayNameState>(
               listener: (context, state) {
@@ -104,20 +96,41 @@ class AuthPageState extends State<EditUserPage> {
                     _controllerUsername = TextEditingController(text: user.displayName);
 
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: kIsWeb ? 0 : 16),
                       child: Column(
                         children: [
-                          CurrentAccountPicture(
-                            userName: user.displayName,
-                            photoURL: user.photoURL,
-                            borderRadius: 20,
-                            size: 150,
-                            isDrawer: false,
-                            onTap: () {
-                              user.photoURL.isNotEmpty
-                                  ? showEditProfileImageBottomSheet(user.uid)
-                                  : choiceSourcePhotoBottomSheet(user.uid);
-                            },
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (kIsWeb) ...[
+                                MaterialButton(
+                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  shape: const CircleBorder(),
+                                  onPressed: () => widget.pageController!.jumpToPage(0),
+                                  minWidth: 36,
+                                  padding: const EdgeInsets.all(6),
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: AppColors.greyColor2,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 44,
+                                )
+                              ],
+                              CurrentAccountPicture(
+                                userName: user.displayName,
+                                photoURL: user.photoURL,
+                                borderRadius: 20,
+                                size: 150,
+                                isDrawer: false,
+                                onTap: () {
+                                  user.photoURL.isNotEmpty
+                                      ? showEditProfileImageBottomSheet(user.uid)
+                                      : choiceSourcePhotoBottomSheet(user.uid);
+                                },
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 60),
                           AuthTextField(

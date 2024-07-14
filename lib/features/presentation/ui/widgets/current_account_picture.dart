@@ -1,5 +1,6 @@
 import 'package:bbt/features/presentation/ui/widgets/empty_avatar_box.dart';
 import 'package:bbt/utils/color_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CurrentAccountPicture extends StatelessWidget {
@@ -32,7 +33,9 @@ class CurrentAccountPicture extends StatelessWidget {
               borderRadius: BorderRadius.circular(borderRadius ?? 50),
               child: Image.network(
                 photoURL,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
+                width: kIsWeb ? 250 : null,
+                height: kIsWeb ? 250 : null,
               ),
             )
           else

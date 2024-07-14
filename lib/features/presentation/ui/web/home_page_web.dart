@@ -42,12 +42,16 @@ class _HomePageWebState extends State<HomePageWeb> {
               BlocBuilder<NavigationWebCubit, NavigationWebState>(
                 builder: (context, state) {
                   return Expanded(
-                      child: switch (state) {
-                    NavigationWebState(index: 10) => BookDetailPage(book: state.book!),
-                    NavigationWebState(index: 11) => const FavouritesPage(),
-                    NavigationWebState(index: 12) => const CartPage(),
-                    _ => const CategoryContent(),
-                  });
+                    child: switch (state) {
+                      NavigationWebState(index: 10) => BookDetailPage(
+                          book: state.book!,
+                          previousIndex: state.previousIndex,
+                          queryCategory: state.queryCategory),
+                      NavigationWebState(index: 11) => const FavouritesPage(),
+                      NavigationWebState(index: 12) => const CartPage(),
+                      _ => const CategoryContent(),
+                    },
+                  );
                 },
               ),
             ],

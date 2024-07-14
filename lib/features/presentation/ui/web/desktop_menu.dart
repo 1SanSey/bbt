@@ -43,7 +43,8 @@ class DesktopMenu extends StatelessWidget {
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
                       final query = AppConstants.category[i]!.$3;
-                      context.read<NavigationWebCubit>().changePage(i);
+                      context.read<NavigationWebCubit>().changePage(i,
+                          queryCategory: AppConstants.category[i]!.$3, previousIndex: i);
                       // Загрузка всех книг
                       if (query == AppCategories.all.$3) {
                         categoryBloc.add(CategoryLoadAllBooksEvent(param: query));

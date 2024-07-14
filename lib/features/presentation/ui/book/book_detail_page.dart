@@ -1,8 +1,10 @@
 import 'package:bbt/common/theme/app_colors.dart';
+import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/data/models/cart_book_model/cart_book_model.dart';
 import 'package:bbt/features/data/models/favourites_book_model/favourites_book_model.dart';
 import 'package:bbt/features/domain/entities/book_entity.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
+import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/navigation_web_cubit.dart';
 import 'package:bbt/generated/l10n.dart';
@@ -11,8 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookDetailPage extends StatefulWidget {
-  const BookDetailPage({super.key, required this.book});
   final BookEntity book;
+  final int? previousIndex;
+  final String? queryCategory;
+
+  const BookDetailPage({super.key, required this.book, this.previousIndex, this.queryCategory});
 
   @override
   State<BookDetailPage> createState() => _BookDetailPageState();
@@ -54,11 +59,44 @@ class _BookDetailPageState extends State<BookDetailPage> {
             ? MaterialButton(
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 shape: const CircleBorder(),
-                onPressed: () => context.read<NavigationWebCubit>().changePage(0),
+                onPressed: () {
+                  final categoryBloc = context.read<CategoryBloc>();
+
+                  // Загрузка всех книг
+                  if (widget.queryCategory == AppCategories.all.$3) {
+                    categoryBloc.add(CategoryLoadAllBooksEvent(param: widget.queryCategory!));
+                  }
+
+                  // Загрузка книг по наименованию
+                  if (widget.queryCategory == AppCategories.bg.$3 ||
+                      widget.queryCategory == AppCategories.sb.$3 ||
+                      widget.queryCategory == AppCategories.cc.$3) {
+                    categoryBloc.add(CategoryLoadBooksByNameEvent(param: widget.queryCategory!));
+                  }
+
+                  // Загрузка книг по размеру
+                  if (widget.queryCategory == AppCategories.small.$3 ||
+                      widget.queryCategory == AppCategories.medium.$3 ||
+                      widget.queryCategory == AppCategories.big.$3 ||
+                      widget.queryCategory == AppCategories.mahabig.$3) {
+                    categoryBloc.add(CategoryLoadBooksBySizeEvent(param: widget.queryCategory!));
+                  }
+
+                  // Загрузка наборов книг
+                  if (widget.queryCategory == AppCategories.set.$3) {
+                    categoryBloc.add(CategoryLoadBooksSetEvent(param: widget.queryCategory!));
+                  }
+
+                  // Загрузка кулинарных книг
+                  if (widget.queryCategory == AppCategories.culinary.$3) {
+                    categoryBloc.add(CategoryLoadCulinaryBooksEvent(param: widget.queryCategory!));
+                  }
+                  context.read<NavigationWebCubit>().changePage(widget.previousIndex ?? 0);
+                },
                 minWidth: 36,
                 padding: const EdgeInsets.all(6),
                 child: const Icon(
-                  Icons.close,
+                  Icons.arrow_back,
                   color: AppColors.greyColor2,
                 ),
               )

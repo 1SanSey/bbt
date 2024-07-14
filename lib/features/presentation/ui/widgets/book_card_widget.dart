@@ -19,7 +19,9 @@ class BookCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (kIsWeb) {
-          context.read<NavigationWebCubit>().changePage(10, book: book);
+          final state = context.read<NavigationWebCubit>().state;
+          context.read<NavigationWebCubit>().changePage(10,
+              previousIndex: state.previousIndex, queryCategory: state.queryCategory, book: book);
         } else {
           NavigationManager.instance.goBookDetailPage(book);
         }
