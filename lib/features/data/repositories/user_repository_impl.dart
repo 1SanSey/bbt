@@ -74,7 +74,7 @@ class UserRepositoryImpl implements IUserRepository {
   }
 
   @override
-  Future<Either<Failure, String>> updatePhoto(ParseFile file, String id) async {
+  Future<Either<Failure, String>> updatePhoto(ParseFileBase file, String id) async {
     if (await networkInfo.isConnected) {
       try {
         final res = await remoteDataSource.updatePhoto(file, id);

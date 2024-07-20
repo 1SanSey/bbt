@@ -7,6 +7,7 @@ import 'package:bbt/features/domain/repositories/i_user_repository.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/service_locator.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +41,7 @@ class UpdateUserPhotoBloc extends Bloc<UpdateUserPhotoEvent, UpdateUserPhotoStat
     emit(const UpdateUserPhotoState.updating());
 
     Uint8List? bytes;
-    ParseFile? parseFile;
+    ParseFileBase? parseFile;
     // final uiSettings = [
     //   AndroidUiSettings(toolbarTitle: event.toolbarTitle),
     //   IOSUiSettings(title: event.toolbarTitle),
@@ -48,17 +49,30 @@ class UpdateUserPhotoBloc extends Bloc<UpdateUserPhotoEvent, UpdateUserPhotoStat
 
     try {
       log(event.source.toString());
-      final XFile? image = await picker.pickImage(source: event.source);
+      if (kIsWeb) {
+        final result =
+            await FilePicker.platform.pickFiles(type: FileType.any, allowMultiple: false);
 
-      if (image == null) {
-        emit(const UpdateUserPhotoState.empty());
+        if (result != null && result.files.isNotEmpty) {
+        } else {
+          emit(const UpdateUserPhotoState.empty());
 
-        return;
+          return;
+        }
+        bytes = result.files.first.bytes;
+        parseFile = ParseWebFile(bytes, name: result.files.first.name);
+      } else {
+        final XFile? image = await picker.pickImage(source: event.source);
+
+        if (image == null) {
+          emit(const UpdateUserPhotoState.empty());
+
+          return;
+        }
+        final file = File(image.path);
+        parseFile = ParseFile(file);
+        bytes = await file.readAsBytes();
       }
-      final file = File(image.path);
-      parseFile = ParseFile(file);
-      // final file = await ImageCropper().cropImage(sourcePath: image.path, uiSettings: uiSettings);
-      bytes = await file.readAsBytes();
     } on PlatformException {
       emit(const UpdateUserPhotoState.empty());
     }

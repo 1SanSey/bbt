@@ -74,6 +74,7 @@ class ProfileUserPage extends StatelessWidget {
               style: const TextStyle(fontSize: 18, color: Colors.black87),
             ),
             onTap: () {
+              context.read<SidebarVisibilityBloc>().add(OpenProfile(false));
               context.read<AuthBloc>().add(const AuthEvent.logOut());
               NavigationManager.instance.goAuthPage();
             },

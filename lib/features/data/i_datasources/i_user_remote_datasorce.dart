@@ -9,6 +9,7 @@ abstract class IUserRemoteDatasource {
   Future<UserEntity> getUser(String id);
   Future<void> updateDisplayName(String id, String newName);
   Future<void> updatePassword(String id, String newName);
-  Future<String> updatePhoto(ParseFile file, String id);
+  Future<String> updatePhoto(ParseFileBase file, String id);
   Future<String> removePhoto(String id);
+  Future<String?> getPhoto(String id);
 }

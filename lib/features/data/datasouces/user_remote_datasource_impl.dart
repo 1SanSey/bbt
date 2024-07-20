@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:bbt/core/error/exception.dart';
 import 'package:bbt/features/data/i_datasources/i_user_remote_datasorce.dart';
 import 'package:bbt/features/domain/entities/user_entity/user_entity.dart';
+import 'package:flutter/foundation.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
@@ -56,7 +57,7 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
         throw ServerException();
       }
 
-      return user;
+      return user.copyWith(photoURL: await getPhoto(user.uid) ?? '');
     } else {
       log(response.error!.message);
       throw ServerException();
@@ -139,7 +140,7 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
   }
 
   @override
-  Future<String> updatePhoto(ParseFile file, String id) async {
+  Future<String> updatePhoto(ParseFileBase file, String id) async {
     try {
       await file.save();
       final queryImage = QueryBuilder<ParseObject>(ParseObject('Image'))
@@ -153,16 +154,47 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
         final res = await image.save();
         if (res.success) {
           log('removePhoto $id');
-          return '';
+          return file.url ?? '';
         } else {
           log(res.error!.message);
           throw ServerException();
         }
       } else {
-        log(apiResponse.error!.message);
-        throw ServerException();
+        final image = ParseObject('Image')
+          ..set('user', (ParseObject('_User')..objectId = id).toPointer())
+          ..set('photo', file);
+        final res = await image.save();
+        if (res.success) {
+          return 'Success';
+        } else {
+          log(res.error!.message);
+          throw ServerException();
+        }
       }
     } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<String?> getPhoto(String id) async {
+    try {
+      final queryImage = QueryBuilder<ParseObject>(ParseObject('Image'))
+        ..whereEqualTo('user', (ParseObject('_User')..objectId = id).toPointer());
+      final apiResponse = await queryImage.query();
+
+      if (apiResponse.success && apiResponse.results != null) {
+        log('getPhoto ${(apiResponse.results as List<ParseObject>).first}');
+        final image = (apiResponse.results as List<ParseObject>).first;
+        return kIsWeb
+            ? image.get<ParseWebFile>('photo')?.url ?? ''
+            : image.get<ParseFile>('photo')?.url ?? '';
+      } else {
+        return '';
+      }
+    } catch (e) {
+      log(e.toString());
+
       throw ServerException();
     }
   }

@@ -1,3 +1,7 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
+import 'dart:html' as html;
+
 import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
@@ -84,8 +88,13 @@ class AuthPageState extends State<EditUserPage> {
                 child: BlocListener<UpdateUserPhotoBloc, UpdateUserPhotoState>(
                   listener: (context, state) {
                     state.mapOrNull(
-                      done: (state) {
+                      done: (state) async {
                         AppSnackBar.showSnack(context, S.current.photoSuccessfulChange);
+                        if (kIsWeb) {
+                          await Future.delayed(const Duration(milliseconds: 500), () {
+                            html.window.location.reload();
+                          });
+                        }
                       },
                       error: (state) {
                         AppSnackBar.showSnack(context, S.current.error);

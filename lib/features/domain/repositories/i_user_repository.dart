@@ -7,6 +7,6 @@ abstract class IUserRepository {
   Future<Either<Failure, UserEntity>> getUser(String id);
   Future<Either<Failure, void>> updateDisplayName(String id, String newName);
   Future<Either<Failure, void>> updatePassword(String id, String newPassword);
-  Future<Either<Failure, String>> updatePhoto(ParseFile file, String id);
+  Future<Either<Failure, String>> updatePhoto(ParseFileBase file, String id);
   Future<Either<Failure, String>> removePhoto(String id);
 }

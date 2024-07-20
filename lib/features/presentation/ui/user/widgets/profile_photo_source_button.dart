@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
 import 'package:bbt/features/presentation/ui/widgets/expand_tap_widget.dart';
 import 'package:bbt/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -47,7 +48,7 @@ class ProfilePhotoSourceButton extends StatelessWidget {
           } else {
             editPhoto(context, source, localizedStrings.toolbarEditPhotoTitle);
           }
-        } else if (source == ImageSource.gallery && Platform.isIOS) {
+        } else if (!kIsWeb && source == ImageSource.gallery && Platform.isIOS) {
           final status = await Permission.photos.request();
           log(status.toString());
           if (!status.isGranted && !status.isLimited) {

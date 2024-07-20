@@ -42,7 +42,7 @@ class CurrentAccountPicture extends StatelessWidget {
             EmptyAvatarBox(
               userName: userName,
               color: color,
-              size: size,
+              size: kIsWeb ? 250 : size,
               borderRadius: borderRadius ?? 50,
             ),
           Positioned(
