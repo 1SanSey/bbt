@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_types_on_closure_parameters
 
+import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
 import 'package:bbt/features/presentation/bloc/sidebar_visibility_bloc/sidebar_visibility_bloc.dart';
 import 'package:bbt/features/presentation/ui/orders/pages/order_detail_page.dart';
 import 'package:bbt/features/presentation/ui/orders/pages/orders_page.dart';
@@ -68,36 +69,43 @@ class _ProfileDataWebState extends State<SidebarWeb> {
                 state is OrderDetailVisibilityState && state.isActive;
 
             return Material(
-              child: AnimatedContainer(
-                curve: Curves.easeInOut,
-                duration: const Duration(milliseconds: 300),
-                height: MediaQuery.of(context).size.height,
-                width: isVisible ? 408 : 0,
-                decoration: const BoxDecoration(color: Colors.white),
-                child: AnimatedOpacity(
-                  duration: Duration(milliseconds: isVisible ? 220 : 75),
-                  opacity: contentOpacity,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 32,
+              child: BlocBuilder<ChangeThemeBloc, ThemeState>(
+                builder: (context, themeState) {
+                  return AnimatedContainer(
+                    curve: Curves.easeInOut,
+                    duration: const Duration(milliseconds: 300),
+                    height: MediaQuery.of(context).size.height,
+                    width: isVisible ? 408 : 0,
+                    decoration: BoxDecoration(
+                        color: themeState.isDark
+                            ? Theme.of(context).scaffoldBackgroundColor
+                            : Colors.white),
+                    child: AnimatedOpacity(
+                      duration: Duration(milliseconds: isVisible ? 220 : 75),
+                      opacity: contentOpacity,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 32,
+                        ),
+                        child: ExpandablePageView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          controller: pageController,
+                          children: [
+                            ProfileUserPage(pageController: pageController),
+                            EditUserPage(pageController: pageController),
+                            OrdersPage(pageController: pageController, name: S.current.myOrders),
+                            OrdersPage(pageController: pageController, name: S.current.allOrders),
+                            if (state is OrderDetailVisibilityState)
+                              if (state.order != null)
+                                OrderDetailPage(pageController: pageController, order: state.order!)
+                              else
+                                const SizedBox.shrink()
+                          ],
+                        ),
+                      ),
                     ),
-                    child: ExpandablePageView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: pageController,
-                      children: [
-                        ProfileUserPage(pageController: pageController),
-                        EditUserPage(pageController: pageController),
-                        OrdersPage(pageController: pageController, name: S.current.myOrders),
-                        OrdersPage(pageController: pageController, name: S.current.allOrders),
-                        if (state is OrderDetailVisibilityState)
-                          if (state.order != null)
-                            OrderDetailPage(pageController: pageController, order: state.order!)
-                          else
-                            const SizedBox.shrink()
-                      ],
-                    ),
-                  ),
-                ),
+                  );
+                },
               ),
             );
           },

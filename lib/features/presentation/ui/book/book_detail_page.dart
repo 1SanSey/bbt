@@ -91,7 +91,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
                   if (widget.queryCategory == AppCategories.culinary.$3) {
                     categoryBloc.add(CategoryLoadCulinaryBooksEvent(param: widget.queryCategory!));
                   }
-                  context.read<NavigationWebCubit>().changePage(widget.previousIndex ?? 0);
+                  context.read<NavigationWebCubit>().changePage(widget.previousIndex ?? 0,
+                      previousIndex: widget.previousIndex, queryCategory: widget.queryCategory);
                 },
                 minWidth: 36,
                 padding: const EdgeInsets.all(6),
@@ -101,7 +102,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                 ),
               )
             : null,
-        title: Text(widget.book.name),
+        title: kIsWeb ? null : Text(widget.book.name),
         centerTitle: true,
         backgroundColor: kIsWeb ? Colors.white : null,
       ),

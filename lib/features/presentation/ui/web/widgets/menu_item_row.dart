@@ -1,6 +1,7 @@
-import 'package:bbt/common/theme/app_colors.dart';
+import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
 import 'package:bbt/features/presentation/ui/web/widgets/on_hover.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MenuItem extends StatelessWidget {
   final (String, String, String) item;
@@ -18,17 +19,29 @@ class MenuItem extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        color: isActive ? AppColors.secondaryColorLight : Colors.transparent,
+        color: isActive ? Theme.of(context).primaryColorLight : Colors.transparent,
       ),
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: OnHover(builder: (isHovered) {
-          return Text(
-            item.$1,
-            style: TextStyle(
-              color: isHovered ? Colors.white70 : Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
+          return BlocBuilder<ChangeThemeBloc, ThemeState>(
+            builder: (context, state) {
+              return Text(
+                item.$1,
+                style: TextStyle(
+                  color: isHovered
+                      ? state.isDark
+                          ? isActive
+                              ? Colors.black54
+                              : Colors.white70
+                          : Colors.white70
+                      : state.isDark && isActive
+                          ? Colors.black
+                          : Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              );
+            },
           );
         }),
       ),

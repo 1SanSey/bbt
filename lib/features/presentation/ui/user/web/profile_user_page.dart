@@ -2,6 +2,7 @@ import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
+import 'package:bbt/features/presentation/bloc/sidebar_visibility_bloc/sidebar_visibility_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/ui/widgets/current_account_picture.dart';
 import 'package:bbt/features/presentation/ui/widgets/current_user_builder.dart';
@@ -102,16 +103,18 @@ class ProfileUserPage extends StatelessWidget {
           BlocBuilder<ChangeThemeBloc, ThemeState>(
             builder: (context, state) {
               return ListTile(
-                leading: Icon(
-                  state.isDark ? Icons.nightlight_round : Icons.wb_sunny,
-                  color: Theme.of(context).primaryColor,
-                ),
-                title: Text(
-                  state.isDark ? S.current.darkTheme : S.current.lightTheme,
-                  style: const TextStyle(fontSize: 15, color: Colors.black87),
-                ),
-                onTap: () => context.read<ChangeThemeBloc>().add(const ThemeEvent.change()),
-              );
+                  leading: Icon(
+                    state.isDark ? Icons.nightlight_round : Icons.wb_sunny,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  title: Text(
+                    state.isDark ? S.current.darkTheme : S.current.lightTheme,
+                    style: const TextStyle(fontSize: 15, color: Colors.black87),
+                  ),
+                  onTap: () {
+                    context.read<SidebarVisibilityBloc>().add(OpenProfile(false));
+                    context.read<ChangeThemeBloc>().add(const ThemeEvent.change());
+                  });
             },
           ),
         ],

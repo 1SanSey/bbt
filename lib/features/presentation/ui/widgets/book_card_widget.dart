@@ -20,6 +20,7 @@ class BookCard extends StatelessWidget {
       onTap: () {
         if (kIsWeb) {
           final state = context.read<NavigationWebCubit>().state;
+
           context.read<NavigationWebCubit>().changePage(10,
               previousIndex: state.previousIndex, queryCategory: state.queryCategory, book: book);
         } else {
