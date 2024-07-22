@@ -153,7 +153,6 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
           ..set('photo', file);
         final res = await image.save();
         if (res.success) {
-          log('removePhoto $id');
           return file.url ?? '';
         } else {
           log(res.error!.message);
@@ -165,7 +164,7 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
           ..set('photo', file);
         final res = await image.save();
         if (res.success) {
-          return 'Success';
+          return file.url ?? '';
         } else {
           log(res.error!.message);
           throw ServerException();

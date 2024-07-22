@@ -21,3 +21,5 @@ class RemoveFromFavouritesEvent extends FavouritesEvent {
 
   const RemoveFromFavouritesEvent({required this.book, required this.index});
 }
+
+class RemoveFavouritesEvent extends FavouritesEvent {}

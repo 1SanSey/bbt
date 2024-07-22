@@ -125,7 +125,7 @@ class _CartPageState extends State<CartPage> {
                                   style: ElevatedButton.styleFrom(
                                     foregroundColor: Colors.white,
                                     backgroundColor: Theme.of(context).primaryColor,
-                                    fixedSize: const Size(320, 50),
+                                    fixedSize: const Size(500, 50),
                                     textStyle: const TextStyle(color: Colors.white, fontSize: 18),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),

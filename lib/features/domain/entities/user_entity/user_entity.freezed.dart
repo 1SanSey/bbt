@@ -129,7 +129,7 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserEntityImpl extends _UserEntity {
+class _$UserEntityImpl extends _UserEntity with DiagnosticableTreeMixin {
   const _$UserEntityImpl(
       {required this.uid,
       required this.displayName,
@@ -150,8 +150,19 @@ class _$UserEntityImpl extends _UserEntity {
   final String email;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'UserEntity(uid: $uid, displayName: $displayName, photoURL: $photoURL, email: $email)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserEntity'))
+      ..add(DiagnosticsProperty('uid', uid))
+      ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('photoURL', photoURL))
+      ..add(DiagnosticsProperty('email', email));
   }
 
   @override

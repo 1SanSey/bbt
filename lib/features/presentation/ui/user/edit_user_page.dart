@@ -1,7 +1,3 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
-
-import 'dart:html' as html;
-
 import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
@@ -90,11 +86,7 @@ class AuthPageState extends State<EditUserPage> {
                     state.mapOrNull(
                       done: (state) async {
                         AppSnackBar.showSnack(context, S.current.photoSuccessfulChange);
-                        if (kIsWeb) {
-                          await Future.delayed(const Duration(milliseconds: 500), () {
-                            html.window.location.reload();
-                          });
-                        }
+                        context.read<AuthBloc>().add(AuthEvent.updatePhoto(state.photo ?? ''));
                       },
                       error: (state) {
                         AppSnackBar.showSnack(context, S.current.error);
@@ -109,6 +101,8 @@ class AuthPageState extends State<EditUserPage> {
                       child: Column(
                         children: [
                           Row(
+                            mainAxisAlignment:
+                                kIsWeb ? MainAxisAlignment.start : MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (kIsWeb) ...[

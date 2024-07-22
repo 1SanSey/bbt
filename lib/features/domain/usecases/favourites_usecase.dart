@@ -17,4 +17,8 @@ class FavouritesUsecase {
   List<FavoritesBookEntity> showFavourites() {
     return favouritesRepository.showFavourites();
   }
+
+  void removeAllFavourites() {
+    favouritesRepository.removeAllFavourites();
+  }
 }

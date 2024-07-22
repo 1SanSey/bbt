@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class BooksLocalDatasourceImpl extends IBooksLocalDatasource {
   Box<CartBookModel> cartBox = Hive.box<CartBookModel>(HiveBoxes.cart);
+  Box<FavouritesBookModel> favouritesBox = Hive.box<FavouritesBookModel>(HiveBoxes.favourites);
 
   @override
   String addToCart(CartBookModel book) {
@@ -76,8 +77,6 @@ class BooksLocalDatasourceImpl extends IBooksLocalDatasource {
     cartBox.clear();
   }
 
-  Box<FavouritesBookModel> favouritesBox = Hive.box<FavouritesBookModel>(HiveBoxes.favourites);
-
   @override
   String addToFavourites(FavouritesBookModel book) {
     bool isExist = false;
@@ -121,5 +120,10 @@ class BooksLocalDatasourceImpl extends IBooksLocalDatasource {
   @override
   List<FavouritesBookModel> showFavourites() {
     return favouritesBox.values.toList();
+  }
+
+  @override
+  void removeAllFavourites() {
+    favouritesBox.clear();
   }
 }

@@ -34,8 +34,8 @@ class CurrentAccountPicture extends StatelessWidget {
               child: Image.network(
                 photoURL,
                 fit: BoxFit.cover,
-                width: kIsWeb ? 250 : null,
-                height: kIsWeb ? 250 : null,
+                width: 250,
+                height: 250,
               ),
             )
           else

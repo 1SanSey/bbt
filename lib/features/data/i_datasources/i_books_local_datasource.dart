@@ -11,4 +11,5 @@ abstract class IBooksLocalDatasource {
   List<FavouritesBookModel> showFavourites();
   int totalSum();
   void removeAllCart();
+  void removeAllFavourites();
 }

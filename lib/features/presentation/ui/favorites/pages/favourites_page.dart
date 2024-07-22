@@ -1,4 +1,5 @@
 import 'package:bbt/common/theme/app_colors.dart';
+import 'package:bbt/core/logger/logger_service.dart';
 import 'package:bbt/features/domain/entities/favorites_book_entity.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/ui/favorites/widgets/favourites_book_card.dart';
@@ -34,11 +35,14 @@ class _FavouritesPageState extends State<FavouritesPage> {
       child: BlocBuilder<FavouritesBloc, FavouritesState>(
         builder: (context, state) {
           if (state is ShowFavouritesState) {
+            logw('state.books ${state.books}');
             favouritesBooks = state.books;
 
             if (favouritesBooks.isEmpty) {
               return Align(child: ErrorTextWidget(errorMessage: S.current.emptyFavourites));
             }
+          } else {
+            return Align(child: ErrorTextWidget(errorMessage: S.current.emptyFavourites));
           }
 
           return Padding(

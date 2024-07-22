@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
+import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/ui/widgets/current_account_picture.dart';
@@ -106,7 +108,10 @@ class DrawerWidget extends StatelessWidget {
                           style: const TextStyle(fontSize: 18, color: Colors.black87),
                         ),
                         onTap: () {
-                          context.read<AuthBloc>().add(const AuthEvent.logOut());
+                          context
+                            ..read<FavouritesBloc>().add(RemoveFavouritesEvent())
+                            ..read<CartBloc>().add(RemoveAllCartEvent())
+                            ..read<AuthBloc>().add(const AuthEvent.logOut());
                           NavigationManager.instance.goAuthPage();
                         },
                       ),

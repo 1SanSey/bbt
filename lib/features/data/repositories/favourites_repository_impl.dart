@@ -31,4 +31,9 @@ class FavouritesRepositoryImpl implements IFavouritesRepository {
   List<FavoritesBookEntity> showFavourites() {
     return hiveDataSource.showFavourites();
   }
+
+  @override
+  void removeAllFavourites() {
+    return hiveDataSource.removeAllFavourites();
+  }
 }

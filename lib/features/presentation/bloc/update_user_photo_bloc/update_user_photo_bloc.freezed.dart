@@ -21,7 +21,7 @@ mixin _$UpdateUserPhotoState {
     required TResult Function() empty,
     required TResult Function() updating,
     required TResult Function() canceled,
-    required TResult Function() done,
+    required TResult Function(String? photo) done,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$UpdateUserPhotoState {
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? canceled,
-    TResult? Function()? done,
+    TResult? Function(String? photo)? done,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$UpdateUserPhotoState {
     TResult Function()? empty,
     TResult Function()? updating,
     TResult Function()? canceled,
-    TResult Function()? done,
+    TResult Function(String? photo)? done,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -145,7 +145,7 @@ class _$EmptyProfilePhotoStateImpl extends _EmptyProfilePhotoState
     required TResult Function() empty,
     required TResult Function() updating,
     required TResult Function() canceled,
-    required TResult Function() done,
+    required TResult Function(String? photo) done,
     required TResult Function(String error) error,
   }) {
     return empty();
@@ -157,7 +157,7 @@ class _$EmptyProfilePhotoStateImpl extends _EmptyProfilePhotoState
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? canceled,
-    TResult? Function()? done,
+    TResult? Function(String? photo)? done,
     TResult? Function(String error)? error,
   }) {
     return empty?.call();
@@ -169,7 +169,7 @@ class _$EmptyProfilePhotoStateImpl extends _EmptyProfilePhotoState
     TResult Function()? empty,
     TResult Function()? updating,
     TResult Function()? canceled,
-    TResult Function()? done,
+    TResult Function(String? photo)? done,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -278,7 +278,7 @@ class _$UpdatingProfilePhotoStateImpl extends _UpdatingProfilePhotoState
     required TResult Function() empty,
     required TResult Function() updating,
     required TResult Function() canceled,
-    required TResult Function() done,
+    required TResult Function(String? photo) done,
     required TResult Function(String error) error,
   }) {
     return updating();
@@ -290,7 +290,7 @@ class _$UpdatingProfilePhotoStateImpl extends _UpdatingProfilePhotoState
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? canceled,
-    TResult? Function()? done,
+    TResult? Function(String? photo)? done,
     TResult? Function(String error)? error,
   }) {
     return updating?.call();
@@ -302,7 +302,7 @@ class _$UpdatingProfilePhotoStateImpl extends _UpdatingProfilePhotoState
     TResult Function()? empty,
     TResult Function()? updating,
     TResult Function()? canceled,
-    TResult Function()? done,
+    TResult Function(String? photo)? done,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -411,7 +411,7 @@ class _$CanceledProfilePhotoStateImpl extends _CanceledProfilePhotoState
     required TResult Function() empty,
     required TResult Function() updating,
     required TResult Function() canceled,
-    required TResult Function() done,
+    required TResult Function(String? photo) done,
     required TResult Function(String error) error,
   }) {
     return canceled();
@@ -423,7 +423,7 @@ class _$CanceledProfilePhotoStateImpl extends _CanceledProfilePhotoState
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? canceled,
-    TResult? Function()? done,
+    TResult? Function(String? photo)? done,
     TResult? Function(String error)? error,
   }) {
     return canceled?.call();
@@ -435,7 +435,7 @@ class _$CanceledProfilePhotoStateImpl extends _CanceledProfilePhotoState
     TResult Function()? empty,
     TResult Function()? updating,
     TResult Function()? canceled,
-    TResult Function()? done,
+    TResult Function(String? photo)? done,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -497,6 +497,8 @@ abstract class _$$DoneProfilePhotoStateImplCopyWith<$Res> {
           _$DoneProfilePhotoStateImpl value,
           $Res Function(_$DoneProfilePhotoStateImpl) then) =
       __$$DoneProfilePhotoStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? photo});
 }
 
 /// @nodoc
@@ -507,34 +509,60 @@ class __$$DoneProfilePhotoStateImplCopyWithImpl<$Res>
   __$$DoneProfilePhotoStateImplCopyWithImpl(_$DoneProfilePhotoStateImpl _value,
       $Res Function(_$DoneProfilePhotoStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? photo = freezed,
+  }) {
+    return _then(_$DoneProfilePhotoStateImpl(
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
     with DiagnosticableTreeMixin {
-  const _$DoneProfilePhotoStateImpl() : super._();
+  const _$DoneProfilePhotoStateImpl({this.photo}) : super._();
+
+  @override
+  final String? photo;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UpdateUserPhotoState.done()';
+    return 'UpdateUserPhotoState.done(photo: $photo)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'UpdateUserPhotoState.done'));
+    properties
+      ..add(DiagnosticsProperty('type', 'UpdateUserPhotoState.done'))
+      ..add(DiagnosticsProperty('photo', photo));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DoneProfilePhotoStateImpl);
+            other is _$DoneProfilePhotoStateImpl &&
+            (identical(other.photo, photo) || other.photo == photo));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, photo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DoneProfilePhotoStateImplCopyWith<_$DoneProfilePhotoStateImpl>
+      get copyWith => __$$DoneProfilePhotoStateImplCopyWithImpl<
+          _$DoneProfilePhotoStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -542,10 +570,10 @@ class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
     required TResult Function() empty,
     required TResult Function() updating,
     required TResult Function() canceled,
-    required TResult Function() done,
+    required TResult Function(String? photo) done,
     required TResult Function(String error) error,
   }) {
-    return done();
+    return done(photo);
   }
 
   @override
@@ -554,10 +582,10 @@ class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? canceled,
-    TResult? Function()? done,
+    TResult? Function(String? photo)? done,
     TResult? Function(String error)? error,
   }) {
-    return done?.call();
+    return done?.call(photo);
   }
 
   @override
@@ -566,12 +594,12 @@ class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
     TResult Function()? empty,
     TResult Function()? updating,
     TResult Function()? canceled,
-    TResult Function()? done,
+    TResult Function(String? photo)? done,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done();
+      return done(photo);
     }
     return orElse();
   }
@@ -618,8 +646,14 @@ class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
 }
 
 abstract class _DoneProfilePhotoState extends UpdateUserPhotoState {
-  const factory _DoneProfilePhotoState() = _$DoneProfilePhotoStateImpl;
+  const factory _DoneProfilePhotoState({final String? photo}) =
+      _$DoneProfilePhotoStateImpl;
   const _DoneProfilePhotoState._() : super._();
+
+  String? get photo;
+  @JsonKey(ignore: true)
+  _$$DoneProfilePhotoStateImplCopyWith<_$DoneProfilePhotoStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -702,7 +736,7 @@ class _$ErrorProfilePhotoStateImpl extends _ErrorProfilePhotoState
     required TResult Function() empty,
     required TResult Function() updating,
     required TResult Function() canceled,
-    required TResult Function() done,
+    required TResult Function(String? photo) done,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -714,7 +748,7 @@ class _$ErrorProfilePhotoStateImpl extends _ErrorProfilePhotoState
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? canceled,
-    TResult? Function()? done,
+    TResult? Function(String? photo)? done,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -726,7 +760,7 @@ class _$ErrorProfilePhotoStateImpl extends _ErrorProfilePhotoState
     TResult Function()? empty,
     TResult Function()? updating,
     TResult Function()? canceled,
-    TResult Function()? done,
+    TResult Function(String? photo)? done,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {

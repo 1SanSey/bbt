@@ -13,6 +13,7 @@ class FavouritesBloc extends Bloc<FavouritesEvent, FavouritesState> {
     on<AddToFavouritesEvent>(_addToFavourites);
     on<RemoveFromFavouritesEvent>(_removeFromFavourites);
     on<ShowFavouritesEvent>(_showFavourites);
+    on<RemoveFavouritesEvent>(_removeAllFavourites);
   }
 
   void _addToFavourites(
@@ -29,9 +30,15 @@ class FavouritesBloc extends Bloc<FavouritesEvent, FavouritesState> {
     emit(ShowFavouritesState(books: favourites.showFavourites()));
   }
 
-  void _showFavourites(ShowFavouritesEvent event, Emitter<FavouritesState> emit) {
+  void _showFavourites(ShowFavouritesEvent _, Emitter<FavouritesState> emit) {
     favourites.showFavourites();
 
     emit(ShowFavouritesState(books: favourites.showFavourites()));
+  }
+
+  void _removeAllFavourites(RemoveFavouritesEvent _, Emitter<FavouritesState> emit) {
+    favourites.removeAllFavourites();
+
+    emit(EmptyFavouritesState());
   }
 }

@@ -4,8 +4,6 @@ import 'dart:io';
 
 import 'package:bbt/common/failure_to_message.dart';
 import 'package:bbt/features/domain/repositories/i_user_repository.dart';
-import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
-import 'package:bbt/service_locator.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
@@ -90,8 +88,7 @@ class UpdateUserPhotoBloc extends Bloc<UpdateUserPhotoEvent, UpdateUserPhotoStat
     failureOrString
         .fold((failure) => emit(UpdateUserPhotoState.error(error: mapFailureToMessage(failure))),
             (photo) {
-      emit(const UpdateUserPhotoState.done());
-      sl<AuthBloc>().add(AuthEvent.updatePhoto(photo));
+      emit(UpdateUserPhotoState.done(photo: photo));
     });
   }
 
@@ -106,7 +103,6 @@ class UpdateUserPhotoBloc extends Bloc<UpdateUserPhotoEvent, UpdateUserPhotoStat
         .fold((failure) => emit(UpdateUserPhotoState.error(error: mapFailureToMessage(failure))),
             (photo) {
       emit(const UpdateUserPhotoState.done());
-      sl<AuthBloc>().add(AuthEvent.updatePhoto(photo));
     });
   }
 }
@@ -141,7 +137,7 @@ class UpdateUserPhotoState with _$UpdateUserPhotoState {
 
   const factory UpdateUserPhotoState.canceled() = _CanceledProfilePhotoState;
 
-  const factory UpdateUserPhotoState.done() = _DoneProfilePhotoState;
+  const factory UpdateUserPhotoState.done({String? photo}) = _DoneProfilePhotoState;
 
   const factory UpdateUserPhotoState.error({
     required String error,
