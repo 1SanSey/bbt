@@ -51,7 +51,7 @@ class _BuilderWidgetCategoryState extends State<BuilderCategoryWidget> {
           sliver: _foundBooks.isNotEmpty
               ? SliverGrid(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) => BookCard(book: _foundBooks[index]),
+                    (context, index) => BookCardWidget(book: _foundBooks[index]),
                     childCount: _foundBooks.length,
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

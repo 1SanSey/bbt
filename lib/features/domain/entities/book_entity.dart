@@ -4,6 +4,7 @@ class BookEntity extends Equatable {
   final String name;
   final int price;
   final bool isPopular;
+  final String? thumbnail;
   final String? image;
   final String? description;
   final String? size;
@@ -14,6 +15,7 @@ class BookEntity extends Equatable {
     required this.name,
     required this.price,
     required this.isPopular,
+    required this.thumbnail,
     required this.image,
     required this.description,
     required this.size,

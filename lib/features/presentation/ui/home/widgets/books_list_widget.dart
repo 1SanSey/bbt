@@ -32,7 +32,7 @@ class BooksListWidget extends StatelessWidget {
         sliver: SliverGrid(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              return BookCard(book: homeBooks[index]);
+              return BookCardWidget(book: homeBooks[index]);
             },
             childCount: homeBooks.length,
           ),

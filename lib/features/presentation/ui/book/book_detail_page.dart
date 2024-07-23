@@ -195,7 +195,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                         book: CartBookModel(
                           name: widget.book.name,
                           price: widget.book.price,
-                          image: widget.book.image!,
+                          image: widget.book.thumbnail!,
                           quantity: _count,
                         ),
                       ));
@@ -215,7 +215,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                       final FavouritesBookModel hiveBook = FavouritesBookModel(
                         name: widget.book.name,
                         price: widget.book.price,
-                        image: widget.book.image!,
+                        image: widget.book.thumbnail!,
                       );
 
                       BlocProvider.of<FavouritesBloc>(context)

@@ -9,10 +9,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BookCard extends StatelessWidget {
+class BookCardWidget extends StatelessWidget {
   final BookEntity book;
 
-  const BookCard({required this.book, super.key});
+  const BookCardWidget({required this.book, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,8 @@ class BookCard extends StatelessWidget {
             Column(
               children: [
                 Image.network(
-                  book.image ?? AppConstants.noImage,
+                  book.thumbnail ?? AppConstants.noImage,
+                  fit: BoxFit.fitHeight,
                   height: 180,
                 ),
                 Padding(
@@ -65,14 +66,16 @@ class BookCard extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    BlocProvider.of<CartBloc>(context).add(AddToCartEvent(
-                      book: CartBookModel(
-                        name: book.name,
-                        price: book.price,
-                        image: book.image!,
-                        quantity: 1,
+                    BlocProvider.of<CartBloc>(context).add(
+                      AddToCartEvent(
+                        book: CartBookModel(
+                          name: book.name,
+                          price: book.price,
+                          image: book.thumbnail!,
+                          quantity: 1,
+                        ),
                       ),
-                    ));
+                    );
                   },
                   icon: Icon(
                     Icons.shopping_cart,
