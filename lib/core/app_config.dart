@@ -18,6 +18,6 @@ class AppConfig {
   static String get chatId => dotenv.env['CHAT_ID'] ?? '';
 
   static Future<void> load() async {
-    await dotenv.load(fileName: 'assets/.env');
+    await dotenv.load(fileName: 'assets/env');
   }
 }
