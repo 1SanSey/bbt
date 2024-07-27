@@ -16,9 +16,11 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final sidebarVisibilityBloc = context.read<SidebarVisibilityBloc>();
     final navigationWebCubit = context.read<NavigationWebCubit>();
+    final width = MediaQuery.sizeOf(context).width;
 
     return Padding(
-      padding: kIsWeb ? const EdgeInsets.all(16) : const EdgeInsets.fromLTRB(16, 8, 8, 8),
+      padding:
+          kIsWeb && width > 900 ? const EdgeInsets.all(16) : const EdgeInsets.fromLTRB(16, 8, 8, 8),
       child: Row(
         children: [
           Flexible(
@@ -66,7 +68,7 @@ class HeaderWidget extends StatelessWidget {
               onChanged: onChanged,
             ),
           ),
-          if (kIsWeb) ...[
+          if (kIsWeb && width > 900) ...[
             Flexible(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,

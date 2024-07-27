@@ -40,6 +40,8 @@ class _BuilderWidgetCategoryState extends State<BuilderCategoryWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: CustomScrollView(slivers: [
@@ -47,17 +49,17 @@ class _BuilderWidgetCategoryState extends State<BuilderCategoryWidget> {
           child: HeaderWidget(focusNode: _focusNode, onChanged: _runFilter),
         ),
         SliverPadding(
-          padding: const EdgeInsets.all(kIsWeb ? 16 : 8),
+          padding: EdgeInsets.all(kIsWeb && width > 900 ? 16 : 8),
           sliver: _foundBooks.isNotEmpty
               ? SliverGrid(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) => BookCardWidget(book: _foundBooks[index]),
                     childCount: _foundBooks.length,
                   ),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: kIsWeb ? 4 : 2,
-                    mainAxisSpacing: kIsWeb ? 16 : 8,
-                    crossAxisSpacing: kIsWeb ? 16 : 8,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: kIsWeb && width > 900 ? 4 : 2,
+                    mainAxisSpacing: kIsWeb && width > 900 ? 16 : 8,
+                    crossAxisSpacing: kIsWeb && width > 900 ? 16 : 8,
                     mainAxisExtent: 270,
                   ),
                 )

@@ -52,10 +52,12 @@ class _BookDetailPageState extends State<BookDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: kIsWeb
+        leading: kIsWeb && width > 900
             ? MaterialButton(
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 shape: const CircleBorder(),
@@ -108,9 +110,9 @@ class _BookDetailPageState extends State<BookDetailPage> {
                 ),
               )
             : null,
-        title: kIsWeb ? null : Text(widget.book.name),
+        title: kIsWeb && width > 900 ? null : Text(widget.book.name),
         centerTitle: true,
-        backgroundColor: kIsWeb ? Colors.white : null,
+        backgroundColor: kIsWeb && width > 900 ? Colors.white : null,
       ),
       body: SafeArea(
         child: Row(
@@ -246,7 +248,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                 ),
               ),
             ),
-            if (kIsWeb) const Flexible(child: SizedBox.shrink()),
+            if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
           ],
         ),
       ),

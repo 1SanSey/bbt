@@ -16,11 +16,13 @@ class OrdersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return SizedBox(
-      width: kIsWeb ? 512 : null,
-      height: kIsWeb ? MediaQuery.sizeOf(context).height : null,
+      width: kIsWeb && width > 900 ? 512 : null,
+      height: kIsWeb && width > 900 ? MediaQuery.sizeOf(context).height : null,
       child: Scaffold(
-        appBar: kIsWeb
+        appBar: kIsWeb && width > 900
             ? null
             : AppBar(
                 leading: IconButton(
@@ -44,7 +46,7 @@ class OrdersPage extends StatelessWidget {
 
             return Column(
               children: [
-                if (kIsWeb) ...[
+                if (kIsWeb && width > 900) ...[
                   Row(
                     children: [
                       const SizedBox(
@@ -76,13 +78,13 @@ class OrdersPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                       child: SizedBox(
-                        height: kIsWeb ? MediaQuery.sizeOf(context).height : null,
+                        height: kIsWeb && width > 900 ? MediaQuery.sizeOf(context).height : null,
                         child: ListView.separated(
                           itemBuilder: (context, i) {
                             return ListTile(
                               title: GestureDetector(
                                 onTap: () {
-                                  if (kIsWeb) {
+                                  if (kIsWeb && width > 900) {
                                     context.read<SidebarVisibilityBloc>()
                                       ..add(OpenProfile(false))
                                       ..add(OpenOrderDetail(true, order: orders[i]));

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/domain/entities/cart_book_entity.dart';
 import 'package:bbt/features/domain/entities/favorites_book_entity.dart';
@@ -19,6 +21,10 @@ class FavouritesBookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
+    log('width $width');
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -42,7 +48,7 @@ class FavouritesBookCard extends StatelessWidget {
                   width: 10,
                 ),
                 SizedBox(
-                  width: kIsWeb ? null : MediaQuery.of(context).size.width * 0.6,
+                  width: kIsWeb && width > 900 ? null : width * 0.6,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,

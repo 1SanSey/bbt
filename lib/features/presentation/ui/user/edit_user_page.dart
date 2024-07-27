@@ -46,13 +46,15 @@ class AuthPageState extends State<EditUserPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: SizedBox(
-        width: kIsWeb ? 512 : null,
-        height: kIsWeb ? MediaQuery.sizeOf(context).height : null,
+        width: kIsWeb && width > 900 ? 512 : null,
+        height: kIsWeb && width > 900 ? MediaQuery.sizeOf(context).height : null,
         child: Scaffold(
-          appBar: kIsWeb
+          appBar: kIsWeb && width > 900
               ? null
               : AppBar(
                   title: Text(S.current.editUserInfo),
@@ -97,15 +99,17 @@ class AuthPageState extends State<EditUserPage> {
                     _controllerUsername = TextEditingController(text: user.displayName);
 
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: kIsWeb ? 0 : 16),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 8, vertical: kIsWeb && width > 900 ? 0 : 16),
                       child: Column(
                         children: [
                           Row(
-                            mainAxisAlignment:
-                                kIsWeb ? MainAxisAlignment.start : MainAxisAlignment.center,
+                            mainAxisAlignment: kIsWeb && width > 900
+                                ? MainAxisAlignment.start
+                                : MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (kIsWeb) ...[
+                              if (kIsWeb && width > 900) ...[
                                 MaterialButton(
                                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   shape: const CircleBorder(),

@@ -27,11 +27,13 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return SizedBox(
-      width: kIsWeb ? 512 : null,
-      height: kIsWeb ? MediaQuery.sizeOf(context).height : null,
+      width: kIsWeb && width > 900 ? 512 : null,
+      height: kIsWeb && width > 900 ? MediaQuery.sizeOf(context).height : null,
       child: Scaffold(
-        appBar: kIsWeb
+        appBar: kIsWeb && width > 900
             ? null
             : AppBar(
                 leading: IconButton(
@@ -43,94 +45,96 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (kIsWeb) ...[
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    MaterialButton(
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      shape: const CircleBorder(),
-                      onPressed: () => widget.pageController!.jumpToPage(0),
-                      minWidth: 36,
-                      padding: const EdgeInsets.all(6),
-                      child: const Icon(
-                        Icons.close,
-                        color: AppColors.greyColor2,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (kIsWeb && width > 900) ...[
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 8,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Text(
-                      S.current.orderStructure,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
+                      MaterialButton(
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        shape: const CircleBorder(),
+                        onPressed: () => widget.pageController!.jumpToPage(0),
+                        minWidth: 36,
+                        padding: const EdgeInsets.all(6),
+                        child: const Icon(
+                          Icons.close,
+                          color: AppColors.greyColor2,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Text(
+                        S.current.orderStructure,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ],
+                ListTile(
+                  title: BlocBuilder<GetUserBloc, GetUserState>(
+                    builder: (context, state) {
+                      return state.when(
+                        empty: () => const SizedBox.shrink(),
+                        loading: () => const SizedBox.shrink(),
+                        error: (_) => const SizedBox.shrink(),
+                        loaded: (user) {
+                          return Text(
+                            '${user.displayName}\n${user.email}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 22,
+                              color: AppColors.greyColor2,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
+                const SizedBox(height: 5),
+                ListTile(
+                  title: Text(
+                    '${S.current.orderDate}${getDate(widget.order.dateOrder)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 22,
+                      color: AppColors.greyColor2,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                ListTile(
+                  title: Text(
+                    S.current.orderSum(widget.order.sumOrder),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 22,
+                      color: AppColors.greyColor2,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                ListTile(
+                  title: Text(
+                    '${S.current.orderStructure}:',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 22,
+                      color: AppColors.greyColor2,
+                    ),
+                  ),
+                ),
+                ...getBooksOrder(context),
               ],
-              ListTile(
-                title: BlocBuilder<GetUserBloc, GetUserState>(
-                  builder: (context, state) {
-                    return state.when(
-                      empty: () => const SizedBox.shrink(),
-                      loading: () => const SizedBox.shrink(),
-                      error: (_) => const SizedBox.shrink(),
-                      loaded: (user) {
-                        return Text(
-                          '${user.displayName}\n${user.email}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 22,
-                            color: AppColors.greyColor2,
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: 5),
-              ListTile(
-                title: Text(
-                  '${S.current.orderDate}${getDate(widget.order.dateOrder)}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 22,
-                    color: AppColors.greyColor2,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5),
-              ListTile(
-                title: Text(
-                  S.current.orderSum(widget.order.sumOrder),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 22,
-                    color: AppColors.greyColor2,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              ListTile(
-                title: Text(
-                  '${S.current.orderStructure}:',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 22,
-                    color: AppColors.greyColor2,
-                  ),
-                ),
-              ),
-              ...getBooksOrder(context),
-            ],
+            ),
           ),
         ),
       ),

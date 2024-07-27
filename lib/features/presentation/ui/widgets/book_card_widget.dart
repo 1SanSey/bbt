@@ -16,9 +16,11 @@ class BookCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () {
-        if (kIsWeb) {
+        if (kIsWeb && width > 900) {
           final state = context.read<NavigationWebCubit>().state;
 
           context.read<NavigationWebCubit>().changePage(12,

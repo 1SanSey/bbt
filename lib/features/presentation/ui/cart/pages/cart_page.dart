@@ -31,6 +31,8 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: BlocBuilder<CartBloc, CartState>(
@@ -49,9 +51,9 @@ class _CartPageState extends State<CartPage> {
 
           return cartBooks.isNotEmpty
               ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 16 : 8),
+                  padding: EdgeInsets.symmetric(horizontal: kIsWeb && width > 900 ? 16 : 8),
                   child: CustomScrollView(slivers: [
-                    if (kIsWeb) ...[
+                    if (kIsWeb && width > 900) ...[
                       SliverToBoxAdapter(child: HeaderWidget(focusNode: _focusNode)),
                       SliverPadding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
@@ -81,7 +83,7 @@ class _CartPageState extends State<CartPage> {
                                     index: index,
                                   ),
                                 ),
-                                if (kIsWeb) const Flexible(child: SizedBox.shrink()),
+                                if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
                               ],
                             );
                           },
@@ -135,7 +137,7 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               ),
                             ),
-                            if (kIsWeb) const Flexible(child: SizedBox.shrink()),
+                            if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
                           ],
                         ),
                       ),

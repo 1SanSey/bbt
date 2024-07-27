@@ -33,10 +33,12 @@ class AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: Scaffold(
-        appBar: kIsWeb
+        appBar: kIsWeb && width > 900
             ? null
             : AppBar(
                 title: Text(S.current.BBTKirovApp),

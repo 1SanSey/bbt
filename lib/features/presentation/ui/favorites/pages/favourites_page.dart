@@ -30,6 +30,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: BlocBuilder<FavouritesBloc, FavouritesState>(
@@ -46,9 +48,9 @@ class _FavouritesPageState extends State<FavouritesPage> {
           }
 
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kIsWeb ? 16 : 8),
+            padding: EdgeInsets.symmetric(horizontal: kIsWeb && width > 900 ? 16 : 8),
             child: CustomScrollView(slivers: [
-              if (kIsWeb) ...[
+              if (kIsWeb && width > 900) ...[
                 SliverToBoxAdapter(child: HeaderWidget(focusNode: _focusNode)),
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
@@ -74,7 +76,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                         children: [
                           Flexible(
                             child: Dismissible(
-                              direction: kIsWeb
+                              direction: kIsWeb && width > 900
                                   ? DismissDirection.startToEnd
                                   : DismissDirection.horizontal,
                               background: Container(
@@ -104,7 +106,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                               ),
                             ),
                           ),
-                          if (kIsWeb) const Flexible(child: SizedBox.shrink()),
+                          if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
                         ],
                       );
                     },

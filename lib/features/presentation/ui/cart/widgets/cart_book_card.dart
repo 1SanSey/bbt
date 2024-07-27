@@ -13,6 +13,8 @@ class CartBookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     void increment(int index, int value) {
       final newValue = value + 1;
       context.read<CartBloc>().add(ChangeQuantityCartEvent(index: index, value: newValue));
@@ -44,7 +46,7 @@ class CartBookCard extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: 10),
             child: SizedBox(
-              width: kIsWeb ? 320 : MediaQuery.of(context).size.width * 0.8,
+              width: kIsWeb && width > 900 ? 320 : MediaQuery.of(context).size.width * 0.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
