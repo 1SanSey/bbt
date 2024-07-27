@@ -10,6 +10,8 @@ class AppConstants {
     7: AppCategories.cc,
     8: AppCategories.set,
     9: AppCategories.culinary,
+    10: AppCategories.pl,
+    11: AppCategories.other,
   };
 
   static const List<String> imagesList = [
@@ -20,7 +22,7 @@ class AppConstants {
 
   static const String bbtLogo = 'assets/images/logo/bbt_logo.webp';
   static const String bbtLogoDark = 'assets/images/logo/bbt_logo_dark.webp';
-  static const String noImage = 'https://master-kraski.ru/images/no-image.jpg';
+  static const String noImage = 'https://bbt-kirov.ru/images/no-image.jpg';
 }
 
 class AppCategories {
@@ -39,4 +41,7 @@ class AppCategories {
       ('ШРИ ЧАЙТАНЬЯ\nЧАРИТАМРИТА', 'Шри Чайтанья Чаритамрита', 'Чайтанья Чаритамрита');
   static const (String, String, String) set = ('КОМПЛЕКТЫ', 'Комплекты', 'set');
   static const (String, String, String) culinary = ('КУЛИНАРНЫЕ', 'Кулинарные', 'culinary');
+  static const (String, String, String) pl =
+      ('ПРАБХУПАДА\nЛИЛАМРИТА', 'Прабхупада Лиламрита', 'Прабхупада Лиламрита');
+  static const (String, String, String) other = ('ПРОЧИЕ', 'Прочие', 'other');
 }

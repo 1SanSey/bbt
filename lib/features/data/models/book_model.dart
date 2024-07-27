@@ -7,6 +7,7 @@ class BookModel extends BookEntity {
   final String name;
   final int price;
   final bool isPopular;
+  final bool isFavourite;
   final String? thumbnail;
   final String? image;
   final String? description;
@@ -18,6 +19,7 @@ class BookModel extends BookEntity {
     required this.name,
     required this.price,
     required this.isPopular,
+    required this.isFavourite,
     required this.image,
     required this.thumbnail,
     required this.description,
@@ -28,6 +30,7 @@ class BookModel extends BookEntity {
           name: name,
           price: price,
           isPopular: isPopular,
+          isFavourite: isFavourite,
           thumbnail: thumbnail,
           image: image,
           description: description,
@@ -39,7 +42,10 @@ class BookModel extends BookEntity {
     return BookModel(
       name: object.get<String>('name')!,
       price: object.get<int>('price')!,
-      isPopular: object.get<bool>('isPopular')!,
+      isPopular: object.get<String>('extraCategory') != null
+          ? object.get<String>('extraCategory')!.contains('popular')
+          : false,
+      isFavourite: object.get<bool>('isFavourite')!,
       thumbnail: object.get<String>('thumbnail') ?? '',
       image: object.get<String>('image') ?? '',
       description: object.get<String>('description') ?? '',

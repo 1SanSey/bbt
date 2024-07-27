@@ -40,7 +40,8 @@ class _CategoryPageState extends State<CategoryPage> {
     // Загрузка книг по наименованию
     if (query == AppCategories.bg.$3 ||
         query == AppCategories.sb.$3 ||
-        query == AppCategories.cc.$3) {
+        query == AppCategories.cc.$3 ||
+        query == AppCategories.pl.$3) {
       context.read<CategoryBloc>().add(CategoryLoadBooksByNameEvent(param: query));
     }
 
@@ -60,6 +61,11 @@ class _CategoryPageState extends State<CategoryPage> {
     // Загрузка кулинарных книг
     if (query == AppCategories.culinary.$3) {
       context.read<CategoryBloc>().add(CategoryLoadCulinaryBooksEvent(param: query));
+    }
+
+    // Загрузка прочих книг
+    if (query == AppCategories.other.$3) {
+      context.read<CategoryBloc>().add(const CategoryLoadOtherBooksEvent());
     }
   }
 

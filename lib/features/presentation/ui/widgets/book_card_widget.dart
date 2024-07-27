@@ -21,7 +21,7 @@ class BookCardWidget extends StatelessWidget {
         if (kIsWeb) {
           final state = context.read<NavigationWebCubit>().state;
 
-          context.read<NavigationWebCubit>().changePage(10,
+          context.read<NavigationWebCubit>().changePage(12,
               previousIndex: state.previousIndex, queryCategory: state.queryCategory, book: book);
         } else {
           NavigationManager.instance.goBookDetailPage(book);

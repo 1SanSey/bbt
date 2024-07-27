@@ -27,6 +27,17 @@ class CulinaryBooksUsecase extends UseCase<List<BookEntity>> {
   }
 }
 
+class OtherBooksUsecase extends UseCase<List<BookEntity>> {
+  final ICategoriesRepository bookRepositoryCulinary;
+
+  OtherBooksUsecase(this.bookRepositoryCulinary);
+
+  @override
+  Future<Either<Failure, List<BookEntity>>> call() async {
+    return bookRepositoryCulinary.getOtherBooks();
+  }
+}
+
 class BooksBySizeUsecase extends UseCaseByParams<List<BookEntity>, BookSizeParams> {
   final ICategoriesRepository bookRepositoryBySize;
 

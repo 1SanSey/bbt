@@ -63,6 +63,7 @@ init() async {
           booksByName: sl(),
           setBooks: sl(),
           culinaryBooks: sl(),
+          otherBooks: sl(),
           searchBooks: sl(),
         ))
     ..registerFactory(() => CartBloc(cart: sl()))
@@ -86,6 +87,7 @@ init() async {
     ..registerLazySingleton(() => BooksByNameUsecase(sl()))
     ..registerLazySingleton(() => SetBooksUsecase(sl()))
     ..registerLazySingleton(() => CulinaryBooksUsecase(sl()))
+    ..registerLazySingleton(() => OtherBooksUsecase(sl()))
     ..registerLazySingleton(() => SearchBooksUsecase(sl()))
     ..registerLazySingleton(() => CartUsecase(sl()))
     ..registerLazySingleton(() => FavouritesUsecase(sl()))

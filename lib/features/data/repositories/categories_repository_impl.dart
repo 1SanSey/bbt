@@ -62,4 +62,9 @@ class CategoriesRepositoryImpl implements ICategoriesRepository {
       return Left(InternetConnectionFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<BookEntity>>> getOtherBooks() {
+    return _getBooks(remoteDataSource.getOtherBooks);
+  }
 }

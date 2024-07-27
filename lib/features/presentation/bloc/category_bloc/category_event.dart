@@ -37,6 +37,10 @@ class CategoryLoadCulinaryBooksEvent extends CategoryEvent {
   const CategoryLoadCulinaryBooksEvent({required this.param});
 }
 
+class CategoryLoadOtherBooksEvent extends CategoryEvent {
+  const CategoryLoadOtherBooksEvent();
+}
+
 class CategorySearchBooksEvent extends CategoryEvent {
   final String query;
 

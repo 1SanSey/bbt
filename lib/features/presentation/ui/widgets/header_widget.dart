@@ -72,14 +72,14 @@ class HeaderWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    onPressed: () => navigationWebCubit.changePage(11),
+                    onPressed: () => navigationWebCubit.changePage(13),
                     icon: const Icon(Icons.favorite),
                     iconSize: 40,
                     color: Theme.of(context).primaryColor,
                   ),
                   const SizedBox(width: 32),
                   IconButton(
-                    onPressed: () => navigationWebCubit.changePage(12),
+                    onPressed: () => navigationWebCubit.changePage(14),
                     icon: const Icon(Icons.shopping_cart),
                     iconSize: 40,
                     color: Theme.of(context).primaryColor,

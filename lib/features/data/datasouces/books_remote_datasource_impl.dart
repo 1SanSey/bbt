@@ -20,10 +20,10 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
   }
 
   @override
-  Future<List<BookModel>> getBooksByName(String name) async {
+  Future<List<BookModel>> getBooksByName(String name, {String field = 'name'}) async {
     final books = <BookModel>[];
     final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('Books'))
-      ..whereContains('name', name);
+      ..whereContains(field, name);
     final apiResponse = await parseQuery.query();
 
     if (apiResponse.success && apiResponse.results != null) {
@@ -39,12 +39,17 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
 
   @override
   Future<List<BookModel>> getPopularBooks() async {
-    return _getBooksByQuery('isPopular', true);
+    return getBooksByName(field: 'extraCategory', 'popular');
   }
 
   @override
   Future<List<BookModel>> getCulinaryBooks() async {
-    return _getBooksByQuery('isCulinary', true);
+    return getBooksByName(field: 'extraCategory', 'culinary');
+  }
+
+  @override
+  Future<List<BookModel>> getOtherBooks() {
+    return getBooksByName(field: 'extraCategory', 'other');
   }
 
   @override

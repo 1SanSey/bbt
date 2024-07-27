@@ -43,12 +43,12 @@ class _HomePageWebState extends State<HomePageWeb> {
                 builder: (context, state) {
                   return Expanded(
                     child: switch (state) {
-                      NavigationWebState(index: 10) => BookDetailPage(
+                      NavigationWebState(index: 12) => BookDetailPage(
                           book: state.book!,
                           previousIndex: state.previousIndex,
                           queryCategory: state.queryCategory),
-                      NavigationWebState(index: 11) => const FavouritesPage(),
-                      NavigationWebState(index: 12) => const CartPage(),
+                      NavigationWebState(index: 13) => const FavouritesPage(),
+                      NavigationWebState(index: 14) => const CartPage(),
                       _ => const CategoryContent(),
                     },
                   );

@@ -53,7 +53,8 @@ class DesktopMenu extends StatelessWidget {
                         // Загрузка книг по наименованию
                         if (query == AppCategories.bg.$3 ||
                             query == AppCategories.sb.$3 ||
-                            query == AppCategories.cc.$3) {
+                            query == AppCategories.cc.$3 ||
+                            query == AppCategories.pl.$3) {
                           categoryBloc.add(CategoryLoadBooksByNameEvent(param: query));
                         }
 
@@ -73,6 +74,11 @@ class DesktopMenu extends StatelessWidget {
                         // Загрузка кулинарных книг
                         if (query == AppCategories.culinary.$3) {
                           categoryBloc.add(CategoryLoadCulinaryBooksEvent(param: query));
+                        }
+
+                        // Загрузка прочих книг
+                        if (query == AppCategories.other.$3) {
+                          context.read<CategoryBloc>().add(const CategoryLoadOtherBooksEvent());
                         }
                       },
                       child: BlocBuilder<NavigationWebCubit, NavigationWebState>(

@@ -14,6 +14,7 @@ part 'category_state.dart';
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   final AllBooksUsecase allBooks;
   final CulinaryBooksUsecase culinaryBooks;
+  final OtherBooksUsecase otherBooks;
   final BooksBySizeUsecase booksBySize;
   final BooksByNameUsecase booksByName;
   final SetBooksUsecase setBooks;
@@ -25,6 +26,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     required this.booksBySize,
     required this.allBooks,
     required this.culinaryBooks,
+    required this.otherBooks,
     required this.searchBooks,
   }) : super(const CategoryBooksEmpty()) {
     on<CategoryLoadAllBooksEvent>(_onEventAllBooks, transformer: droppable());
@@ -39,6 +41,10 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     on<CategoryLoadBooksSetEvent>(_onEventBooksSet, transformer: droppable());
     on<CategoryLoadCulinaryBooksEvent>(
       _onEventCulinaryBooks,
+      transformer: droppable(),
+    );
+    on<CategoryLoadOtherBooksEvent>(
+      _onEventOtherBooks,
       transformer: droppable(),
     );
     on<CategorySearchBooksEvent>(_onEventSearchBooks, transformer: droppable());
@@ -115,6 +121,22 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     emit(const CategoryBooksLoading());
 
     final failureOrBooks = await culinaryBooks();
+
+    failureOrBooks.fold(
+      (failure) => emit(CategoryBooksError(message: mapFailureToMessage(failure))),
+      (books) {
+        emit(CategoryBooksLoaded(books: books));
+      },
+    );
+  }
+
+  FutureOr<void> _onEventOtherBooks(
+    CategoryLoadOtherBooksEvent event,
+    Emitter<CategoryState> emit,
+  ) async {
+    emit(const CategoryBooksLoading());
+
+    final failureOrBooks = await otherBooks();
 
     failureOrBooks.fold(
       (failure) => emit(CategoryBooksError(message: mapFailureToMessage(failure))),

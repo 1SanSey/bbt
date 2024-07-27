@@ -91,6 +91,12 @@ class _BookDetailPageState extends State<BookDetailPage> {
                   if (widget.queryCategory == AppCategories.culinary.$3) {
                     categoryBloc.add(CategoryLoadCulinaryBooksEvent(param: widget.queryCategory!));
                   }
+
+                  // Загрузка прочих книг
+                  if (widget.queryCategory == AppCategories.other.$3) {
+                    context.read<CategoryBloc>().add(const CategoryLoadOtherBooksEvent());
+                  }
+
                   context.read<NavigationWebCubit>().changePage(widget.previousIndex ?? 0,
                       previousIndex: widget.previousIndex, queryCategory: widget.queryCategory);
                 },
@@ -110,132 +116,134 @@ class _BookDetailPageState extends State<BookDetailPage> {
         child: Row(
           children: [
             Flexible(
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _isTapped = !_isTapped;
-                      });
-                    },
-                    child: AnimatedSize(
-                      duration: const Duration(seconds: 2),
-                      curve: Curves.easeIn,
-                      child: Image.network(
-                        widget.book.image ?? 'https://master-kraski.ru/images/no-image.jpg',
-                        height: _isTapped ? 370 : 270,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isTapped = !_isTapped;
+                        });
+                      },
+                      child: AnimatedSize(
+                        duration: const Duration(seconds: 2),
+                        curve: Curves.easeIn,
+                        child: Image.network(
+                          widget.book.image ?? AppConstants.noImage,
+                          height: _isTapped ? 370 : 270,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 250),
-                    child: Text(
-                      widget.book.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: AppColors.greyColor2, fontSize: 18),
+                    const SizedBox(height: 10),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 250),
+                      child: Text(
+                        widget.book.name,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(color: AppColors.greyColor2, fontSize: 18),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          border: Border.all(
-                            color: AppColors.greyColor,
-                            width: 1,
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(
+                              color: AppColors.greyColor,
+                              width: 1,
+                            ),
                           ),
-                        ),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              IconButton(
-                                onPressed: _decrement,
-                                icon: const Icon(Icons.remove),
-                                iconSize: 30,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              const SizedBox(width: 20),
-                              /* const VerticalDivider(
-                                  width: 2, color: AppColors.greyColor2), */
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8),
-                                child: Text(
-                                  '$_count',
-                                  style: const TextStyle(
-                                    color: AppColors.greyColor2,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w400,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                IconButton(
+                                  onPressed: _decrement,
+                                  icon: const Icon(Icons.remove),
+                                  iconSize: 30,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                const SizedBox(width: 20),
+                                /* const VerticalDivider(
+                                    width: 2, color: AppColors.greyColor2), */
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  child: Text(
+                                    '$_count',
+                                    style: const TextStyle(
+                                      color: AppColors.greyColor2,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              /*  const VerticalDivider(
-                                  width: 2, color: AppColors.greyColor2), */
-                              const SizedBox(width: 20),
-                              IconButton(
-                                onPressed: _increment,
-                                icon: const Icon(Icons.add),
-                                iconSize: 30,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            ]),
+                                /*  const VerticalDivider(
+                                    width: 2, color: AppColors.greyColor2), */
+                                const SizedBox(width: 20),
+                                IconButton(
+                                  onPressed: _increment,
+                                  icon: const Icon(Icons.add),
+                                  iconSize: 30,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ]),
+                        ),
+                        Text(
+                          S.current.price(widget.book.price),
+                          style: const TextStyle(fontSize: 25, color: AppColors.greyColor2),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<CartBloc>(context).add(AddToCartEvent(
+                          book: CartBookModel(
+                            name: widget.book.name,
+                            price: widget.book.price,
+                            image: widget.book.thumbnail!,
+                            quantity: _count,
+                          ),
+                        ));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        fixedSize: const Size(348, 50),
+                        textStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
-                      Text(
-                        S.current.price(widget.book.price),
-                        style: const TextStyle(fontSize: 25, color: AppColors.greyColor2),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<CartBloc>(context).add(AddToCartEvent(
-                        book: CartBookModel(
+                      child: Text(S.current.addToCart),
+                    ),
+                    const SizedBox(height: 10),
+                    OutlinedButton(
+                      onPressed: () {
+                        final FavouritesBookModel hiveBook = FavouritesBookModel(
                           name: widget.book.name,
                           price: widget.book.price,
                           image: widget.book.thumbnail!,
-                          quantity: _count,
-                        ),
-                      ));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Theme.of(context).primaryColor,
-                      fixedSize: const Size(348, 50),
-                      textStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Text(S.current.addToCart),
-                  ),
-                  const SizedBox(height: 10),
-                  OutlinedButton(
-                    onPressed: () {
-                      final FavouritesBookModel hiveBook = FavouritesBookModel(
-                        name: widget.book.name,
-                        price: widget.book.price,
-                        image: widget.book.thumbnail!,
-                      );
+                        );
 
-                      BlocProvider.of<FavouritesBloc>(context)
-                          .add(AddToFavouritesEvent(book: hiveBook));
-                    },
-                    style: OutlinedButton.styleFrom(
-                      fixedSize: const Size(348, 50),
-                      side: BorderSide(
-                        color: Theme.of(context).primaryColor,
-                        width: 2,
+                        BlocProvider.of<FavouritesBloc>(context)
+                            .add(AddToFavouritesEvent(book: hiveBook));
+                      },
+                      style: OutlinedButton.styleFrom(
+                        fixedSize: const Size(348, 50),
+                        side: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 2,
+                        ),
+                        foregroundColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
-                      foregroundColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      child: Text(
+                        S.current.addToFavourites,
+                        style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 18),
+                      ),
                     ),
-                    child: Text(
-                      S.current.addToFavourites,
-                      style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 18),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             if (kIsWeb) const Flexible(child: SizedBox.shrink()),
