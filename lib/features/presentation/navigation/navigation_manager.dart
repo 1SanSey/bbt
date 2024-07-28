@@ -12,17 +12,17 @@ class NavigationManager {
 
   NavigatorState get _navigator => key.currentState!;
 
-  void goRegistrationPage() {
-    _navigator.pushNamed(RouteNames.registrationPage);
-  }
+  // void goRegistrationPage() {
+  //   _navigator.pushNamed(RouteNames.registrationPage);
+  // }
 
   void goHomePage() {
     _navigator.pushReplacementNamed(RouteNames.homePage);
   }
 
-  void goAuthPage() {
-    _navigator.pushReplacementNamed(RouteNames.authPage);
-  }
+  // void goAuthPage() {
+  //   _navigator.pushReplacementNamed(RouteNames.authPage);
+  // }
 
   void goOrdersPage(String userId) {
     _navigator.pushNamed(RouteNames.ordersPage, arguments: userId);
@@ -44,9 +44,9 @@ class NavigationManager {
     _navigator.pushNamed(RouteNames.editUserPage);
   }
 
-  void popToAuthPage() {
-    _navigator.popUntil(ModalRoute.withName(RouteNames.authPage));
-  }
+  // void popToAuthPage() {
+  //   _navigator.popUntil(ModalRoute.withName(RouteNames.authPage));
+  // }
 
   void pop() {
     _navigator.pop();

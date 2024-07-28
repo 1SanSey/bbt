@@ -13,7 +13,7 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
         books.add(BookModel.fromDb(object));
       }
     } else {
-      throw ServerException();
+      throw ServerException(error: apiResponse.error?.message);
     }
 
     return books;
@@ -31,7 +31,7 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
         books.add(BookModel.fromDb(object));
       }
     } else {
-      throw ServerException();
+      throw ServerException(error: apiResponse.error?.message);
     }
 
     return books;
@@ -73,7 +73,7 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
         books.add(BookModel.fromDb(object));
       }
     } else {
-      throw ServerException();
+      throw ServerException(error: apiResponse.error?.message);
     }
 
     return books;

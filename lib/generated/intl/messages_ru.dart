@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "authError": MessageLookupByLibrary.simpleMessage(
             "Возникла ошибка при авторизации."),
         "authExecute": MessageLookupByLibrary.simpleMessage(
-            "Выполните авторизацию для входа в приложение!"),
+            "Авторизуйтесь для возможности\n заказа книг через приложение"),
         "booksNotLoaded":
             MessageLookupByLibrary.simpleMessage("Ошибка! Товары не загружены"),
         "cameraPermissionDenied":
@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyFavourites":
             MessageLookupByLibrary.simpleMessage("Список избранных книг пуст"),
         "enter": MessageLookupByLibrary.simpleMessage("ВОЙТИ"),
+        "enterCapital": MessageLookupByLibrary.simpleMessage("Войти"),
         "error": MessageLookupByLibrary.simpleMessage("Ошибка!"),
         "exit": MessageLookupByLibrary.simpleMessage("Выход"),
         "favourites": MessageLookupByLibrary.simpleMessage("Избранное"),
@@ -96,8 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "price": m1,
         "regError": MessageLookupByLibrary.simpleMessage(
             "Возникла ошибка при регистрации."),
-        "registerForEnter":
-            MessageLookupByLibrary.simpleMessage("Зарегистрируйтесь для входа"),
+        "registerForEnter": MessageLookupByLibrary.simpleMessage(
+            "Зарегистрируйтесь для возможности\n заказа книг через приложение"),
         "resultsNotFound":
             MessageLookupByLibrary.simpleMessage("Результаты не найдены"),
         "save": MessageLookupByLibrary.simpleMessage("СОХРАНИТЬ"),

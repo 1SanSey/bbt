@@ -7,7 +7,7 @@ abstract class IAuthRepository {
     required String login,
     required String password,
   });
-  Future<Either<Failure, String>> register(
+  Future<Either<Failure, ({String login, String password})>> register(
       {required String login, required String password, required String userName});
   Future<Either<Failure, UserEntity>> logout();
 }

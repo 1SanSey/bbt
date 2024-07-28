@@ -3,7 +3,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 abstract class IUserRemoteDatasource {
   Future<UserEntity> userLogin({required String login, required String password});
-  Future<String> userRegister(
+  Future<({String login, String password})> userRegister(
       {required String login, required String userName, required String password});
   Future<UserEntity> userLogout();
   Future<UserEntity> getUser(String id);

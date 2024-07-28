@@ -12,6 +12,7 @@ part 'user_entity.g.dart';
 class UserEntity with _$UserEntity {
   const UserEntity._();
   bool get isAdmin => email == AppConfig.emailAdmin;
+  bool get isEmpty => uid.isEmpty && email.isEmpty;
   const factory UserEntity({
     required final String uid,
     required final String displayName,

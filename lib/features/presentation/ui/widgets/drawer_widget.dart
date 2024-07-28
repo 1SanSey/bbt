@@ -1,12 +1,15 @@
 import 'dart:developer';
 
 import 'package:bbt/common/theme/app_colors.dart';
+import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
+import 'package:bbt/features/presentation/ui/authentication/pages/auth_popup_content.dart';
+import 'package:bbt/features/presentation/ui/authentication/widgets/show_auth_popup.dart';
 import 'package:bbt/features/presentation/ui/widgets/current_account_picture.dart';
 import 'package:bbt/features/presentation/ui/widgets/current_user_builder.dart';
 import 'package:bbt/generated/l10n.dart';
@@ -45,12 +48,22 @@ class DrawerWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                currentAccountPicture: CurrentAccountPicture(
-                  photoURL: user.photoURL,
-                  userName: user.displayName,
-                  isDrawer: true,
-                  onTap: NavigationManager.instance.goEditUserPage,
-                ),
+                currentAccountPicture: user.isEmpty
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.network(
+                          AppConstants.noImage,
+                          fit: BoxFit.cover,
+                          width: 250,
+                          height: 250,
+                        ),
+                      )
+                    : CurrentAccountPicture(
+                        photoURL: user.photoURL,
+                        userName: user.displayName,
+                        isDrawer: true,
+                        onTap: NavigationManager.instance.goEditUserPage,
+                      ),
               ),
               Expanded(
                 child: Container(
@@ -58,31 +71,33 @@ class DrawerWidget extends StatelessWidget {
                   width: double.infinity,
                   child: Column(
                     children: [
-                      ListTile(
-                        leading: Icon(
-                          Icons.home_outlined,
-                          color: Theme.of(context).primaryColor,
+                      if (!user.isEmpty) ...[
+                        ListTile(
+                          leading: Icon(
+                            Icons.home_outlined,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          title: Text(
+                            S.current.main,
+                            style: const TextStyle(fontSize: 18, color: Colors.black87),
+                          ),
+                          onTap: NavigationManager.instance.goHomePage,
                         ),
-                        title: Text(
-                          S.current.main,
-                          style: const TextStyle(fontSize: 18, color: Colors.black87),
+                        ListTile(
+                          leading: Icon(
+                            Icons.list_alt,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          title: Text(
+                            S.current.myOrders,
+                            style: const TextStyle(fontSize: 18, color: Colors.black87),
+                          ),
+                          onTap: () {
+                            context.read<OrdersBloc>().add(OrdersEvent.fetch(userId: user.uid));
+                            NavigationManager.instance.goOrdersPage(S.current.myOrders);
+                          },
                         ),
-                        onTap: NavigationManager.instance.goHomePage,
-                      ),
-                      ListTile(
-                        leading: Icon(
-                          Icons.list_alt,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        title: Text(
-                          S.current.myOrders,
-                          style: const TextStyle(fontSize: 18, color: Colors.black87),
-                        ),
-                        onTap: () {
-                          context.read<OrdersBloc>().add(OrdersEvent.fetch(userId: user.uid));
-                          NavigationManager.instance.goOrdersPage(S.current.myOrders);
-                        },
-                      ),
+                      ],
                       if (user.isAdmin)
                         ListTile(
                           leading: Icon(
@@ -100,19 +115,23 @@ class DrawerWidget extends StatelessWidget {
                         ),
                       ListTile(
                         leading: Icon(
-                          Icons.exit_to_app,
+                          user.isEmpty ? Icons.door_front_door : Icons.exit_to_app,
                           color: Theme.of(context).primaryColor,
                         ),
                         title: Text(
-                          S.current.exit,
+                          user.isEmpty ? S.current.enterCapital : S.current.exit,
                           style: const TextStyle(fontSize: 18, color: Colors.black87),
                         ),
                         onTap: () {
-                          context
-                            ..read<FavouritesBloc>().add(RemoveFavouritesEvent())
-                            ..read<CartBloc>().add(RemoveAllCartEvent())
-                            ..read<AuthBloc>().add(const AuthEvent.logOut());
-                          NavigationManager.instance.goAuthPage();
+                          if (!user.isEmpty) {
+                            context
+                              ..read<FavouritesBloc>().add(RemoveFavouritesEvent())
+                              ..read<CartBloc>().add(RemoveAllCartEvent())
+                              ..read<AuthBloc>().add(const AuthEvent.logOut());
+                          } else {
+                            showAuthPopup(context,
+                                child: const AuthPopupContent(), height: double.infinity);
+                          }
                         },
                       ),
                       const SizedBox(height: 60),

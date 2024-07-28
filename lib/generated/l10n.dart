@@ -90,10 +90,10 @@ class S {
     );
   }
 
-  /// `Выполните авторизацию для входа в приложение!`
+  /// `Авторизуйтесь для возможности\n заказа книг через приложение`
   String get authExecute {
     return Intl.message(
-      'Выполните авторизацию для входа в приложение!',
+      'Авторизуйтесь для возможности\n заказа книг через приложение',
       name: 'authExecute',
       desc: '',
       args: [],
@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `Войти`
+  String get enterCapital {
+    return Intl.message(
+      'Войти',
+      name: 'enterCapital',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ЗАРЕГИСТРИРОВАТЬСЯ`
   String get signUp {
     return Intl.message(
@@ -150,10 +160,10 @@ class S {
     );
   }
 
-  /// `Зарегистрируйтесь для входа`
+  /// `Зарегистрируйтесь для возможности\n заказа книг через приложение`
   String get registerForEnter {
     return Intl.message(
-      'Зарегистрируйтесь для входа',
+      'Зарегистрируйтесь для возможности\n заказа книг через приложение',
       name: 'registerForEnter',
       desc: '',
       args: [],

@@ -32,7 +32,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> register({
+  Future<Either<Failure, ({String login, String password})>> register({
     required String login,
     required String password,
     required String userName,

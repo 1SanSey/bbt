@@ -351,7 +351,8 @@ mixin _$RegistrationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProcess,
-    required TResult Function() successful,
+    required TResult Function(({String login, String password}) credential)
+        successful,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -359,7 +360,7 @@ mixin _$RegistrationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProcess,
-    TResult? Function()? successful,
+    TResult? Function(({String login, String password}) credential)? successful,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -367,7 +368,7 @@ mixin _$RegistrationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProcess,
-    TResult Function()? successful,
+    TResult Function(({String login, String password}) credential)? successful,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -461,7 +462,8 @@ class _$InitialRegistrationStateImpl extends _InitialRegistrationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProcess,
-    required TResult Function() successful,
+    required TResult Function(({String login, String password}) credential)
+        successful,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -472,7 +474,7 @@ class _$InitialRegistrationStateImpl extends _InitialRegistrationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProcess,
-    TResult? Function()? successful,
+    TResult? Function(({String login, String password}) credential)? successful,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -483,7 +485,7 @@ class _$InitialRegistrationStateImpl extends _InitialRegistrationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProcess,
-    TResult Function()? successful,
+    TResult Function(({String login, String password}) credential)? successful,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -580,7 +582,8 @@ class _$InProcessRegistrationStateImpl extends _InProcessRegistrationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProcess,
-    required TResult Function() successful,
+    required TResult Function(({String login, String password}) credential)
+        successful,
     required TResult Function(String message) error,
   }) {
     return inProcess();
@@ -591,7 +594,7 @@ class _$InProcessRegistrationStateImpl extends _InProcessRegistrationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProcess,
-    TResult? Function()? successful,
+    TResult? Function(({String login, String password}) credential)? successful,
     TResult? Function(String message)? error,
   }) {
     return inProcess?.call();
@@ -602,7 +605,7 @@ class _$InProcessRegistrationStateImpl extends _InProcessRegistrationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProcess,
-    TResult Function()? successful,
+    TResult Function(({String login, String password}) credential)? successful,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -662,6 +665,8 @@ abstract class _$$SuccessfulRegistrationStateImplCopyWith<$Res> {
           _$SuccessfulRegistrationStateImpl value,
           $Res Function(_$SuccessfulRegistrationStateImpl) then) =
       __$$SuccessfulRegistrationStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({({String login, String password}) credential});
 }
 
 /// @nodoc
@@ -673,37 +678,64 @@ class __$$SuccessfulRegistrationStateImplCopyWithImpl<$Res>
       _$SuccessfulRegistrationStateImpl _value,
       $Res Function(_$SuccessfulRegistrationStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? credential = null,
+  }) {
+    return _then(_$SuccessfulRegistrationStateImpl(
+      credential: null == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as ({String login, String password}),
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
-  const _$SuccessfulRegistrationStateImpl() : super._();
+  const _$SuccessfulRegistrationStateImpl({required this.credential})
+      : super._();
+
+  @override
+  final ({String login, String password}) credential;
 
   @override
   String toString() {
-    return 'RegistrationState.successful()';
+    return 'RegistrationState.successful(credential: $credential)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessfulRegistrationStateImpl);
+            other is _$SuccessfulRegistrationStateImpl &&
+            (identical(other.credential, credential) ||
+                other.credential == credential));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, credential);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessfulRegistrationStateImplCopyWith<_$SuccessfulRegistrationStateImpl>
+      get copyWith => __$$SuccessfulRegistrationStateImplCopyWithImpl<
+          _$SuccessfulRegistrationStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProcess,
-    required TResult Function() successful,
+    required TResult Function(({String login, String password}) credential)
+        successful,
     required TResult Function(String message) error,
   }) {
-    return successful();
+    return successful(credential);
   }
 
   @override
@@ -711,10 +743,10 @@ class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProcess,
-    TResult? Function()? successful,
+    TResult? Function(({String login, String password}) credential)? successful,
     TResult? Function(String message)? error,
   }) {
-    return successful?.call();
+    return successful?.call(credential);
   }
 
   @override
@@ -722,12 +754,12 @@ class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProcess,
-    TResult Function()? successful,
+    TResult Function(({String login, String password}) credential)? successful,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful();
+      return successful(credential);
     }
     return orElse();
   }
@@ -771,9 +803,15 @@ class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
 }
 
 abstract class _SuccessfulRegistrationState extends RegistrationState {
-  const factory _SuccessfulRegistrationState() =
+  const factory _SuccessfulRegistrationState(
+          {required final ({String login, String password}) credential}) =
       _$SuccessfulRegistrationStateImpl;
   const _SuccessfulRegistrationState._() : super._();
+
+  ({String login, String password}) get credential;
+  @JsonKey(ignore: true)
+  _$$SuccessfulRegistrationStateImplCopyWith<_$SuccessfulRegistrationStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -847,7 +885,8 @@ class _$ErrorRegistrationStateImpl extends _ErrorRegistrationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProcess,
-    required TResult Function() successful,
+    required TResult Function(({String login, String password}) credential)
+        successful,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -858,7 +897,7 @@ class _$ErrorRegistrationStateImpl extends _ErrorRegistrationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProcess,
-    TResult? Function()? successful,
+    TResult? Function(({String login, String password}) credential)? successful,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -869,7 +908,7 @@ class _$ErrorRegistrationStateImpl extends _ErrorRegistrationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProcess,
-    TResult Function()? successful,
+    TResult Function(({String login, String password}) credential)? successful,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

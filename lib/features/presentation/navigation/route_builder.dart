@@ -1,7 +1,5 @@
 import 'package:bbt/features/domain/entities/book_entity.dart';
 import 'package:bbt/features/domain/entities/order_entity.dart';
-import 'package:bbt/features/presentation/ui/authentication/pages/auth_page.dart';
-import 'package:bbt/features/presentation/ui/authentication/pages/registration_page.dart';
 import 'package:bbt/features/presentation/ui/book/book_detail_page.dart';
 import 'package:bbt/features/presentation/ui/category/pages/category_page.dart';
 import 'package:bbt/features/presentation/ui/home/pages/home_page.dart';
@@ -13,24 +11,22 @@ import 'package:flutter/material.dart';
 abstract class RouteNames {
   const RouteNames._();
 
-  static const authPage = '/';
-  static const registrationPage = '/registration_page';
-  static const editUserPage = '/edit_user_page';
-  static const homePage = '/home_page';
-  static const ordersPage = '/orders_page';
+  // static const authPage = '/';
+  // static const registrationPage = '/registration_page';
+  static const homePage = '/';
   static const categoryPage = '/category_page';
   static const bookDetailPage = '/book_detail_page';
+  static const editUserPage = '/edit_user_page';
+  static const ordersPage = '/orders_page';
   static const orderDetailPage = '/order_detail_page';
 }
 
 abstract class RouteBuilder {
   const RouteBuilder._();
 
-  static const initialRoute = RouteNames.authPage;
+  static const initialRoute = RouteNames.homePage;
   static final routes = <String, Widget Function(BuildContext)>{
     RouteNames.homePage: (context) => const HomePage(),
-    RouteNames.authPage: (context) => const AuthPage(),
-    RouteNames.registrationPage: (context) => const RegistrationPage(),
     RouteNames.editUserPage: (context) => const EditUserPage(),
   };
 

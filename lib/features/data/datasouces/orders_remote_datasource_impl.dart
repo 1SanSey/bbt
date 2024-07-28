@@ -35,7 +35,7 @@ class OrdersRemoteDatasourceImpl extends IOrdersRemoteDatasource {
       return objectId;
     } else {
       log('Object created with failed: ${parseResponse.error}');
-      throw ServerException();
+      throw ServerException(error: parseResponse.error?.message);
     }
   }
 
@@ -53,7 +53,7 @@ class OrdersRemoteDatasourceImpl extends IOrdersRemoteDatasource {
         orders.add(OrderModel.fromDb(object));
       }
     } else {
-      throw ServerException();
+      throw ServerException(error: apiResponse.error?.message);
     }
 
     return orders;
@@ -72,8 +72,8 @@ class OrdersRemoteDatasourceImpl extends IOrdersRemoteDatasource {
           '${AppConfig.telegramUri}${AppConfig.telegramToken}/sendMessage?chat_id=${AppConfig.chatId}&text=Клиент: ${user.displayName}\nemail: ${user.email}\n$order',
         );
       } else {
-        log(apiResponse.error!.message);
-        throw ServerException();
+        log((apiResponse.error?.message).toString());
+        throw ServerException(error: apiResponse.error?.message);
       }
     } catch (e) {
       log(e.toString());
@@ -94,7 +94,7 @@ class OrdersRemoteDatasourceImpl extends IOrdersRemoteDatasource {
         orders.add(OrderModel.fromDb(object));
       }
     } else {
-      throw ServerException();
+      throw ServerException(error: apiResponse.error?.message);
     }
 
     return orders;

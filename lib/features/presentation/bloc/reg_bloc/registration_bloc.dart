@@ -26,7 +26,8 @@ class RegistrationState with _$RegistrationState {
 
   const factory RegistrationState.inProcess() = _InProcessRegistrationState;
 
-  const factory RegistrationState.successful() = _SuccessfulRegistrationState;
+  const factory RegistrationState.successful(
+      {required ({String login, String password}) credential}) = _SuccessfulRegistrationState;
 
   const factory RegistrationState.error({
     @Default('Произошла ошибка') String message,
@@ -61,7 +62,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       registerUser.fold(
         (failure) => emitter(RegistrationState.error(message: mapFailureToMessage(failure))),
         (user) {
-          emitter(const RegistrationState.successful());
+          emitter(RegistrationState.successful(
+              credential: (login: event.login, password: event.password)));
         },
       );
     } on FormatException {
