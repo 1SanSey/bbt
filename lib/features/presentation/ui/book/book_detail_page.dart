@@ -7,6 +7,8 @@ import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/navigation_web_cubit.dart';
+import 'package:bbt/features/presentation/ui/widgets/app_snack_bar.dart';
+import 'package:bbt/features/presentation/ui/widgets/current_user_builder.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -119,136 +121,161 @@ class _BookDetailPageState extends State<BookDetailPage> {
           children: [
             Flexible(
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _isTapped = !_isTapped;
-                        });
-                      },
-                      child: AnimatedSize(
-                        duration: const Duration(seconds: 2),
-                        curve: Curves.easeIn,
-                        child: Image.network(
-                          widget.book.image ?? AppConstants.noImage,
-                          height: _isTapped ? 370 : 270,
+                child: CurrentUserBuilder(builder: (user) {
+                  return Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isTapped = !_isTapped;
+                          });
+                        },
+                        child: AnimatedSize(
+                          duration: const Duration(seconds: 2),
+                          curve: Curves.easeIn,
+                          child: Image.network(
+                            widget.book.image ?? AppConstants.noImage,
+                            height: _isTapped ? 370 : 270,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 250),
-                      child: Text(
-                        widget.book.name,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: AppColors.greyColor2, fontSize: 18),
+                      const SizedBox(height: 10),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 250),
+                        child: Text(
+                          widget.book.name,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: AppColors.greyColor2, fontSize: 18),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            border: Border.all(
-                              color: AppColors.greyColor,
-                              width: 1,
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(
+                                color: AppColors.greyColor,
+                                width: 1,
+                              ),
                             ),
-                          ),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                IconButton(
-                                  onPressed: _decrement,
-                                  icon: const Icon(Icons.remove),
-                                  iconSize: 30,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                                const SizedBox(width: 20),
-                                /* const VerticalDivider(
-                                    width: 2, color: AppColors.greyColor2), */
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                                  child: Text(
-                                    '$_count',
-                                    style: const TextStyle(
-                                      color: AppColors.greyColor2,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w400,
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  IconButton(
+                                    onPressed: _decrement,
+                                    icon: const Icon(Icons.remove),
+                                    iconSize: 30,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                                    child: Text(
+                                      '$_count',
+                                      style: const TextStyle(
+                                        color: AppColors.greyColor2,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                /*  const VerticalDivider(
-                                    width: 2, color: AppColors.greyColor2), */
-                                const SizedBox(width: 20),
-                                IconButton(
-                                  onPressed: _increment,
-                                  icon: const Icon(Icons.add),
-                                  iconSize: 30,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ]),
-                        ),
-                        Text(
-                          S.current.price(widget.book.price),
-                          style: const TextStyle(fontSize: 25, color: AppColors.greyColor2),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        BlocProvider.of<CartBloc>(context).add(AddToCartEvent(
-                          book: CartBookModel(
-                            name: widget.book.name,
-                            price: widget.book.price,
-                            image: widget.book.thumbnail!,
-                            quantity: _count,
+                                  const SizedBox(width: 20),
+                                  IconButton(
+                                    onPressed: _increment,
+                                    icon: const Icon(Icons.add),
+                                    iconSize: 30,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ]),
                           ),
-                        ));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Theme.of(context).primaryColor,
-                        fixedSize: const Size(348, 50),
-                        textStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          Text(
+                            S.current.price(widget.book.price),
+                            style: const TextStyle(fontSize: 25, color: AppColors.greyColor2),
+                          ),
+                        ],
                       ),
-                      child: Text(S.current.addToCart),
-                    ),
-                    const SizedBox(height: 10),
-                    OutlinedButton(
-                      onPressed: () {
-                        final FavouritesBookModel hiveBook = FavouritesBookModel(
-                          name: widget.book.name,
-                          price: widget.book.price,
-                          image: widget.book.thumbnail!,
-                        );
-
-                        BlocProvider.of<FavouritesBloc>(context)
-                            .add(AddToFavouritesEvent(book: hiveBook));
-                      },
-                      style: OutlinedButton.styleFrom(
-                        fixedSize: const Size(348, 50),
-                        side: BorderSide(
-                          color: Theme.of(context).primaryColor,
-                          width: 2,
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (user.isEmpty) {
+                            AppSnackBar.showSnack(context, S.current.authNeedAddToCart);
+                          } else {
+                            BlocProvider.of<CartBloc>(context).add(
+                              AddToCartEvent(
+                                book: CartBookModel(
+                                  name: widget.book.name,
+                                  price: widget.book.price,
+                                  image: widget.book.thumbnail!,
+                                  quantity: _count,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Theme.of(context).primaryColor,
+                          fixedSize: const Size(370, 50),
+                          textStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         ),
-                        foregroundColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        child: Text(S.current.addToCart),
                       ),
-                      child: Text(
-                        S.current.addToFavourites,
-                        style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 18),
+                      const SizedBox(height: 10),
+                      OutlinedButton(
+                        onPressed: () {
+                          if (user.isEmpty) {
+                            AppSnackBar.showSnack(context, S.current.authNeedAddToFavourites);
+                          } else {
+                            final FavouritesBookModel hiveBook = FavouritesBookModel(
+                              name: widget.book.name,
+                              price: widget.book.price,
+                              image: widget.book.thumbnail!,
+                            );
+
+                            BlocProvider.of<FavouritesBloc>(context)
+                                .add(AddToFavouritesEvent(book: hiveBook));
+                          }
+                        },
+                        style: OutlinedButton.styleFrom(
+                          fixedSize: const Size(370, 50),
+                          side: BorderSide(
+                            color: Theme.of(context).primaryColor,
+                            width: 2,
+                          ),
+                          foregroundColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        ),
+                        child: Text(
+                          S.current.addToFavourites,
+                          style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 18),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                      if (!kIsWeb)
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(14, 28, 14, 32),
+                          child: Text(
+                            widget.book.description ?? '',
+                            style: const TextStyle(color: AppColors.greyColor2, fontSize: 16),
+                          ),
+                        ),
+                    ],
+                  );
+                }),
               ),
             ),
-            if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
+            if (kIsWeb && width > 900)
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: Text(
+                    widget.book.description ?? '',
+                    style: const TextStyle(color: AppColors.greyColor2, fontSize: 16),
+                  ),
+                ),
+              ),
           ],
         ),
       ),

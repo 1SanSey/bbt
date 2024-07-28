@@ -100,6 +100,26 @@ class S {
     );
   }
 
+  /// `Авторизуйтесь для возможности добавления книг в Избранное`
+  String get authNeedAddToFavourites {
+    return Intl.message(
+      'Авторизуйтесь для возможности добавления книг в Избранное',
+      name: 'authNeedAddToFavourites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Авторизуйтесь для возможности заказа книг`
+  String get authNeedAddToCart {
+    return Intl.message(
+      'Авторизуйтесь для возможности заказа книг',
+      name: 'authNeedAddToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Логин`
   String get login {
     return Intl.message(

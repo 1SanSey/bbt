@@ -41,6 +41,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Возникла ошибка при авторизации."),
         "authExecute": MessageLookupByLibrary.simpleMessage(
             "Авторизуйтесь для возможности\n заказа книг через приложение"),
+        "authNeedAddToCart": MessageLookupByLibrary.simpleMessage(
+            "Авторизуйтесь для возможности заказа книг"),
+        "authNeedAddToFavourites": MessageLookupByLibrary.simpleMessage(
+            "Авторизуйтесь для возможности добавления книг в Избранное"),
         "booksNotLoaded":
             MessageLookupByLibrary.simpleMessage("Ошибка! Товары не загружены"),
         "cameraPermissionDenied":
