@@ -3,17 +3,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 Future<void> showAuthPopup(BuildContext context, {required Widget child, required double height}) {
+  final width = MediaQuery.sizeOf(context).width;
+
   return showDialog(
     context: context,
     useSafeArea: kIsWeb ? true : false,
     builder: (context) {
       return Align(
         child: SizedBox(
-          width: kIsWeb ? 424 : null,
-          height: kIsWeb ? height : null,
+          width: kIsWeb && width > 900 ? 424 : null,
+          height: kIsWeb && width > 900 ? height : null,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: kIsWeb && width > 900 ? BorderRadius.circular(16) : BorderRadius.zero,
               shape: BoxShape.rectangle,
               color: Theme.of(context).scaffoldBackgroundColor,
             ),

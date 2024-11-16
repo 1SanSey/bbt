@@ -36,6 +36,14 @@
             }
         }
     },
+    "quantity": "Наличие в ятре: {quantity} шт.",
+    "@quantity": {
+        "placeholders": {
+            "quantity": {
+                "type": "int"
+            }
+        }
+    },
     "searchFromName": "Поиск по названию",
     "resultsNotFound": "Результаты не найдены",
     "myOrders": "Мои заказы",

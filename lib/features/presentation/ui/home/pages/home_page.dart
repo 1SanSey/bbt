@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
 import 'package:bbt/features/presentation/ui/cart/pages/cart_page.dart';
+import 'package:bbt/features/presentation/ui/category/pages/category_page.dart';
 import 'package:bbt/features/presentation/ui/favorites/pages/favourites_page.dart';
 import 'package:bbt/features/presentation/ui/home/widgets/main_page_widget.dart';
-import 'package:bbt/features/presentation/ui/web/home_page_web.dart';
 import 'package:bbt/features/presentation/ui/widgets/drawer_widget.dart';
+import 'package:bbt/features/presentation/ui/widgets/web_wrapper.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,16 +20,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late final TabController tabController;
-  late final List<String> titles;
-  late String titleHandler;
+  late final TabController _tabController;
+  late final List<String> _titles;
+  late String _titleHandler;
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 3, vsync: this);
-    titles = [S.current.BBTKirovApp, S.current.favourites, S.current.cart];
-    titleHandler = titles.first;
-    tabController.addListener(changeTitle);
+    _tabController = TabController(length: 3, vsync: this);
+    _titles = [S.current.BBTKirovApp, S.current.favourites, S.current.cart];
+    _titleHandler = _titles.first;
+    _tabController.addListener(changeTitle);
     context.read<HomeBooksBloc>().add(
           const HomeLoadBooksEvent(isFirstFetch: true),
         );
@@ -36,13 +37,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   void changeTitle() {
     setState(() {
-      titleHandler = titles[tabController.index];
+      _titleHandler = _titles[_tabController.index];
     });
   }
 
   @override
   void dispose() {
-    tabController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -51,18 +52,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final width = MediaQuery.sizeOf(context).width;
 
     return kIsWeb && width > 900
-        ? const HomePageWeb()
+        ? const WebWrapper(child: CategoryPage(isHomePage: true))
         : DefaultTabController(
             length: 3,
             child: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
               child: Scaffold(
                 appBar: AppBar(
-                  title: Text(titleHandler),
+                  title: Text(_titleHandler),
                   centerTitle: true,
                 ),
                 body: TabBarView(
-                  controller: tabController,
+                  controller: _tabController,
                   children: const <Widget>[
                     MainPageWidget(),
                     FavouritesPage(),
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               : EdgeInsets.zero
                           : EdgeInsets.zero,
                       child: TabBar(
-                        controller: tabController,
+                        controller: _tabController,
                         labelColor: Colors.white,
                         indicatorColor: Colors.transparent,
                         dividerColor: Colors.transparent,

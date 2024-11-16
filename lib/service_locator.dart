@@ -11,6 +11,7 @@ import 'package:bbt/features/data/i_datasources/i_books_remote_datasource.dart';
 import 'package:bbt/features/data/i_datasources/i_orders_remote_datasource.dart';
 import 'package:bbt/features/data/i_datasources/i_user_remote_datasorce.dart';
 import 'package:bbt/features/data/repositories/auth_repository_impl.dart';
+import 'package:bbt/features/data/repositories/book_detail_repository_impl.dart';
 import 'package:bbt/features/data/repositories/books_home_repository_impl.dart';
 import 'package:bbt/features/data/repositories/cart_repository_impl.dart';
 import 'package:bbt/features/data/repositories/categories_repository_impl.dart';
@@ -18,6 +19,7 @@ import 'package:bbt/features/data/repositories/favourites_repository_impl.dart';
 import 'package:bbt/features/data/repositories/orders_repository_impl.dart';
 import 'package:bbt/features/data/repositories/user_repository_impl.dart';
 import 'package:bbt/features/domain/repositories/i_auth_repository.dart';
+import 'package:bbt/features/domain/repositories/i_book_detail_repository.dart';
 import 'package:bbt/features/domain/repositories/i_books_home_repository.dart';
 import 'package:bbt/features/domain/repositories/i_cart_repository.dart';
 import 'package:bbt/features/domain/repositories/i_categories_repository.dart';
@@ -31,6 +33,7 @@ import 'package:bbt/features/domain/usecases/favourites_usecase.dart';
 import 'package:bbt/features/domain/usecases/orders_usecase.dart';
 import 'package:bbt/features/domain/usecases/popular_usecase.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:bbt/features/presentation/bloc/book_detail_bloc/book_detail_bloc.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
@@ -67,6 +70,7 @@ init() async {
           searchBooks: sl(),
         ))
     ..registerFactory(() => CartBloc(cart: sl()))
+    ..registerFactory(() => BookDetailBloc(repository: sl()))
     ..registerFactory(() => FavouritesBloc(favourites: sl()))
     ..registerFactory(() => AuthBloc(repository: sl()))
     ..registerFactory(() => RegistrationBloc(sl()))
@@ -100,6 +104,9 @@ init() async {
     )
     ..registerLazySingleton<ICategoriesRepository>(
       () => CategoriesRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
+    )
+    ..registerLazySingleton<IBookDetailRepository>(
+      () => BookDetailRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()),
     )
     ..registerLazySingleton<ICartRepository>(
       () => CartRepositoryImpl(localDataSource: sl(), remoteDataSource: sl()),

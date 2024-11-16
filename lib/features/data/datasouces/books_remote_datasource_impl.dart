@@ -5,7 +5,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
   @override
-  Future<List<BookModel>> getAllBooks() async {
+  Future<List<BookModel>> fetchAllBooks() async {
     final books = <BookModel>[];
     final apiResponse = await ParseObject('Books').getAll();
     if (apiResponse.success && apiResponse.results != null) {
@@ -20,7 +20,7 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
   }
 
   @override
-  Future<List<BookModel>> getBooksByName(String name, {String field = 'name'}) async {
+  Future<List<BookModel>> fetchBooksByName(String name, {String field = 'name'}) async {
     final books = <BookModel>[];
     final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('Books'))
       ..whereContains(field, name);
@@ -38,27 +38,27 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
   }
 
   @override
-  Future<List<BookModel>> getPopularBooks() async {
-    return getBooksByName(field: 'extraCategory', 'popular');
+  Future<List<BookModel>> fetchPopularBooks() async {
+    return fetchBooksByName(field: 'extraCategory', 'popular');
   }
 
   @override
-  Future<List<BookModel>> getCulinaryBooks() async {
-    return getBooksByName(field: 'extraCategory', 'culinary');
+  Future<List<BookModel>> fetchCulinaryBooks() async {
+    return fetchBooksByName(field: 'extraCategory', 'culinary');
   }
 
   @override
-  Future<List<BookModel>> getOtherBooks() {
-    return getBooksByName(field: 'extraCategory', 'other');
+  Future<List<BookModel>> fetchOtherBooks() {
+    return fetchBooksByName(field: 'extraCategory', 'other');
   }
 
   @override
-  Future<List<BookModel>> getBooksBySize(String size) async {
+  Future<List<BookModel>> fetchBooksBySize(String size) async {
     return _getBooksByQuery('size', size);
   }
 
   @override
-  Future<List<BookModel>> getSetBooks(String singleOrSet) async {
+  Future<List<BookModel>> fetchSetBooks(String singleOrSet) async {
     return _getBooksByQuery('singleOrSet', singleOrSet);
   }
 
@@ -77,5 +77,21 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
     }
 
     return books;
+  }
+
+  @override
+  Future<BookModel> fetchBookDetail(int id) async {
+    BookModel? book;
+    final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('Books'))
+      ..whereEqualTo('idBook', id);
+    final apiResponse = await parseQuery.query();
+
+    if (apiResponse.success && apiResponse.results != null) {
+      book = BookModel.fromDb((apiResponse.results as List<ParseObject>).first);
+    } else {
+      throw ServerException(error: apiResponse.error?.message);
+    }
+
+    return book;
   }
 }

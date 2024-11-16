@@ -37,7 +37,7 @@ abstract class RouteBuilder {
         return MaterialPageRoute(builder: (context) => CategoryPage(idCategory: id));
       case (RouteNames.bookDetailPage):
         final book = settings.arguments as BookEntity;
-        return MaterialPageRoute(builder: (context) => BookDetailPage(book: book));
+        return MaterialPageRoute(builder: (context) => BookDetailPage(book: book, id: book.id));
       case (RouteNames.orderDetailPage):
         final order = settings.arguments as OrderEntity;
         return MaterialPageRoute(

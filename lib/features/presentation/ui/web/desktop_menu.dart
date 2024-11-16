@@ -1,9 +1,11 @@
 import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/navigation_web_cubit.dart';
+import 'package:bbt/features/presentation/navigation/routes.dart';
 import 'package:bbt/features/presentation/ui/web/widgets/menu_item_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class DesktopMenu extends StatelessWidget {
   const DesktopMenu({super.key});
@@ -26,7 +28,8 @@ class DesktopMenu extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       context.read<NavigationWebCubit>().changePage(0);
-                      categoryBloc.add(CategoryLoadAllBooksEvent(param: AppCategories.all.$3));
+                      context.goNamed(Routes.homePage);
+                      categoryBloc.add(FetchCategoryBooksEvent(param: AppCategories.all.$3));
                     },
                     child: Image.asset(
                       AppConstants.bbtLogo,
@@ -42,44 +45,13 @@ class DesktopMenu extends StatelessWidget {
                     (i) => GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        final query = AppConstants.category[i]!.$3;
-                        context.read<NavigationWebCubit>().changePage(i,
-                            queryCategory: AppConstants.category[i]!.$3, previousIndex: i);
-                        // Загрузка всех книг
-                        if (query == AppCategories.all.$3) {
-                          categoryBloc.add(CategoryLoadAllBooksEvent(param: query));
-                        }
-
-                        // Загрузка книг по наименованию
-                        if (query == AppCategories.bg.$3 ||
-                            query == AppCategories.sb.$3 ||
-                            query == AppCategories.cc.$3 ||
-                            query == AppCategories.pl.$3) {
-                          categoryBloc.add(CategoryLoadBooksByNameEvent(param: query));
-                        }
-
-                        // Загрузка книг по размеру
-                        if (query == AppCategories.small.$3 ||
-                            query == AppCategories.medium.$3 ||
-                            query == AppCategories.big.$3 ||
-                            query == AppCategories.mahabig.$3) {
-                          categoryBloc.add(CategoryLoadBooksBySizeEvent(param: query));
-                        }
-
-                        // Загрузка наборов книг
-                        if (query == AppCategories.set.$3) {
-                          categoryBloc.add(CategoryLoadBooksSetEvent(param: query));
-                        }
-
-                        // Загрузка кулинарных книг
-                        if (query == AppCategories.culinary.$3) {
-                          categoryBloc.add(CategoryLoadCulinaryBooksEvent(param: query));
-                        }
-
-                        // Загрузка прочих книг
-                        if (query == AppCategories.other.$3) {
-                          context.read<CategoryBloc>().add(const CategoryLoadOtherBooksEvent());
-                        }
+                        context.read<NavigationWebCubit>().changePage(i);
+                        i == 0
+                            ? context.goNamed(Routes.homePage)
+                            : context
+                                .goNamed(Routes.categoryPage, pathParameters: {'categoryId': '$i'});
+                        categoryBloc
+                            .add(FetchCategoryBooksEvent(param: AppConstants.category[i]!.$3));
                       },
                       child: BlocBuilder<NavigationWebCubit, NavigationWebState>(
                         builder: (context, state) {

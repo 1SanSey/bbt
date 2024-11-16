@@ -320,6 +320,16 @@ class S {
     );
   }
 
+  /// `Наличие в ятре: {quantity} шт.`
+  String quantity(int quantity) {
+    return Intl.message(
+      'Наличие в ятре: $quantity шт.',
+      name: 'quantity',
+      desc: '',
+      args: [quantity],
+    );
+  }
+
   /// `Поиск по названию`
   String get searchFromName {
     return Intl.message(

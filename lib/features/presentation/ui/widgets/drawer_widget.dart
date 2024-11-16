@@ -7,7 +7,7 @@ import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
 import 'package:bbt/features/presentation/bloc/favourites_bloc/favourites_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/orders_bloc.dart';
-import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
+import 'package:bbt/features/presentation/navigation/routes.dart';
 import 'package:bbt/features/presentation/ui/authentication/pages/auth_popup_content.dart';
 import 'package:bbt/features/presentation/ui/authentication/widgets/show_auth_popup.dart';
 import 'package:bbt/features/presentation/ui/widgets/current_account_picture.dart';
@@ -15,6 +15,7 @@ import 'package:bbt/features/presentation/ui/widgets/current_user_builder.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -62,7 +63,8 @@ class DrawerWidget extends StatelessWidget {
                         photoURL: user.photoURL,
                         userName: user.displayName,
                         isDrawer: true,
-                        onTap: NavigationManager.instance.goEditUserPage,
+                        onTap: () => context.goNamed(Routes.editUserPage),
+                        // onTap: NavigationManager.instance.goEditUserPage,
                       ),
               ),
               Expanded(
@@ -81,7 +83,8 @@ class DrawerWidget extends StatelessWidget {
                             S.current.main,
                             style: const TextStyle(fontSize: 18, color: Colors.black87),
                           ),
-                          onTap: NavigationManager.instance.goHomePage,
+                          onTap: context.pop,
+                          // onTap: NavigationManager.instance.goHomePage,
                         ),
                         ListTile(
                           leading: Icon(
@@ -94,7 +97,8 @@ class DrawerWidget extends StatelessWidget {
                           ),
                           onTap: () {
                             context.read<OrdersBloc>().add(OrdersEvent.fetch(userId: user.uid));
-                            NavigationManager.instance.goOrdersPage(S.current.myOrders);
+                            context.pushNamed(Routes.ordersPage, extra: S.current.myOrders);
+                            // NavigationManager.instance.goOrdersPage(S.current.myOrders);
                           },
                         ),
                       ],
@@ -110,7 +114,8 @@ class DrawerWidget extends StatelessWidget {
                           ),
                           onTap: () {
                             context.read<OrdersBloc>().add(const OrdersEvent.fetchAll());
-                            NavigationManager.instance.goOrdersPage(S.current.allOrders);
+                            context.goNamed(Routes.ordersPage, extra: S.current.allOrders);
+                            // NavigationManager.instance.goOrdersPage(S.current.allOrders);
                           },
                         ),
                       ListTile(

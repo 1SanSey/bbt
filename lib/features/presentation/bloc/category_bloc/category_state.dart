@@ -1,22 +1,25 @@
+// ignore_for_file: annotate_overrides
+
 part of 'category_bloc.dart';
 
 sealed class CategoryState extends Equatable {
-  final int currentIndex;
-  const CategoryState({this.currentIndex = 0});
+  final Map<String, List<BookEntity>>? map;
+  final List<BookEntity> books;
+  const CategoryState({this.map, this.books = const []});
 
   @override
   List<Object?> get props => [];
 }
 
 class CategoryBooksEmpty extends CategoryState {
-  const CategoryBooksEmpty({super.currentIndex});
+  const CategoryBooksEmpty({super.map, super.books});
 
   @override
   List<Object?> get props => [];
 }
 
 class CategoryBooksLoading extends CategoryState {
-  const CategoryBooksLoading({super.currentIndex});
+  const CategoryBooksLoading({super.map, super.books});
 
   @override
   List<Object?> get props => [];
@@ -24,18 +27,24 @@ class CategoryBooksLoading extends CategoryState {
 
 class CategoryBooksLoaded extends CategoryState {
   final List<BookEntity> books;
+  final Map<String, List<BookEntity>>? map;
 
-  const CategoryBooksLoaded({required this.books, super.currentIndex});
+  const CategoryBooksLoaded({required this.books, required this.map});
 
   @override
-  List<Object?> get props => [books, currentIndex];
+  String toString() {
+    return 'CategoryBooksLoaded ${books.length}';
+  }
+
+  @override
+  List<Object?> get props => [books, map];
 }
 
 class CategoryBooksError extends CategoryState {
   final String message;
 
-  const CategoryBooksError({required this.message, super.currentIndex});
+  const CategoryBooksError({required this.message, super.map, super.books});
 
   @override
-  List<Object?> get props => [message, currentIndex];
+  List<Object?> get props => [message, map];
 }

@@ -7,6 +7,7 @@ import 'package:bbt/features/presentation/ui/authentication/widgets/auth_text_fi
 import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class RegistrationPopupContent extends StatefulWidget {
   const RegistrationPopupContent({super.key});
@@ -40,7 +41,8 @@ class RegistrationPageState extends State<RegistrationPopupContent> {
       listener: (context, state) {
         state.mapOrNull(
           error: (state) {
-            NavigationManager.instance.pop();
+            // NavigationManager.instance.pop();
+            context.pop();
             showDialog(
               context: context,
               builder: (context) {
@@ -49,7 +51,8 @@ class RegistrationPageState extends State<RegistrationPopupContent> {
                   content: Text(S.current.regError),
                   actions: <Widget>[
                     TextButton(
-                      onPressed: NavigationManager.instance.pop,
+                      onPressed: context.pop,
+                      // NavigationManager.instance.pop,
                       child: Text(
                         S.current.ok,
                         style: TextStyle(color: Theme.of(context).primaryColor),
@@ -63,7 +66,8 @@ class RegistrationPageState extends State<RegistrationPopupContent> {
           successful: (state) {
             context.read<AuthBloc>().add(AuthEvent.logIn(
                 login: state.credential.login, password: state.credential.password));
-            NavigationManager.instance.pop();
+            context.pop();
+            // NavigationManager.instance.pop();
 
             showDialog(
               context: context,

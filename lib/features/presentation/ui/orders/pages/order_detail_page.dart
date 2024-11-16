@@ -1,11 +1,11 @@
 import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/domain/entities/order_entity.dart';
 import 'package:bbt/features/presentation/bloc/get_user_bloc/get_user_bloc.dart';
-import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class OrderDetailPage extends StatefulWidget {
@@ -37,7 +37,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             ? null
             : AppBar(
                 leading: IconButton(
-                  onPressed: NavigationManager.instance.pop,
+                  onPressed: context.pop,
+                  // NavigationManager.instance.pop,
                   icon: const Icon(Icons.arrow_back),
                 ),
                 title: Text(S.current.orderStructure),

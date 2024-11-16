@@ -18,32 +18,32 @@ class CategoriesRepositoryImpl implements ICategoriesRepository {
 
   @override
   Future<Either<Failure, List<BookEntity>>> getAllBooks() {
-    return _getBooks(remoteDataSource.getAllBooks);
+    return _getBooks(remoteDataSource.fetchAllBooks);
   }
 
   @override
   Future<Either<Failure, List<BookEntity>>> getCulinaryBooks() {
-    return _getBooks(remoteDataSource.getCulinaryBooks);
+    return _getBooks(remoteDataSource.fetchCulinaryBooks);
   }
 
   @override
   Future<Either<Failure, List<BookEntity>>> getBooksByName(String name) {
     return _getBooks(() {
-      return remoteDataSource.getBooksByName(name);
+      return remoteDataSource.fetchBooksByName(name);
     });
   }
 
   @override
   Future<Either<Failure, List<BookEntity>>> getBooksBySize(String size) {
     return _getBooks(() {
-      return remoteDataSource.getBooksBySize(size);
+      return remoteDataSource.fetchBooksBySize(size);
     });
   }
 
   @override
   Future<Either<Failure, List<BookEntity>>> getSetBooks(String singleOrSet) {
     return _getBooks(() {
-      return remoteDataSource.getSetBooks(singleOrSet);
+      return remoteDataSource.fetchSetBooks(singleOrSet);
     });
   }
 
@@ -65,6 +65,6 @@ class CategoriesRepositoryImpl implements ICategoriesRepository {
 
   @override
   Future<Either<Failure, List<BookEntity>>> getOtherBooks() {
-    return _getBooks(remoteDataSource.getOtherBooks);
+    return _getBooks(remoteDataSource.fetchOtherBooks);
   }
 }

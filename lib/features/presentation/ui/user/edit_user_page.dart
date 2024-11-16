@@ -3,7 +3,6 @@ import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
-import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/ui/authentication/widgets/auth_text_field.dart';
 import 'package:bbt/features/presentation/ui/user/widgets/profile_photo_source_button.dart';
 import 'package:bbt/features/presentation/ui/widgets/app_snack_bar.dart';
@@ -14,6 +13,7 @@ import 'package:bbt/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditUserPage extends StatefulWidget {
@@ -60,7 +60,8 @@ class AuthPageState extends State<EditUserPage> {
                   title: Text(S.current.editUserInfo),
                   centerTitle: true,
                   leading: IconButton(
-                    onPressed: NavigationManager.instance.pop,
+                    onPressed: context.pop,
+                    // NavigationManager.instance.pop,
                     icon: const Icon(Icons.close),
                   ),
                 ),

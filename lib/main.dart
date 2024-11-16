@@ -4,6 +4,7 @@ import 'package:bbt/common/theme/themes.dart';
 import 'package:bbt/core/app_config.dart';
 import 'package:bbt/core/init_datasources.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:bbt/features/presentation/bloc/book_detail_bloc/book_detail_bloc.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
@@ -18,8 +19,7 @@ import 'package:bbt/features/presentation/bloc/sidebar_visibility_bloc/sidebar_v
 import 'package:bbt/features/presentation/bloc/update_display_name_bloc/update_display_name_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_password_bloc/update_password_bloc.dart';
 import 'package:bbt/features/presentation/bloc/update_user_photo_bloc/update_user_photo_bloc.dart';
-import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
-import 'package:bbt/features/presentation/navigation/route_builder.dart';
+import 'package:bbt/features/presentation/navigation/routes.dart';
 import 'package:bbt/generated/l10n.dart';
 import 'package:bbt/service_locator.dart' as di;
 import 'package:bbt/service_locator.dart';
@@ -29,6 +29,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
@@ -53,6 +55,9 @@ void main() {
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
       );
 
+      usePathUrlStrategy();
+      GoRouter.optionURLReflectsImperativeAPIs = true;
+
       runApp(const MyApp());
     },
     (error, stackTrace) {
@@ -73,6 +78,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<ChangeThemeBloc>(create: (context) => di.sl<ChangeThemeBloc>()),
         BlocProvider<HomeBooksBloc>(create: (context) => di.sl<HomeBooksBloc>()),
         BlocProvider<CategoryBloc>(create: (context) => di.sl<CategoryBloc>()),
+        BlocProvider<BookDetailBloc>(create: (context) => di.sl<BookDetailBloc>()),
         BlocProvider<CartBloc>(create: (context) => di.sl<CartBloc>()),
         BlocProvider<FavouritesBloc>(create: (context) => di.sl<FavouritesBloc>()),
         BlocProvider<OrdersBloc>(create: (context) => di.sl<OrdersBloc>()),
@@ -86,7 +92,10 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<ChangeThemeBloc, ThemeState>(
         builder: (context, state) {
-          return MaterialApp(
+          return MaterialApp.router(
+            routerDelegate: router.routerDelegate,
+            routeInformationParser: router.routeInformationParser,
+            routeInformationProvider: router.routeInformationProvider,
             theme: state.isDark ? darkTheme() : lightTheme(),
             localizationsDelegates: const [
               S.delegate,
@@ -97,10 +106,11 @@ class MyApp extends StatelessWidget {
             supportedLocales: S.delegate.supportedLocales,
             locale: const Locale.fromSubtags(languageCode: 'ru'),
             debugShowCheckedModeBanner: false,
-            navigatorKey: NavigationManager.instance.key,
-            routes: RouteBuilder.routes,
-            initialRoute: RouteBuilder.initialRoute,
-            onGenerateRoute: RouteBuilder.onGenerateRoute,
+            // routerConfig: router,
+            // navigatorKey: NavigationManager.instance.key,
+            // routes: RouteBuilder.routes,
+            // initialRoute: RouteBuilder.initialRoute,
+            // onGenerateRoute: RouteBuilder.onGenerateRoute,
           );
         },
       ),

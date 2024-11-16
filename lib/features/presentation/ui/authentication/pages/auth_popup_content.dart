@@ -1,13 +1,14 @@
 import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
-import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/ui/authentication/pages/registration_popup_content.dart';
 import 'package:bbt/features/presentation/ui/authentication/widgets/auth_text_field.dart';
 import 'package:bbt/features/presentation/ui/authentication/widgets/show_auth_popup.dart';
 import 'package:bbt/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AuthPopupContent extends StatefulWidget {
   const AuthPopupContent({super.key});
@@ -33,11 +34,14 @@ class AuthPageState extends State<AuthPopupContent> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         state.mapOrNull(
           error: (state) {
-            NavigationManager.instance.pop();
+            // NavigationManager.instance.pop();
+            context.pop();
             showDialog(
               context: context,
               builder: (context) {
@@ -46,7 +50,8 @@ class AuthPageState extends State<AuthPopupContent> {
                   content: Text(S.current.authError),
                   actions: <Widget>[
                     TextButton(
-                      onPressed: NavigationManager.instance.pop,
+                      onPressed: context.pop,
+                      // NavigationManager.instance.pop,
                       child: Text(
                         S.current.ok,
                         style: TextStyle(color: Theme.of(context).primaryColor),
@@ -58,7 +63,8 @@ class AuthPageState extends State<AuthPopupContent> {
             );
           },
           authenticated: (state) {
-            NavigationManager.instance.pop();
+            context.pop();
+            // NavigationManager.instance.pop();
           },
         );
       },
@@ -136,9 +142,11 @@ class AuthPageState extends State<AuthPopupContent> {
                     const SizedBox(height: 8),
                     OutlinedButton(
                       onPressed: () {
-                        NavigationManager.instance.pop();
+                        // NavigationManager.instance.pop();
+                        context.pop();
                         showAuthPopup(context,
-                            child: const RegistrationPopupContent(), height: 544);
+                            child: const RegistrationPopupContent(),
+                            height: kIsWeb && width > 900 ? 542 : double.infinity);
                       },
                       style: OutlinedButton.styleFrom(
                         fixedSize: const Size(320, 50),

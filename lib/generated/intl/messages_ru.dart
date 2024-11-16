@@ -24,7 +24,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(price) => "Цена: ${price} ₽";
 
-  static String m2(sum) => "Общая сумма: ${sum} ₽";
+  static String m2(quantity) => "Наличие в ятре: ${quantity} шт.";
+
+  static String m3(sum) => "Общая сумма: ${sum} ₽";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -99,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "popularBooks":
             MessageLookupByLibrary.simpleMessage("Популярные книги"),
         "price": m1,
+        "quantity": m2,
         "regError": MessageLookupByLibrary.simpleMessage(
             "Возникла ошибка при регистрации."),
         "registerForEnter": MessageLookupByLibrary.simpleMessage(
@@ -116,7 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Вы успешно зарегистрировались."),
         "toolbarEditPhotoTitle":
             MessageLookupByLibrary.simpleMessage("Изменить фото"),
-        "totalSum": m2,
+        "totalSum": m3,
         "turnOnCameraPermission": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, включите разрешение камеры в настройках"),
         "turnOnPhotoPermission": MessageLookupByLibrary.simpleMessage(

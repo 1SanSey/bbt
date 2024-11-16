@@ -1,6 +1,7 @@
 import 'package:bbt/core/app_constants.dart';
-import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
+import 'package:bbt/features/presentation/navigation/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TopHomeWidget extends StatelessWidget {
   const TopHomeWidget({super.key});
@@ -21,7 +22,9 @@ class TopHomeWidget extends StatelessWidget {
                 foregroundColor: Colors.transparent,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
               ),
-              onPressed: () => NavigationManager.instance.goCategoryPage(index),
+              onPressed: () =>
+                  context.pushNamed(Routes.categoryPage, pathParameters: {'categoryId': '$index'}),
+              // onPressed: () => NavigationManager.instance.goCategoryPage(index),
               child: Center(
                 child: Text(
                   AppConstants.category[index]!.$1,
