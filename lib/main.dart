@@ -40,9 +40,12 @@ void main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       await AppConfig.load();
+      await di.init();
       await InitDatasources.instance.initParse();
       await InitDatasources.instance.initHive();
-      await di.init();
+      if (!kIsWeb) {
+        await InitDatasources.instance.initAppMetrica();
+      }
 
       HydratedBloc.storage = await HydratedStorage.build(
         storageDirectory:

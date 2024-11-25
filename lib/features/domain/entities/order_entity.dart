@@ -22,7 +22,9 @@ class OrderEntity extends Equatable {
   @override
   String toString() {
     final date = DateFormat('dd.MM.y HH:mm', 'ru').format(dateOrder);
+    final order =
+        '''userId: $userId,\nДата заказа: $date,\nСумма заказа: $sumOrder руб.,\nКниги: $books''';
 
-    return '''userId: $userId,\nДата заказа: $date,\nСумма заказа: $sumOrder руб.,\nКниги: $books''';
+    return order.replaceAll('{', '').replaceAll('}', '');
   }
 }

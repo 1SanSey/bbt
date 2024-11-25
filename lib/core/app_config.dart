@@ -12,6 +12,7 @@ class AppConfig {
   static String get keyApplicationId => dotenv.env['KEY_APPLICATION_ID'] ?? '';
   static String get apiUri => dotenv.env['API_URI'] ?? '';
   static String get keyClient => dotenv.env['KEY_CLIENT'] ?? '';
+  static String get appMetricaKey => dotenv.env['APP_METRICA_KEY'] ?? '';
   static String get emailAdmin => dotenv.env['EMAIL_ADMIN'] ?? '';
   static String get telegramUri => dotenv.env['TELEGRAM_URI'] ?? '';
   static String get telegramToken => dotenv.env['TELEGRAM_TOKEN'] ?? '';

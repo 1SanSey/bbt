@@ -1,7 +1,7 @@
 //ignore_for_file: avoid-global-state
 
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:bbt/core/app_constants.dart';
-import 'package:bbt/features/domain/entities/book_entity.dart';
 import 'package:bbt/features/presentation/bloc/category_bloc/category_bloc.dart';
 import 'package:bbt/features/presentation/bloc/navigation_web_cubit.dart';
 import 'package:bbt/features/presentation/ui/category/widgets/builder_widget_category.dart';
@@ -24,21 +24,18 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  String? errorText;
-  late bool error;
-  late String query;
   late final RefreshController _refreshController;
-  List<BookEntity> categoryBooks = [];
 
   @override
   void initState() {
-    error = false;
-    context.read<CategoryBloc>().add(
-          FetchCategoryBooksEvent(
-              param: AppConstants.category[widget.idCategory]!.$3, isFirstFetch: true),
-        );
+    context
+        .read<CategoryBloc>()
+        .add(FetchCategoryBooksEvent(param: AppConstants.category[widget.idCategory]!.$3));
     _refreshController = RefreshController(initialRefresh: false);
     context.read<NavigationWebCubit>().changePage(widget.idCategory);
+    if (!kIsWeb) {
+      AppMetrica.reportEvent('category ${widget.idCategory}');
+    }
     super.initState();
   }
 

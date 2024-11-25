@@ -3,7 +3,6 @@
 import 'dart:developer';
 
 import 'package:bbt/core/error/exception.dart';
-import 'package:bbt/core/logger/logger_service.dart';
 import 'package:bbt/features/data/i_datasources/i_user_remote_datasorce.dart';
 import 'package:bbt/features/domain/entities/user_entity/user_entity.dart';
 import 'package:flutter/foundation.dart';
@@ -43,7 +42,6 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
   @override
   Future<UserEntity> userLogin({required String login, required String password}) async {
     final parseUser = ParseUser(login, password, null);
-    logw('userLogin');
     UserEntity user = UserEntity.empty();
     final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(ParseObject('_User'))
       ..whereEqualTo('username', login);
@@ -68,13 +66,15 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
 
   @override
   Future<UserEntity> userLogout() async {
-    final parseUser = await ParseUser.currentUser() as ParseUser;
-    final response = await parseUser.logout();
+    final parseUser = await ParseUser.currentUser();
     final user = UserEntity.empty();
+    if (parseUser != null) {
+      final response = await parseUser.logout();
 
-    if (response.success) {
-    } else {
-      log((response.error?.message).toString());
+      if (response.success) {
+      } else {
+        log((response.error?.message).toString());
+      }
     }
 
     return user;

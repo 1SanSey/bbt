@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:bbt/features/presentation/bloc/reg_bloc/registration_bloc.dart';
 import 'package:bbt/features/presentation/navigation/navigation_manager.dart';
 import 'package:bbt/features/presentation/ui/authentication/widgets/auth_text_field.dart';
 import 'package:bbt/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -160,6 +162,9 @@ class RegistrationPageState extends State<RegistrationPopupContent> {
                         final password = _controllerPassword.text.trim();
                         context.read<RegistrationBloc>().add(RegistrationEvent.register(
                             login: login, password: password, userName: userName));
+                        if (!kIsWeb) {
+                          AppMetrica.reportEvent('registration');
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,

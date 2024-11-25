@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/data/models/cart_book_model/cart_book_model.dart';
@@ -42,6 +43,9 @@ class _BookDetailPageState extends State<BookDetailPage> {
       _book = widget.book;
     } else {
       context.read<BookDetailBloc>().add(FetchBookDetailEvent(id: widget.id));
+    }
+    if (!kIsWeb) {
+      AppMetrica.reportEvent('book detail ${widget.id}');
     }
     _refreshController = RefreshController(initialRefresh: false);
     _isTapped = false;
@@ -162,7 +166,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                                   ),
                                                 ),
                                                 child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.spaceBetween,
                                                     children: <Widget>[
                                                       IconButton(
                                                         onPressed: _decrement,
@@ -172,8 +177,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                                       ),
                                                       const SizedBox(width: 20),
                                                       Container(
-                                                        padding:
-                                                            const EdgeInsets.symmetric(horizontal: 8),
+                                                        padding: const EdgeInsets.symmetric(
+                                                            horizontal: 8),
                                                         child: Text(
                                                           '$_count',
                                                           style: const TextStyle(
@@ -216,14 +221,18 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                                     ),
                                                   ),
                                                 );
+                                                if (!kIsWeb) {
+                                                  AppMetrica.reportEvent(
+                                                      'add to cart ${widget.id}');
+                                                }
                                               }
                                             },
                                             style: ElevatedButton.styleFrom(
                                               foregroundColor: Colors.white,
                                               backgroundColor: Theme.of(context).primaryColor,
                                               fixedSize: const Size(370, 50),
-                                              textStyle:
-                                                  const TextStyle(color: Colors.white, fontSize: 18),
+                                              textStyle: const TextStyle(
+                                                  color: Colors.white, fontSize: 18),
                                               shape: RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.circular(8)),
                                             ),
@@ -242,9 +251,13 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                                   price: _book!.price,
                                                   image: _book!.thumbnail!,
                                                 );
-                                      
+
                                                 BlocProvider.of<FavouritesBloc>(context)
                                                     .add(AddToFavouritesEvent(book: hiveBook));
+                                                if (!kIsWeb) {
+                                                  AppMetrica.reportEvent(
+                                                      'add to favourites ${widget.id}');
+                                                }
                                               }
                                             },
                                             style: OutlinedButton.styleFrom(
@@ -260,10 +273,10 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                             child: Text(
                                               S.current.addToFavourites,
                                               style: TextStyle(
-                                                  color: Theme.of(context).primaryColor, fontSize: 18),
+                                                  color: Theme.of(context).primaryColor,
+                                                  fontSize: 18),
                                             ),
                                           ),
-                                          
                                         ],
                                       ),
                                       if (width <= 900)

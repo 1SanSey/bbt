@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:bbt/common/theme/app_colors.dart';
 import 'package:bbt/features/domain/entities/cart_book_entity.dart';
 import 'package:bbt/features/domain/entities/order_entity.dart';
@@ -114,15 +115,20 @@ class _CartPageState extends State<CartPage> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     context
-                                      ..read<SendOrderBloc>().add(SendOrderEvent.send(
-                                        order: OrderEntity(
-                                          userId: user.uid,
-                                          dateOrder: DateTime.now(),
-                                          sumOrder: totalSum,
-                                          books: orderBooks,
+                                      ..read<SendOrderBloc>().add(
+                                        SendOrderEvent.send(
+                                          order: OrderEntity(
+                                            userId: user.uid,
+                                            dateOrder: DateTime.now(),
+                                            sumOrder: totalSum,
+                                            books: orderBooks,
+                                          ),
                                         ),
-                                      ))
+                                      )
                                       ..read<CartBloc>().add(RemoveAllCartEvent());
+                                    if (!kIsWeb) {
+                                      AppMetrica.reportEvent('send order');
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     foregroundColor: Colors.white,

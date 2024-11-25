@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:bbt/core/app_config.dart';
 import 'package:bbt/core/hive_names.dart';
 import 'package:bbt/features/data/models/cart_book_model/cart_book_model.dart';
@@ -26,5 +27,9 @@ class InitDatasources {
       ..registerAdapter(FavouritesBookModelAdapter());
     await Hive.openBox<CartBookModel>(HiveBoxes.cart);
     await Hive.openBox<FavouritesBookModel>(HiveBoxes.favourites);
+  }
+
+  Future<void> initAppMetrica() async {
+    await AppMetrica.activate(AppMetricaConfig(AppConfig.appMetricaKey));
   }
 }

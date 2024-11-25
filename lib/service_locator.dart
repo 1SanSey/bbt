@@ -139,6 +139,7 @@ init() async {
     )
 
 //Core
+    // ..registerLazySingleton(Logger.new)
     ..registerLazySingleton(() => LoggerService.inject)
     ..registerLazySingleton<ImagePicker>(ImagePicker.new)
     ..registerLazySingleton<Dio>(Dio.new)

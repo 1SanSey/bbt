@@ -63,7 +63,7 @@ class DrawerWidget extends StatelessWidget {
                         photoURL: user.photoURL,
                         userName: user.displayName,
                         isDrawer: true,
-                        onTap: () => context.goNamed(Routes.editUserPage),
+                        onTap: () => context.pushNamed(Routes.editUserPage),
                         // onTap: NavigationManager.instance.goEditUserPage,
                       ),
               ),
@@ -114,7 +114,7 @@ class DrawerWidget extends StatelessWidget {
                           ),
                           onTap: () {
                             context.read<OrdersBloc>().add(const OrdersEvent.fetchAll());
-                            context.goNamed(Routes.ordersPage, extra: S.current.allOrders);
+                            context.pushNamed(Routes.ordersPage, extra: S.current.allOrders);
                             // NavigationManager.instance.goOrdersPage(S.current.allOrders);
                           },
                         ),

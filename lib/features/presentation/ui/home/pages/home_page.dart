@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
 import 'package:bbt/features/presentation/ui/cart/pages/cart_page.dart';
 import 'package:bbt/features/presentation/ui/category/pages/category_page.dart';
@@ -33,6 +34,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     context.read<HomeBooksBloc>().add(
           const HomeLoadBooksEvent(isFirstFetch: true),
         );
+    if (!kIsWeb) {
+      AppMetrica.reportEvent('main');
+    }
   }
 
   void changeTitle() {

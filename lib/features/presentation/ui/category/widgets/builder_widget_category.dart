@@ -38,8 +38,7 @@ class _BuilderWidgetCategoryState extends State<BuilderCategoryWidget> {
   }
 
   void _runFilter(String enteredKeyword) {
-    List<BookEntity> resultsBooks = [];
-    resultsBooks = enteredKeyword.isEmpty
+    final resultsBooks = enteredKeyword.isEmpty
         ? _books
         : _books
             .where((book) => book.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
@@ -62,7 +61,7 @@ class _BuilderWidgetCategoryState extends State<BuilderCategoryWidget> {
         builder: (context, state) {
           if (state is CategoryBooksLoaded) {
             _books = state.books;
-            _foundBooks ??= state.books;
+
             return CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
@@ -83,17 +82,30 @@ class _BuilderWidgetCategoryState extends State<BuilderCategoryWidget> {
                             mainAxisExtent: 270,
                           ),
                         )
-                      : SliverToBoxAdapter(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 200),
-                            child: Center(
-                              child: Text(
-                                S.current.resultsNotFound,
-                                style: const TextStyle(fontSize: 24),
+                      : _books.isNotEmpty
+                          ? SliverGrid(
+                              delegate: SliverChildBuilderDelegate(
+                                (context, index) => BookCardWidget(book: _books[index]),
+                                childCount: _books.length,
+                              ),
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: kIsWeb && width > 900 ? 4 : 2,
+                                mainAxisSpacing: kIsWeb && width > 900 ? 16 : 8,
+                                crossAxisSpacing: kIsWeb && width > 900 ? 16 : 8,
+                                mainAxisExtent: 270,
+                              ),
+                            )
+                          : SliverToBoxAdapter(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 200),
+                                child: Center(
+                                  child: Text(
+                                    S.current.resultsNotFound,
+                                    style: const TextStyle(fontSize: 24),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
                 ),
               ],
             );

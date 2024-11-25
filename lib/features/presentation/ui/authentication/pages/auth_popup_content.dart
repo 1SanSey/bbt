@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:bbt/core/app_constants.dart';
 import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/change_theme_bloc/change_theme_bloc.dart';
@@ -128,6 +129,9 @@ class AuthPageState extends State<AuthPopupContent> {
                           context
                               .read<AuthBloc>()
                               .add(AuthEvent.logIn(login: login, password: password));
+                          if (!kIsWeb) {
+                            AppMetrica.reportEvent('authorization');
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white,
