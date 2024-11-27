@@ -1,5 +1,4 @@
 import 'package:bbt/common/theme/app_colors.dart';
-import 'package:bbt/core/logger/logger_service.dart';
 import 'package:bbt/features/domain/entities/cart_book_entity.dart';
 import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/generated/l10n.dart';
@@ -30,8 +29,6 @@ class _CartBookCardState extends State<CartBookCard> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
-
-    logw(width.toString());
 
     return Container(
       decoration: BoxDecoration(

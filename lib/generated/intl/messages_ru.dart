@@ -28,6 +28,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m3(sum) => "Общая сумма: ${sum} ₽";
 
+  static String m4(sum) =>
+      "Переведите ${sum} ₽ по номеру телефона +79229622726 (Сбер, Тинькофф)\nПолучатель Сергей Александрович О.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "BBTKirovApp": MessageLookupByLibrary.simpleMessage("BBT Kirov App"),
@@ -38,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allOrders": MessageLookupByLibrary.simpleMessage("Все заказы"),
         "applicationLegalese":
             MessageLookupByLibrary.simpleMessage("Sergey Ogarkov © 2024"),
-        "applicationVersion": MessageLookupByLibrary.simpleMessage("1.0.0"),
+        "applicationVersion": MessageLookupByLibrary.simpleMessage("2.0.0"),
         "authError": MessageLookupByLibrary.simpleMessage(
             "Возникла ошибка при авторизации."),
         "authExecute": MessageLookupByLibrary.simpleMessage(
@@ -58,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Подтвердите пароль"),
         "darkTheme": MessageLookupByLibrary.simpleMessage("Темная тема"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "deliveryAdress":
+            MessageLookupByLibrary.simpleMessage("Адрес доставки (самовывоз):"),
         "editPassword":
             MessageLookupByLibrary.simpleMessage("Введите новый пароль"),
         "editUserInfo":
@@ -77,7 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Введите email (логин)"),
         "inputPassword": MessageLookupByLibrary.simpleMessage("Введите пароль"),
         "inputUserName": MessageLookupByLibrary.simpleMessage(
-            "Введите ФИО или духовное имя"),
+            "Ваше Имя и Фамилия или духовное имя"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Светлая тема"),
         "login": MessageLookupByLibrary.simpleMessage("Логин"),
         "main": MessageLookupByLibrary.simpleMessage("Главная"),
@@ -94,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Пароль успешно изменен"),
         "passwordsNotMatch":
             MessageLookupByLibrary.simpleMessage("Пароли не совпадают"),
+        "paymentMethod": MessageLookupByLibrary.simpleMessage("Способ оплаты:"),
         "photoPermissionDenied":
             MessageLookupByLibrary.simpleMessage("Доступ к Фото запрещён\'"),
         "photoSuccessfulChange":
@@ -120,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "toolbarEditPhotoTitle":
             MessageLookupByLibrary.simpleMessage("Изменить фото"),
         "totalSum": m3,
+        "transferAmount": m4,
         "turnOnCameraPermission": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, включите разрешение камеры в настройках"),
         "turnOnPhotoPermission": MessageLookupByLibrary.simpleMessage(

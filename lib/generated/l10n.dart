@@ -220,10 +220,10 @@ class S {
     );
   }
 
-  /// `Введите ФИО или духовное имя`
+  /// `Ваше Имя и Фамилия или духовное имя`
   String get inputUserName {
     return Intl.message(
-      'Введите ФИО или духовное имя',
+      'Ваше Имя и Фамилия или духовное имя',
       name: 'inputUserName',
       desc: '',
       args: [],
@@ -470,10 +470,10 @@ class S {
     );
   }
 
-  /// `1.0.0`
+  /// `2.0.0`
   String get applicationVersion {
     return Intl.message(
-      '1.0.0',
+      '2.0.0',
       name: 'applicationVersion',
       desc: '',
       args: [],
@@ -707,6 +707,36 @@ class S {
       name: 'toolbarEditPhotoTitle',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Адрес доставки (самовывоз):`
+  String get deliveryAdress {
+    return Intl.message(
+      'Адрес доставки (самовывоз):',
+      name: 'deliveryAdress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Способ оплаты:`
+  String get paymentMethod {
+    return Intl.message(
+      'Способ оплаты:',
+      name: 'paymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Переведите {sum} ₽ по номеру телефона +79229622726 (Сбер, Тинькофф)\nПолучатель Сергей Александрович О.`
+  String transferAmount(int sum) {
+    return Intl.message(
+      'Переведите $sum ₽ по номеру телефона +79229622726 (Сбер, Тинькофф)\nПолучатель Сергей Александрович О.',
+      name: 'transferAmount',
+      desc: '',
+      args: [sum],
     );
   }
 }

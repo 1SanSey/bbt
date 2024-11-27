@@ -78,7 +78,7 @@
     "addToCart": "ДОБАВИТЬ В КОРЗИНУ",
     "addToFavourites": "ДОБАВИТЬ В ИЗБРАННОЕ",
     "exit": "Выход",
-    "applicationVersion": "1.0.0",
+    "applicationVersion": "2.0.0",
     "applicationLegalese": "Sergey Ogarkov © 2024",
     "aboutApp": "О приложении",
     "lightTheme": "Светлая тема",
@@ -101,5 +101,18 @@
     "turnOnCameraPermission": "Пожалуйста, включите разрешение камеры в настройках",
     "photoPermissionDenied": "Доступ к Фото запрещён'",
     "turnOnPhotoPermission": "Пожалуйста, включите доступ к Фото в настройках",
-    "toolbarEditPhotoTitle": "Изменить фото"
+    "toolbarEditPhotoTitle": "Изменить фото",
+    "deliveryAdress": "Адрес доставки (самовывоз):",
+    "paymentMethod": "Способ оплаты:",
+    "transferAmount": "Переведите {sum} ₽ по номеру телефона +79229622726 (Сбер, Тинькофф)\nПолучатель Сергей Александрович О.",
+    "@transferAmount": {
+        "placeholders": {
+            "sum": {
+                "type": "int",
+                "optionalParameters": {
+                    "symbol": "₽"
+                }
+            }
+        }
+    }
 }
