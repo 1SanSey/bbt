@@ -1,129 +1,185 @@
-import 'package:bbt/core/hive_names.dart';
+import 'dart:developer';
+
+import 'package:bbt/core/app_database.dart';
+import 'package:bbt/core/logger/logger_service.dart';
 import 'package:bbt/features/data/i_datasources/i_books_local_datasource.dart';
 import 'package:bbt/features/data/models/cart_book_model/cart_book_model.dart';
 import 'package:bbt/features/data/models/favourites_book_model/favourites_book_model.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:sembast/sembast.dart';
 
 class BooksLocalDatasourceImpl extends IBooksLocalDatasource {
-  Box<CartBookModel> cartBox = Hive.box<CartBookModel>(HiveBoxes.cart);
-  Box<FavouritesBookModel> favouritesBox = Hive.box<FavouritesBookModel>(HiveBoxes.favourites);
+  final _cartStore = intMapStoreFactory.store('cart');
+  final _favouritesStore = intMapStoreFactory.store('favourites');
 
   @override
-  String addToCart(CartBookModel book) {
-    bool isExist = false;
-    String message = '';
+  Future<String> addToCart(CartBookModel book) async {
+    try {
+      final db = await AppDatabase.instance.database;
+      final isExist = await _cartStore.findFirst(
+        db,
+        finder: Finder(filter: Filter.equals('name', book.name)),
+      );
 
-    if (cartBox.values.isNotEmpty) {
-      for (final item in cartBox.values) {
-        if (item.name == book.name) {
-          isExist = true;
-          message = 'Товар уже есть в корзине!';
-          break;
-        }
+      if (isExist != null) {
+        return 'Товар уже есть в корзине!';
       }
-      if (!isExist) {
-        cartBox.add(CartBookModel(
-          name: book.name,
-          price: book.price,
-          image: book.image,
-          quantity: book.quantity,
-        ));
 
-        message = 'Товар добавлен в корзину!';
-      }
-    } else {
-      cartBox.add(CartBookModel(
-        name: book.name,
-        price: book.price,
-        image: book.image,
-        quantity: book.quantity,
-      ));
-
-      message = 'Товар добавлен в корзину!';
+      await _cartStore.add(db, book.toJson());
+      return 'Товар добавлен в корзину!';
+    } catch (e) {
+      throw Exception('Error addToCart $e');
     }
-
-    return message;
   }
 
   @override
-  void removeFromCart(int index) {
-    cartBox.deleteAt(index);
-  }
+  Future<void> removeFromCart(String name, int price) async {
+    try {
+      log('removeFromCart name $name');
 
-  @override
-  List<CartBookModel> showCart() {
-    return cartBox.values.toList();
-  }
-
-  @override
-  int totalSum() {
-    int sum = 0;
-    for (final value in cartBox.values) {
-      sum = sum + value.price * value.quantity;
+      final db = await AppDatabase.instance.database;
+      final del = await _cartStore.delete(
+        db,
+        finder: Finder(
+          filter: Filter.and(
+            [
+              Filter.equals('name', name),
+              Filter.equals('price', price),
+            ],
+          ),
+        ),
+      );
+      log('removeFromCart del $del');
+    } catch (e) {
+      throw Exception('Error removeFromCart $e');
     }
-
-    return sum;
   }
 
   @override
-  Future<void> changeQuantityCart(int index, int value) async {
-    final currentItem = cartBox.getAt(index);
-    currentItem?.quantity = value;
-    await cartBox.putAt(index, currentItem!);
-  }
-
-  @override
-  void removeAllCart() {
-    cartBox.clear();
-  }
-
-  @override
-  String addToFavourites(FavouritesBookModel book) {
-    bool isExist = false;
-    String message = '';
-
-    if (favouritesBox.values.isNotEmpty) {
-      for (final item in favouritesBox.values) {
-        if (item.name == book.name) {
-          isExist = true;
-          message = 'Товар уже есть в Избранном!';
-          break;
-        }
-      }
-      if (!isExist) {
-        favouritesBox.add(FavouritesBookModel(
-          name: book.name,
-          price: book.price,
-          image: book.image,
-        ));
-
-        message = 'Товар добавлен в Избранное!';
-      }
-    } else {
-      favouritesBox.add(FavouritesBookModel(
-        name: book.name,
-        price: book.price,
-        image: book.image,
-      ));
-
-      message = 'Товар добавлен в Избранное!';
+  Future<List<CartBookModel>> showCart() async {
+    try {
+      final db = await AppDatabase.instance.database;
+      final records = await _cartStore.find(db);
+      final v = records.map((record) => record.key).toList();
+      log('showCart $v');
+      return records.map((record) => CartBookModel.fromJson(record.value)).toList();
+    } catch (e) {
+      throw Exception('Error showCart $e');
     }
-
-    return message;
   }
 
   @override
-  void removeFromFavourites(FavouritesBookModel book, int index) {
-    favouritesBox.deleteAt(index);
+  Future<int> totalSum() async {
+    try {
+      final db = await AppDatabase.instance.database;
+      final records = await _cartStore.find(db);
+
+      // Используем fold с явным указанием типа начального значения
+      return records.fold<int>(0, (sum, record) {
+        final book = CartBookModel.fromJson(record.value);
+        return sum + book.price * book.quantity;
+      });
+    } catch (e) {
+      throw Exception('Error totalSum $e');
+    }
   }
 
   @override
-  List<FavouritesBookModel> showFavourites() {
-    return favouritesBox.values.toList();
+  Future<void> changeQuantityCart(String name, int price, int value) async {
+    try {
+      final db = await AppDatabase.instance.database;
+
+      // Находим запись по названию и цене
+      final record = await _cartStore.findFirst(
+        db,
+        finder: Finder(
+          filter: Filter.and([
+            Filter.equals('name', name),
+            Filter.equals('price', price),
+          ]),
+        ),
+      );
+
+      // Если запись найдена, обновляем количество
+      if (record != null) {
+        final CartBookModel book = CartBookModel.fromJson(record.value)..quantity = value;
+        await _cartStore.record(record.key).put(db, book.toJson());
+      } else {
+        throw Exception('Товар с названием "$name" и ценой $price не найден');
+      }
+    } catch (e) {
+      throw Exception('Error changeQuantityCart: $e');
+    }
   }
 
   @override
-  void removeAllFavourites() {
-    favouritesBox.clear();
+  Future<void> removeAllCart() async {
+    try {
+      final db = await AppDatabase.instance.database;
+      await _cartStore.delete(db);
+    } catch (e) {
+      throw Exception('Error removeAllCart $e');
+    }
+  }
+
+  @override
+  Future<String> addToFavourites(FavouritesBookModel book) async {
+    try {
+      final db = await AppDatabase.instance.database;
+      final isExist = await _favouritesStore.findFirst(
+        db,
+        finder: Finder(filter: Filter.equals('name', book.name)),
+      );
+
+      if (isExist != null) {
+        return 'Товар уже есть в Избранном!';
+      }
+
+      await _favouritesStore.add(db, book.toJson());
+      logw('addToFavourites');
+      return 'Товар добавлен в Избранное!';
+    } catch (e) {
+      throw Exception('Error addToFavourites $e');
+    }
+  }
+
+  @override
+  Future<void> removeFromFavourites(String name, int price) async {
+    try {
+      final db = await AppDatabase.instance.database;
+      log('removeFromFavourites $name');
+      final del = await _favouritesStore.delete(db, finder: Finder(
+          filter: Filter.and(
+            [
+              Filter.equals('name', name),
+              Filter.equals('price', price),
+            ],
+          ),
+        ),
+      );
+      log('removeFromFavourites $del');
+    } catch (e) {
+      throw Exception('Error removeFromFavourites $e');
+    }
+  }
+
+  @override
+  Future<List<FavouritesBookModel>> showFavourites() async {
+    try {
+      final db = await AppDatabase.instance.database;
+      final records = await _favouritesStore.find(db);
+      return records.map((record) => FavouritesBookModel.fromJson(record.value)).toList();
+    } catch (e) {
+      throw Exception('Error showFavourites $e');
+    }
+  }
+
+  @override
+  Future<void> removeAllFavourites() async {
+    try {
+      final db = await AppDatabase.instance.database;
+      await _favouritesStore.delete(db);
+    } catch (e) {
+      throw Exception('Error removeAllFavourites $e');
+    }
   }
 }

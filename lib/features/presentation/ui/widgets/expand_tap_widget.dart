@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 const debugPaintExpandAreaEnabled = false;
-final debugPaintExpandAreaColor = const Color(0xFFFF0000).withOpacity(0.4);
+final debugPaintExpandAreaColor = const Color(0xFFFF0000).withValues(alpha: 255 * 0.4);
 
 // If there is someone who knows how to extend the hitarea above the parent rect, so it is not
 // Clipped, please add that here. This would be really helpful.
-final debugPaintClipAreaColor = const Color(0xFF0000FF).withOpacity(0.4);
+final debugPaintClipAreaColor = const Color(0xFF0000FF).withValues(alpha: 255 * 0.4);
 
 class ExpandTapWidget extends SingleChildRenderObjectWidget {
   const ExpandTapWidget({

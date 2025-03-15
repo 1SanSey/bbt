@@ -47,29 +47,29 @@ class _FavouritesPageState extends State<FavouritesPage> {
 
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: kIsWeb && width > 900 ? 16 : 8),
-            child: CustomScrollView(slivers: [
-              if (kIsWeb && width > 900) ...[
-                SliverToBoxAdapter(child: HeaderWidget(focusNode: _focusNode)),
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  sliver: SliverToBoxAdapter(
-                    child: Text(
-                      S.current.favourites,
-                      style: const TextStyle(
-                        fontFamily: 'Tahoma',
-                        color: AppColors.greyColor2,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+            child: CustomScrollView(
+              slivers: [
+                if (kIsWeb && width > 900) ...[
+                  SliverToBoxAdapter(child: HeaderWidget(focusNode: _focusNode)),
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    sliver: SliverToBoxAdapter(
+                      child: Text(
+                        S.current.favourites,
+                        style: const TextStyle(
+                          fontFamily: 'Tahoma',
+                          color: AppColors.greyColor2,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
+                ],
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
                       return Row(
                         children: [
                           Flexible(
@@ -84,35 +84,27 @@ class _FavouritesPageState extends State<FavouritesPage> {
                                   borderRadius: BorderRadius.circular(8),
                                   color: Theme.of(context).primaryColor,
                                 ),
-                                child: const Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
-                                ),
+                                child: const Icon(Icons.delete, color: Colors.white),
                               ),
                               key: UniqueKey(),
                               onDismissed: (direction) {
                                 context.read<FavouritesBloc>().add(
                                       RemoveFromFavouritesEvent(
                                         book: favouritesBooks[index],
-                                        index: index,
                                       ),
                                     );
                               },
-                              child: FavouritesBookCard(
-                                book: favouritesBooks[index],
-                                index: index,
-                              ),
+                              child: FavouritesBookCard(book: favouritesBooks[index]),
                             ),
                           ),
                           if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
                         ],
                       );
-                    },
-                    childCount: favouritesBooks.length,
+                    }, childCount: favouritesBooks.length),
                   ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           );
         },
       ),

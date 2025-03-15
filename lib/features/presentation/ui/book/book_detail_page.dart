@@ -89,50 +89,51 @@ class _BookDetailPageState extends State<BookDetailPage> {
 
             return _book != null
                 ? Scaffold(
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      leading: kIsWeb && width > 900
-                          ? MaterialButton(
+                  backgroundColor: Colors.white,
+                  appBar: AppBar(
+                    leading:
+                        kIsWeb && width > 900
+                            ? MaterialButton(
                               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               shape: const CircleBorder(),
-                              onPressed: () => context.canPop()
-                                  ? context.pop()
-                                  : context.goNamed(Routes.homePage),
+                              onPressed:
+                                  () =>
+                                      context.canPop()
+                                          ? context.pop()
+                                          : context.goNamed(Routes.homePage),
                               minWidth: 36,
                               padding: const EdgeInsets.all(6),
-                              child: const Icon(
-                                Icons.arrow_back,
-                                color: AppColors.greyColor2,
-                              ),
+                              child: const Icon(Icons.arrow_back, color: AppColors.greyColor2),
                             )
-                          : IconButton(
-                              onPressed: () =>
-                                  kIsWeb ? context.goNamed(Routes.homePage) : context.pop(),
+                            : IconButton(
+                              onPressed:
+                                  () => kIsWeb ? context.goNamed(Routes.homePage) : context.pop(),
                               icon: const Icon(Icons.arrow_back),
                             ),
-                      title: kIsWeb && width > 900 ? null : Text(_book!.name),
-                      centerTitle: true,
-                      backgroundColor: kIsWeb && width > 900 ? Colors.white : null,
-                    ),
-                    body: SafeArea(
-                      child: Row(
-                        children: [
-                          Flexible(
-                            child: SingleChildScrollView(
-                              child: CurrentUserBuilder(
-                                builder: (user) {
-                                  return Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                _isTapped = !_isTapped;
-                                              });
-                                            },
-                                            child: OnHover(builder: (isHovered) {
+                    title: kIsWeb && width > 900 ? null : Text(_book!.name),
+                    centerTitle: true,
+                    backgroundColor: kIsWeb && width > 900 ? Colors.white : null,
+                  ),
+                  body: SafeArea(
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: SingleChildScrollView(
+                            child: CurrentUserBuilder(
+                              builder: (user) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              _isTapped = !_isTapped;
+                                            });
+                                          },
+                                          child: OnHover(
+                                            builder: (isHovered) {
                                               return AnimatedSize(
                                                 duration: const Duration(seconds: 2),
                                                 curve: Curves.easeIn,
@@ -141,183 +142,211 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                                   height: _isTapped ? 370 : 270,
                                                 ),
                                               );
-                                            }),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          ConstrainedBox(
-                                            constraints: const BoxConstraints(maxWidth: 250),
-                                            child: Text(
-                                              _book!.name,
-                                              textAlign: TextAlign.center,
-                                              style: const TextStyle(
-                                                  color: AppColors.greyColor2, fontSize: 18),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 20),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(24),
-                                                  border: Border.all(
-                                                    color: AppColors.greyColor,
-                                                    width: 1,
-                                                  ),
-                                                ),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.spaceBetween,
-                                                    children: <Widget>[
-                                                      IconButton(
-                                                        onPressed: _decrement,
-                                                        icon: const Icon(Icons.remove),
-                                                        iconSize: 30,
-                                                        color: Theme.of(context).primaryColor,
-                                                      ),
-                                                      const SizedBox(width: 20),
-                                                      Container(
-                                                        padding: const EdgeInsets.symmetric(
-                                                            horizontal: 8),
-                                                        child: Text(
-                                                          '$_count',
-                                                          style: const TextStyle(
-                                                            color: AppColors.greyColor2,
-                                                            fontSize: 24,
-                                                            fontWeight: FontWeight.w400,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(width: 20),
-                                                      IconButton(
-                                                        onPressed: _increment,
-                                                        icon: const Icon(Icons.add),
-                                                        iconSize: 30,
-                                                        color: Theme.of(context).primaryColor,
-                                                      ),
-                                                    ]),
-                                              ),
-                                              Text(
-                                                S.current.price(_book!.price),
-                                                style: const TextStyle(
-                                                    fontSize: 25, color: AppColors.greyColor2),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 20),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              if (user.isEmpty) {
-                                                AppSnackBar.showSnack(
-                                                    context, S.current.authNeedAddToCart);
-                                              } else {
-                                                BlocProvider.of<CartBloc>(context).add(
-                                                  AddToCartEvent(
-                                                    book: CartBookModel(
-                                                      name: _book!.name,
-                                                      price: _book!.price,
-                                                      image: _book!.thumbnail!,
-                                                      quantity: _count,
-                                                    ),
-                                                  ),
-                                                );
-                                                if (!kIsWeb) {
-                                                  AppMetrica.reportEvent(
-                                                      'add to cart ${widget.id}');
-                                                }
-                                              }
                                             },
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor: Colors.white,
-                                              backgroundColor: Theme.of(context).primaryColor,
-                                              fixedSize: const Size(370, 50),
-                                              textStyle: const TextStyle(
-                                                  color: Colors.white, fontSize: 18),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(8)),
-                                            ),
-                                            child: Text(S.current.addToCart),
-                                          ),
-                                          const SizedBox(height: 10),
-                                          OutlinedButton(
-                                            onPressed: () {
-                                              if (user.isEmpty) {
-                                                AppSnackBar.showSnack(
-                                                    context, S.current.authNeedAddToFavourites);
-                                              } else {
-                                                final FavouritesBookModel hiveBook =
-                                                    FavouritesBookModel(
-                                                  name: _book!.name,
-                                                  price: _book!.price,
-                                                  image: _book!.thumbnail!,
-                                                );
-
-                                                BlocProvider.of<FavouritesBloc>(context)
-                                                    .add(AddToFavouritesEvent(book: hiveBook));
-                                                if (!kIsWeb) {
-                                                  AppMetrica.reportEvent(
-                                                      'add to favourites ${widget.id}');
-                                                }
-                                              }
-                                            },
-                                            style: OutlinedButton.styleFrom(
-                                              fixedSize: const Size(370, 50),
-                                              side: BorderSide(
-                                                color: Theme.of(context).primaryColor,
-                                                width: 2,
-                                              ),
-                                              foregroundColor: Colors.transparent,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(8)),
-                                            ),
-                                            child: Text(
-                                              S.current.addToFavourites,
-                                              style: TextStyle(
-                                                  color: Theme.of(context).primaryColor,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      if (width <= 900)
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(14, 28, 14, 32),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                S.current.quantity(_book!.quantity),
-                                                style: const TextStyle(
-                                                    color: AppColors.greyColor2, fontSize: 18),
-                                              ),
-                                              Text(
-                                                _book!.description ?? '',
-                                                style: const TextStyle(
-                                                    color: AppColors.greyColor2, fontSize: 16),
-                                              ),
-                                            ],
                                           ),
                                         ),
-                                    ],
-                                  );
-                                },
+                                        const SizedBox(height: 10),
+                                        ConstrainedBox(
+                                          constraints: const BoxConstraints(maxWidth: 250),
+                                          child: Text(
+                                            _book!.name,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                              color: AppColors.greyColor2,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 20),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(24),
+                                                border: Border.all(
+                                                  color: AppColors.greyColor,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: <Widget>[
+                                                  IconButton(
+                                                    onPressed: _decrement,
+                                                    icon: const Icon(Icons.remove),
+                                                    iconSize: 30,
+                                                    color: Theme.of(context).primaryColor,
+                                                  ),
+                                                  const SizedBox(width: 20),
+                                                  Container(
+                                                    padding: const EdgeInsets.symmetric(
+                                                      horizontal: 8,
+                                                    ),
+                                                    child: Text(
+                                                      '$_count',
+                                                      style: const TextStyle(
+                                                        color: AppColors.greyColor2,
+                                                        fontSize: 24,
+                                                        fontWeight: FontWeight.w400,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 20),
+                                                  IconButton(
+                                                    onPressed: _increment,
+                                                    icon: const Icon(Icons.add),
+                                                    iconSize: 30,
+                                                    color: Theme.of(context).primaryColor,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Text(
+                                              S.current.price(_book!.price),
+                                              style: const TextStyle(
+                                                fontSize: 25,
+                                                color: AppColors.greyColor2,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 20),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            if (user.isEmpty) {
+                                              AppSnackBar.showSnack(
+                                                context,
+                                                S.current.authNeedAddToCart,
+                                              );
+                                            } else {
+                                              BlocProvider.of<CartBloc>(context).add(
+                                                AddToCartEvent(
+                                                  book: CartBookModel(
+                                                    name: _book!.name,
+                                                    price: _book!.price,
+                                                    image: _book!.thumbnail!,
+                                                    quantity: _count,
+                                                  ),
+                                                ),
+                                              );
+                                              AppSnackBar.showSnack(
+                                                context,
+                                                S.current.bookAddedToCart,
+                                              );
+                                              if (!kIsWeb) {
+                                                AppMetrica.reportEvent('add to cart ${widget.id}');
+                                              }
+                                            }
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor: Colors.white,
+                                            backgroundColor: Theme.of(context).primaryColor,
+                                            fixedSize: const Size(370, 50),
+                                            textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                          ),
+                                          child: Text(S.current.addToCart),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        OutlinedButton(
+                                          onPressed: () {
+                                            if (user.isEmpty) {
+                                              AppSnackBar.showSnack(
+                                                context,
+                                                S.current.authNeedAddToFavourites,
+                                              );
+                                            } else {
+                                              final FavouritesBookModel bookForDb =
+                                                  FavouritesBookModel(
+                                                    name: _book!.name,
+                                                    price: _book!.price,
+                                                    image: _book!.thumbnail!,
+                                                  );
+
+                                              BlocProvider.of<FavouritesBloc>(
+                                                context,
+                                              ).add(AddToFavouritesEvent(book: bookForDb));
+                                              AppSnackBar.showSnack(
+                                                context,
+                                                S.current.bookAddedToFavourites,
+                                              );
+                                              if (!kIsWeb) {
+                                                AppMetrica.reportEvent(
+                                                  'add to favourites ${widget.id}',
+                                                );
+                                              }
+                                            }
+                                          },
+                                          style: OutlinedButton.styleFrom(
+                                            fixedSize: const Size(370, 50),
+                                            side: BorderSide(
+                                              color: Theme.of(context).primaryColor,
+                                              width: 2,
+                                            ),
+                                            foregroundColor: Colors.transparent,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            S.current.addToFavourites,
+                                            style: TextStyle(
+                                              color: Theme.of(context).primaryColor,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    if (width <= 900)
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(14, 28, 14, 32),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              S.current.quantity(_book!.quantity),
+                                              style: const TextStyle(
+                                                color: AppColors.greyColor2,
+                                                fontSize: 18,
+                                              ),
+                                            ),
+                                            Text(
+                                              _book!.description ?? '',
+                                              style: const TextStyle(
+                                                color: AppColors.greyColor2,
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        if (kIsWeb && width > 900)
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text(
+                                _book!.description ?? '',
+                                style: const TextStyle(color: AppColors.greyColor2, fontSize: 16),
                               ),
                             ),
                           ),
-                          if (kIsWeb && width > 900)
-                            Flexible(
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 16),
-                                child: Text(
-                                  _book!.description ?? '',
-                                  style: const TextStyle(color: AppColors.greyColor2, fontSize: 16),
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
+                      ],
                     ),
-                  )
+                  ),
+                )
                 : const Center(child: LoadingIndicator());
           },
         ),

@@ -23,87 +23,93 @@ class BookCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(Routes.bookDetailPage,
-            extra: book, pathParameters: {'bookId': '${book.id}'});
+        context.pushNamed(
+          Routes.bookDetailPage,
+          extra: book,
+          pathParameters: {'bookId': '${book.id}'},
+        );
         // NavigationManager.instance.goBookDetailPage(book);
       },
-      child: OnHover(builder: (isHovered) {
-        return Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(width: 1, color: AppColors.greyColor),
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-          ),
-          child: CurrentUserBuilder(
-            builder: (user) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Image.network(
-                        book.thumbnail ?? AppConstants.noImage,
-                        fit: BoxFit.fitHeight,
-                        height: 180,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text(
-                          book.name,
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyMedium,
+      child: OnHover(
+        builder: (isHovered) {
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(width: 1, color: AppColors.greyColor),
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+            ),
+            child: CurrentUserBuilder(
+              builder: (user) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Image.network(
+                          book.thumbnail ?? AppConstants.noImage,
+                          fit: BoxFit.fitHeight,
+                          height: 180,
                         ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(
-                          '${book.price} ₽',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            if (user.isEmpty) {
-                              AppSnackBar.showSnack(context, S.current.authNeedAddToCart);
-                            } else {
-                              BlocProvider.of<CartBloc>(context).add(
-                                AddToCartEvent(
-                                  book: CartBookModel(
-                                    name: book.name,
-                                    price: book.price,
-                                    image: book.thumbnail!,
-                                    quantity: 1,
-                                  ),
-                                ),
-                              );
-                              if (!kIsWeb) {
-                                AppMetrica.reportEvent('add to cart ${book.id}');
-                              }
-                            }
-                          },
-                          icon: Icon(
-                            Icons.shopping_cart,
-                            color: Theme.of(context).primaryColor,
-                            size: 30,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Text(
+                            book.name,
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              );
-            },
-          ),
-        );
-      }),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Text(
+                            '${book.price} ₽',
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              if (user.isEmpty) {
+                                AppSnackBar.showSnack(context, S.current.authNeedAddToCart);
+                              } else {
+                                BlocProvider.of<CartBloc>(context).add(
+                                  AddToCartEvent(
+                                    book: CartBookModel(
+                                      name: book.name,
+                                      price: book.price,
+                                      image: book.thumbnail!,
+                                      quantity: 1,
+                                    ),
+                                  ),
+                                );
+                                AppSnackBar.showSnack(context, S.current.bookAddedToCart);
+                                if (!kIsWeb) {
+                                  AppMetrica.reportEvent('add to cart ${book.id}');
+                                }
+                              }
+                            },
+                            icon: Icon(
+                              Icons.shopping_cart,
+                              color: Theme.of(context).primaryColor,
+                              size: 30,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -18,16 +18,16 @@ class AddToCartEvent extends CartEvent {
 }
 
 class RemoveFromCartEvent extends CartEvent {
-  final int index;
+  final CartBookEntity book;
 
-  const RemoveFromCartEvent({required this.index});
+  const RemoveFromCartEvent({required this.book});
 }
 
 class ChangeQuantityCartEvent extends CartEvent {
-  final int index;
+  final CartBookEntity book;
   final int value;
 
-  const ChangeQuantityCartEvent({required this.index, required this.value});
+  const ChangeQuantityCartEvent({required this.book, required this.value});
 }
 
 class RemoveAllCartEvent extends CartEvent {}

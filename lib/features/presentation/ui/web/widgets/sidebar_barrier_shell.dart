@@ -13,7 +13,8 @@ class SidebarBarrierShell extends StatelessWidget {
 
     return BlocBuilder<SidebarVisibilityBloc, SidebarVisibilityState>(
       builder: (context, state) {
-        final isProfileVisible = state is ProfileVisibilityState && state.isActive ||
+        final isProfileVisible =
+            state is ProfileVisibilityState && state.isActive ||
             state is OrderDetailVisibilityState && state.isActive;
 
         return GestureDetector(
@@ -31,7 +32,7 @@ class SidebarBarrierShell extends StatelessWidget {
               child: Container(
                 width: size.width,
                 height: size.height,
-                color: const Color(0xFF282A2D).withOpacity(0.2),
+                color: const Color(0xFF282A2D).withValues(alpha: 255 * 0.2),
               ),
             ),
           ),

@@ -11,15 +11,12 @@ class DeliveryPaymentWidget extends StatefulWidget {
 
 class _DeliveryPaymentWidgetState extends State<DeliveryPaymentWidget> {
   // Значения для первого DropdownButton
-  final String defaultAddress = 'ЦВК, г. Киров, ул. Казанская, 76';
+  final String defaultAddress = S.current.defaultAddress;
 
   // Значения для второго DropdownButton
-  final List<String> paymentMethods = [
-    'Перевод на карту по номеру телефона',
-    'Оплата наличными при получении',
-  ];
+  final List<String> paymentMethods = [S.current.transferToCard, S.current.paymentCash];
 
-  String selectedPaymentMethod = 'Перевод на карту по номеру телефона';
+  String selectedPaymentMethod = S.current.transferToCard;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +30,9 @@ class _DeliveryPaymentWidgetState extends State<DeliveryPaymentWidget> {
         const SizedBox(height: 8),
         DropdownButton<String>(
           dropdownColor: Theme.of(context).scaffoldBackgroundColor,
-           style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge,
           value: defaultAddress,
-          items: [
-            DropdownMenuItem(
-              value: defaultAddress,
-              child: Text(defaultAddress),
-            ),
-          ],
+          items: [DropdownMenuItem(value: defaultAddress, child: Text(defaultAddress))],
           onChanged: (_) {}, // Здесь нет необходимости в обработке
         ),
         const SizedBox(height: 24),
@@ -53,14 +45,10 @@ class _DeliveryPaymentWidgetState extends State<DeliveryPaymentWidget> {
           dropdownColor: Theme.of(context).scaffoldBackgroundColor,
           style: Theme.of(context).textTheme.bodyLarge,
           value: selectedPaymentMethod,
-          items: paymentMethods
-              .map(
-                (method) => DropdownMenuItem(
-                  value: method,
-                  child: Text(method),
-                ),
-              )
-              .toList(),
+          items:
+              paymentMethods
+                  .map((method) => DropdownMenuItem(value: method, child: Text(method)))
+                  .toList(),
           onChanged: (value) {
             setState(() {
               selectedPaymentMethod = value!;
@@ -68,7 +56,7 @@ class _DeliveryPaymentWidgetState extends State<DeliveryPaymentWidget> {
           },
         ),
         const SizedBox(height: 24),
-        if (selectedPaymentMethod == 'Перевод на карту по номеру телефона')
+        if (selectedPaymentMethod == S.current.transferToCard)
           Text(
             S.current.transferAmount(widget.sum),
             softWrap: true,

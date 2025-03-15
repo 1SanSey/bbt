@@ -12,7 +12,8 @@ part of 'send_order_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$SendOrderEvent {
@@ -20,37 +21,33 @@ mixin _$SendOrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(OrderEntity order) send,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(OrderEntity order)? send,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(OrderEntity order)? send,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SendSingleOrderEvent value) send,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SendSingleOrderEvent value)? send,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SendSingleOrderEvent value)? send,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendOrderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendOrderEventCopyWith<SendOrderEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,8 +55,9 @@ mixin _$SendOrderEvent {
 /// @nodoc
 abstract class $SendOrderEventCopyWith<$Res> {
   factory $SendOrderEventCopyWith(
-          SendOrderEvent value, $Res Function(SendOrderEvent) then) =
-      _$SendOrderEventCopyWithImpl<$Res, SendOrderEvent>;
+    SendOrderEvent value,
+    $Res Function(SendOrderEvent) then,
+  ) = _$SendOrderEventCopyWithImpl<$Res, SendOrderEvent>;
   @useResult
   $Res call({OrderEntity order});
 }
@@ -74,26 +72,31 @@ class _$SendOrderEventCopyWithImpl<$Res, $Val extends SendOrderEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendOrderEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? order = null,
-  }) {
-    return _then(_value.copyWith(
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as OrderEntity,
-    ) as $Val);
+  $Res call({Object? order = null}) {
+    return _then(
+      _value.copyWith(
+            order:
+                null == order
+                    ? _value.order
+                    : order // ignore: cast_nullable_to_non_nullable
+                        as OrderEntity,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$SendSingleOrderEventImplCopyWith<$Res>
     implements $SendOrderEventCopyWith<$Res> {
-  factory _$$SendSingleOrderEventImplCopyWith(_$SendSingleOrderEventImpl value,
-          $Res Function(_$SendSingleOrderEventImpl) then) =
-      __$$SendSingleOrderEventImplCopyWithImpl<$Res>;
+  factory _$$SendSingleOrderEventImplCopyWith(
+    _$SendSingleOrderEventImpl value,
+    $Res Function(_$SendSingleOrderEventImpl) then,
+  ) = __$$SendSingleOrderEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({OrderEntity order});
@@ -103,21 +106,25 @@ abstract class _$$SendSingleOrderEventImplCopyWith<$Res>
 class __$$SendSingleOrderEventImplCopyWithImpl<$Res>
     extends _$SendOrderEventCopyWithImpl<$Res, _$SendSingleOrderEventImpl>
     implements _$$SendSingleOrderEventImplCopyWith<$Res> {
-  __$$SendSingleOrderEventImplCopyWithImpl(_$SendSingleOrderEventImpl _value,
-      $Res Function(_$SendSingleOrderEventImpl) _then)
-      : super(_value, _then);
+  __$$SendSingleOrderEventImplCopyWithImpl(
+    _$SendSingleOrderEventImpl _value,
+    $Res Function(_$SendSingleOrderEventImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of SendOrderEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? order = null,
-  }) {
-    return _then(_$SendSingleOrderEventImpl(
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as OrderEntity,
-    ));
+  $Res call({Object? order = null}) {
+    return _then(
+      _$SendSingleOrderEventImpl(
+        order:
+            null == order
+                ? _value.order
+                : order // ignore: cast_nullable_to_non_nullable
+                    as OrderEntity,
+      ),
+    );
   }
 }
 
@@ -145,13 +152,17 @@ class _$SendSingleOrderEventImpl extends _SendSingleOrderEvent {
   @override
   int get hashCode => Object.hash(runtimeType, order);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendOrderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendSingleOrderEventImplCopyWith<_$SendSingleOrderEventImpl>
-      get copyWith =>
-          __$$SendSingleOrderEventImplCopyWithImpl<_$SendSingleOrderEventImpl>(
-              this, _$identity);
+  get copyWith =>
+      __$$SendSingleOrderEventImplCopyWithImpl<_$SendSingleOrderEventImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -217,10 +228,13 @@ abstract class _SendSingleOrderEvent extends SendOrderEvent {
 
   @override
   OrderEntity get order;
+
+  /// Create a copy of SendOrderEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendSingleOrderEventImplCopyWith<_$SendSingleOrderEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -231,16 +245,14 @@ mixin _$SendOrderState {
     required TResult Function() sending,
     required TResult Function(String order) sended,
     required TResult Function(String message) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? sending,
     TResult? Function(String order)? sended,
     TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
@@ -248,24 +260,21 @@ mixin _$SendOrderState {
     TResult Function(String order)? sended,
     TResult Function(String message)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_EmptyOrderState value) empty,
     required TResult Function(_SendingOrderState value) sending,
     required TResult Function(_SendedOrderState value) sended,
     required TResult Function(_ErrorOrderState value) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EmptyOrderState value)? empty,
     TResult? Function(_SendingOrderState value)? sending,
     TResult? Function(_SendedOrderState value)? sended,
     TResult? Function(_ErrorOrderState value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmptyOrderState value)? empty,
@@ -273,15 +282,15 @@ mixin _$SendOrderState {
     TResult Function(_SendedOrderState value)? sended,
     TResult Function(_ErrorOrderState value)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SendOrderStateCopyWith<$Res> {
   factory $SendOrderStateCopyWith(
-          SendOrderState value, $Res Function(SendOrderState) then) =
-      _$SendOrderStateCopyWithImpl<$Res, SendOrderState>;
+    SendOrderState value,
+    $Res Function(SendOrderState) then,
+  ) = _$SendOrderStateCopyWithImpl<$Res, SendOrderState>;
 }
 
 /// @nodoc
@@ -293,13 +302,17 @@ class _$SendOrderStateCopyWithImpl<$Res, $Val extends SendOrderState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$EmptyOrderStateImplCopyWith<$Res> {
-  factory _$$EmptyOrderStateImplCopyWith(_$EmptyOrderStateImpl value,
-          $Res Function(_$EmptyOrderStateImpl) then) =
-      __$$EmptyOrderStateImplCopyWithImpl<$Res>;
+  factory _$$EmptyOrderStateImplCopyWith(
+    _$EmptyOrderStateImpl value,
+    $Res Function(_$EmptyOrderStateImpl) then,
+  ) = __$$EmptyOrderStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -307,8 +320,12 @@ class __$$EmptyOrderStateImplCopyWithImpl<$Res>
     extends _$SendOrderStateCopyWithImpl<$Res, _$EmptyOrderStateImpl>
     implements _$$EmptyOrderStateImplCopyWith<$Res> {
   __$$EmptyOrderStateImplCopyWithImpl(
-      _$EmptyOrderStateImpl _value, $Res Function(_$EmptyOrderStateImpl) _then)
-      : super(_value, _then);
+    _$EmptyOrderStateImpl _value,
+    $Res Function(_$EmptyOrderStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -412,18 +429,23 @@ abstract class _EmptyOrderState extends SendOrderState {
 
 /// @nodoc
 abstract class _$$SendingOrderStateImplCopyWith<$Res> {
-  factory _$$SendingOrderStateImplCopyWith(_$SendingOrderStateImpl value,
-          $Res Function(_$SendingOrderStateImpl) then) =
-      __$$SendingOrderStateImplCopyWithImpl<$Res>;
+  factory _$$SendingOrderStateImplCopyWith(
+    _$SendingOrderStateImpl value,
+    $Res Function(_$SendingOrderStateImpl) then,
+  ) = __$$SendingOrderStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$SendingOrderStateImplCopyWithImpl<$Res>
     extends _$SendOrderStateCopyWithImpl<$Res, _$SendingOrderStateImpl>
     implements _$$SendingOrderStateImplCopyWith<$Res> {
-  __$$SendingOrderStateImplCopyWithImpl(_$SendingOrderStateImpl _value,
-      $Res Function(_$SendingOrderStateImpl) _then)
-      : super(_value, _then);
+  __$$SendingOrderStateImplCopyWithImpl(
+    _$SendingOrderStateImpl _value,
+    $Res Function(_$SendingOrderStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -527,9 +549,10 @@ abstract class _SendingOrderState extends SendOrderState {
 
 /// @nodoc
 abstract class _$$SendedOrderStateImplCopyWith<$Res> {
-  factory _$$SendedOrderStateImplCopyWith(_$SendedOrderStateImpl value,
-          $Res Function(_$SendedOrderStateImpl) then) =
-      __$$SendedOrderStateImplCopyWithImpl<$Res>;
+  factory _$$SendedOrderStateImplCopyWith(
+    _$SendedOrderStateImpl value,
+    $Res Function(_$SendedOrderStateImpl) then,
+  ) = __$$SendedOrderStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String order});
 }
@@ -538,21 +561,25 @@ abstract class _$$SendedOrderStateImplCopyWith<$Res> {
 class __$$SendedOrderStateImplCopyWithImpl<$Res>
     extends _$SendOrderStateCopyWithImpl<$Res, _$SendedOrderStateImpl>
     implements _$$SendedOrderStateImplCopyWith<$Res> {
-  __$$SendedOrderStateImplCopyWithImpl(_$SendedOrderStateImpl _value,
-      $Res Function(_$SendedOrderStateImpl) _then)
-      : super(_value, _then);
+  __$$SendedOrderStateImplCopyWithImpl(
+    _$SendedOrderStateImpl _value,
+    $Res Function(_$SendedOrderStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? order = null,
-  }) {
-    return _then(_$SendedOrderStateImpl(
-      order: null == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? order = null}) {
+    return _then(
+      _$SendedOrderStateImpl(
+        order:
+            null == order
+                ? _value.order
+                : order // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
@@ -580,12 +607,16 @@ class _$SendedOrderStateImpl extends _SendedOrderState {
   @override
   int get hashCode => Object.hash(runtimeType, order);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendedOrderStateImplCopyWith<_$SendedOrderStateImpl> get copyWith =>
       __$$SendedOrderStateImplCopyWithImpl<_$SendedOrderStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -668,16 +699,20 @@ abstract class _SendedOrderState extends SendOrderState {
   const _SendedOrderState._() : super._();
 
   String get order;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendedOrderStateImplCopyWith<_$SendedOrderStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$ErrorOrderStateImplCopyWith<$Res> {
-  factory _$$ErrorOrderStateImplCopyWith(_$ErrorOrderStateImpl value,
-          $Res Function(_$ErrorOrderStateImpl) then) =
-      __$$ErrorOrderStateImplCopyWithImpl<$Res>;
+  factory _$$ErrorOrderStateImplCopyWith(
+    _$ErrorOrderStateImpl value,
+    $Res Function(_$ErrorOrderStateImpl) then,
+  ) = __$$ErrorOrderStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
@@ -687,29 +722,33 @@ class __$$ErrorOrderStateImplCopyWithImpl<$Res>
     extends _$SendOrderStateCopyWithImpl<$Res, _$ErrorOrderStateImpl>
     implements _$$ErrorOrderStateImplCopyWith<$Res> {
   __$$ErrorOrderStateImplCopyWithImpl(
-      _$ErrorOrderStateImpl _value, $Res Function(_$ErrorOrderStateImpl) _then)
-      : super(_value, _then);
+    _$ErrorOrderStateImpl _value,
+    $Res Function(_$ErrorOrderStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorOrderStateImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? message = null}) {
+    return _then(
+      _$ErrorOrderStateImpl(
+        message:
+            null == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ErrorOrderStateImpl extends _ErrorOrderState {
-  const _$ErrorOrderStateImpl(
-      {this.message = 'Произошла ошибка отправки заказа'})
-      : super._();
+  const _$ErrorOrderStateImpl({
+    this.message = 'Произошла ошибка отправки заказа',
+  }) : super._();
 
   @override
   @JsonKey()
@@ -731,12 +770,16 @@ class _$ErrorOrderStateImpl extends _ErrorOrderState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorOrderStateImplCopyWith<_$ErrorOrderStateImpl> get copyWith =>
       __$$ErrorOrderStateImplCopyWithImpl<_$ErrorOrderStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -819,7 +862,10 @@ abstract class _ErrorOrderState extends SendOrderState {
   const _ErrorOrderState._() : super._();
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendOrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorOrderStateImplCopyWith<_$ErrorOrderStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

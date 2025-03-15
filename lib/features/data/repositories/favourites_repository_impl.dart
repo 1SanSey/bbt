@@ -6,34 +6,27 @@ import 'package:bbt/features/domain/repositories/i_favourites_repository.dart';
 class FavouritesRepositoryImpl implements IFavouritesRepository {
   final IBooksLocalDatasource hiveDataSource;
 
-  FavouritesRepositoryImpl({
-    required this.hiveDataSource,
-  });
+  FavouritesRepositoryImpl({required this.hiveDataSource});
 
   @override
-  String addToFavourites(FavoritesBookEntity book) {
-    final hiveBook = FavouritesBookModel(
-      name: book.name,
-      price: book.price,
-      image: book.image,
-    );
+  Future<String> addToFavourites(FavoritesBookEntity book) async {
+    final bookForDb = FavouritesBookModel(name: book.name, price: book.price, image: book.image);
 
-    return hiveDataSource.addToFavourites(hiveBook);
+    return hiveDataSource.addToFavourites(bookForDb);
   }
 
   @override
-  void removeFromFavourites(FavoritesBookEntity book, int index) {
-    final hiveBook = FavouritesBookModel(name: book.name, price: book.price, image: book.image);
-    hiveDataSource.removeFromFavourites(hiveBook, index);
+  Future<void> removeFromFavourites(String name, int price) async {
+    await hiveDataSource.removeFromFavourites(name, price);
   }
 
   @override
-  List<FavoritesBookEntity> showFavourites() {
+  Future<List<FavoritesBookEntity>> showFavourites() async {
     return hiveDataSource.showFavourites();
   }
 
   @override
-  void removeAllFavourites() {
+  Future<void> removeAllFavourites() async {
     return hiveDataSource.removeAllFavourites();
   }
 }

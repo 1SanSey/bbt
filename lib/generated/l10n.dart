@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -60,14 +65,39 @@ class S {
     );
   }
 
-  /// `OK`
-  String get ok {
+  /// `ЦВК, г. Киров, ул. Орловская, 15`
+  String get defaultAddress {
     return Intl.message(
-      'OK',
-      name: 'ok',
+      'ЦВК, г. Киров, ул. Орловская, 15',
+      name: 'defaultAddress',
       desc: '',
       args: [],
     );
+  }
+
+  /// `Перевод на карту по номеру телефона`
+  String get transferToCard {
+    return Intl.message(
+      'Перевод на карту по номеру телефона',
+      name: 'transferToCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Оплата наличными при получении`
+  String get paymentCash {
+    return Intl.message(
+      'Оплата наличными при получении',
+      name: 'paymentCash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message('OK', name: 'ok', desc: '', args: []);
   }
 
   /// `Возникла ошибка при авторизации.`
@@ -120,44 +150,44 @@ class S {
     );
   }
 
-  /// `Логин`
-  String get login {
+  /// `Товар добавлен в Избранное`
+  String get bookAddedToFavourites {
     return Intl.message(
-      'Логин',
-      name: 'login',
+      'Товар добавлен в Избранное',
+      name: 'bookAddedToFavourites',
       desc: '',
       args: [],
     );
+  }
+
+  /// `Товар добавлен в корзину`
+  String get bookAddedToCart {
+    return Intl.message(
+      'Товар добавлен в корзину',
+      name: 'bookAddedToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Логин`
+  String get login {
+    return Intl.message('Логин', name: 'login', desc: '', args: []);
   }
 
   /// `Пароль`
   String get password {
-    return Intl.message(
-      'Пароль',
-      name: 'password',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Пароль', name: 'password', desc: '', args: []);
   }
 
   /// `ВОЙТИ`
   String get enter {
-    return Intl.message(
-      'ВОЙТИ',
-      name: 'enter',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('ВОЙТИ', name: 'enter', desc: '', args: []);
   }
 
   /// `Войти`
   String get enterCapital {
-    return Intl.message(
-      'Войти',
-      name: 'enterCapital',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Войти', name: 'enterCapital', desc: '', args: []);
   }
 
   /// `ЗАРЕГИСТРИРОВАТЬСЯ`
@@ -172,12 +202,7 @@ class S {
 
   /// `СОХРАНИТЬ`
   String get save {
-    return Intl.message(
-      'СОХРАНИТЬ',
-      name: 'save',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('СОХРАНИТЬ', name: 'save', desc: '', args: []);
   }
 
   /// `Зарегистрируйтесь для возможности\n заказа книг через приложение`
@@ -192,12 +217,7 @@ class S {
 
   /// `Успешно!`
   String get successfully {
-    return Intl.message(
-      'Успешно!',
-      name: 'successfully',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Успешно!', name: 'successfully', desc: '', args: []);
   }
 
   /// `Вы успешно зарегистрировались.`
@@ -242,32 +262,17 @@ class S {
 
   /// `Главная`
   String get main {
-    return Intl.message(
-      'Главная',
-      name: 'main',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Главная', name: 'main', desc: '', args: []);
   }
 
   /// `Избранное`
   String get favourites {
-    return Intl.message(
-      'Избранное',
-      name: 'favourites',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Избранное', name: 'favourites', desc: '', args: []);
   }
 
   /// `Корзина`
   String get cart {
-    return Intl.message(
-      'Корзина',
-      name: 'cart',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Корзина', name: 'cart', desc: '', args: []);
   }
 
   /// `Популярные книги`
@@ -282,12 +287,7 @@ class S {
 
   /// `Ошибка!`
   String get error {
-    return Intl.message(
-      'Ошибка!',
-      name: 'error',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ошибка!', name: 'error', desc: '', args: []);
   }
 
   /// `Ошибка! Товары не загружены`
@@ -352,32 +352,17 @@ class S {
 
   /// `Мои заказы`
   String get myOrders {
-    return Intl.message(
-      'Мои заказы',
-      name: 'myOrders',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Мои заказы', name: 'myOrders', desc: '', args: []);
   }
 
   /// `Все заказы`
   String get allOrders {
-    return Intl.message(
-      'Все заказы',
-      name: 'allOrders',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Все заказы', name: 'allOrders', desc: '', args: []);
   }
 
   /// `Заказ от `
   String get orderFrom {
-    return Intl.message(
-      'Заказ от ',
-      name: 'orderFrom',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Заказ от ', name: 'orderFrom', desc: '', args: []);
   }
 
   /// `Состав заказа`
@@ -392,12 +377,7 @@ class S {
 
   /// `Дата заказа: `
   String get orderDate {
-    return Intl.message(
-      'Дата заказа: ',
-      name: 'orderDate',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Дата заказа: ', name: 'orderDate', desc: '', args: []);
   }
 
   /// `Сумма заказа: {sum} ₽`
@@ -440,6 +420,16 @@ class S {
     );
   }
 
+  /// `Ваш заказ отправлен в обработку`
+  String get orderSended {
+    return Intl.message(
+      'Ваш заказ отправлен в обработку',
+      name: 'orderSended',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ДОБАВИТЬ В КОРЗИНУ`
   String get addToCart {
     return Intl.message(
@@ -462,28 +452,23 @@ class S {
 
   /// `Выход`
   String get exit {
-    return Intl.message(
-      'Выход',
-      name: 'exit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Выход', name: 'exit', desc: '', args: []);
   }
 
-  /// `2.0.0`
+  /// `3.0.0`
   String get applicationVersion {
     return Intl.message(
-      '2.0.0',
+      '3.0.0',
       name: 'applicationVersion',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sergey Ogarkov © 2024`
+  /// `Sergey Ogarkov © 2025`
   String get applicationLegalese {
     return Intl.message(
-      'Sergey Ogarkov © 2024',
+      'Sergey Ogarkov © 2025',
       name: 'applicationLegalese',
       desc: '',
       args: [],
@@ -492,32 +477,17 @@ class S {
 
   /// `О приложении`
   String get aboutApp {
-    return Intl.message(
-      'О приложении',
-      name: 'aboutApp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('О приложении', name: 'aboutApp', desc: '', args: []);
   }
 
   /// `Светлая тема`
   String get lightTheme {
-    return Intl.message(
-      'Светлая тема',
-      name: 'lightTheme',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Светлая тема', name: 'lightTheme', desc: '', args: []);
   }
 
   /// `Темная тема`
   String get darkTheme {
-    return Intl.message(
-      'Темная тема',
-      name: 'darkTheme',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Темная тема', name: 'darkTheme', desc: '', args: []);
   }
 
   /// `Редактировать данные`
@@ -612,12 +582,7 @@ class S {
 
   /// `Удалить`
   String get delete {
-    return Intl.message(
-      'Удалить',
-      name: 'delete',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Удалить', name: 'delete', desc: '', args: []);
   }
 
   /// `Сделать снимок`
@@ -642,22 +607,12 @@ class S {
 
   /// `Отмена`
   String get cancel {
-    return Intl.message(
-      'Отмена',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Отмена', name: 'cancel', desc: '', args: []);
   }
 
   /// `Настройки`
   String get settings {
-    return Intl.message(
-      'Настройки',
-      name: 'settings',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Настройки', name: 'settings', desc: '', args: []);
   }
 
   /// `Доступ к камере запрещён'`
@@ -745,9 +700,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[
-      Locale.fromSubtags(languageCode: 'ru'),
-    ];
+    return const <Locale>[Locale.fromSubtags(languageCode: 'ru')];
   }
 
   @override

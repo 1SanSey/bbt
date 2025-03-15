@@ -6,19 +6,19 @@ class FavouritesUsecase {
 
   FavouritesUsecase(this.favouritesRepository);
 
-  String addToFavourites(FavoritesBookEntity book) {
+  Future<String> addToFavourites(FavoritesBookEntity book) async {
     return favouritesRepository.addToFavourites(book);
   }
 
-  void removeFromFavourites(FavoritesBookEntity book, int index) {
-    favouritesRepository.removeFromFavourites(book, index);
+  Future<void> removeFromFavourites(String name, int price) async {
+    await favouritesRepository.removeFromFavourites(name, price);
   }
 
-  List<FavoritesBookEntity> showFavourites() {
+  Future<List<FavoritesBookEntity>> showFavourites() async {
     return favouritesRepository.showFavourites();
   }
 
-  void removeAllFavourites() {
-    favouritesRepository.removeAllFavourites();
+  Future<void> removeAllFavourites() async {
+    await favouritesRepository.removeAllFavourites();
   }
 }

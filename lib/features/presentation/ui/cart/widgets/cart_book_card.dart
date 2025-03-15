@@ -18,12 +18,12 @@ class CartBookCard extends StatefulWidget {
 class _CartBookCardState extends State<CartBookCard> {
   void increment(int index, int value) {
     final newValue = value + 1;
-    context.read<CartBloc>().add(ChangeQuantityCartEvent(index: index, value: newValue));
+    context.read<CartBloc>().add(ChangeQuantityCartEvent(book: widget.book, value: newValue));
   }
 
   void decrement(int index, int value) {
     final newValue = value > 1 ? value - 1 : value;
-    context.read<CartBloc>().add(ChangeQuantityCartEvent(index: index, value: newValue));
+    context.read<CartBloc>().add(ChangeQuantityCartEvent(book: widget.book, value: newValue));
   }
 
   @override
@@ -94,7 +94,7 @@ class _CartBookCardState extends State<CartBookCard> {
                     ),
                     IconButton(
                       onPressed: () =>
-                          context.read<CartBloc>().add(RemoveFromCartEvent(index: widget.index)),
+                          context.read<CartBloc>().add(RemoveFromCartEvent(book: widget.book)),
                       icon: const Icon(Icons.delete),
                       iconSize: 20,
                       color: Theme.of(context).primaryColor,

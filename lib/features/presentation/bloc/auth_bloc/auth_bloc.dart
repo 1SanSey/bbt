@@ -22,7 +22,7 @@ class AuthEvent with _$AuthEvent {
 }
 
 @freezed
-class AuthState with _$AuthState {
+abstract class AuthState with _$AuthState {
   const AuthState._();
 
   bool get isAuthenticated => maybeMap<bool>(

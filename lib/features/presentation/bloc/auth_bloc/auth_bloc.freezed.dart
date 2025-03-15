@@ -12,7 +12,8 @@ part of 'auth_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$AuthEvent {
@@ -22,16 +23,14 @@ mixin _$AuthEvent {
     required TResult Function() logOut,
     required TResult Function(String newName) updateName,
     required TResult Function(String newPhoto) updatePhoto,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String login, String password)? logIn,
     TResult? Function()? logOut,
     TResult? Function(String newName)? updateName,
     TResult? Function(String newPhoto)? updatePhoto,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String login, String password)? logIn,
@@ -39,24 +38,21 @@ mixin _$AuthEvent {
     TResult Function(String newName)? updateName,
     TResult Function(String newPhoto)? updatePhoto,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LogInAuthEvent value) logIn,
     required TResult Function(_LogOutAuthEvent value) logOut,
     required TResult Function(_UpdateNameAuthEvent value) updateName,
     required TResult Function(_UpdatePhotoAuthEvent value) updatePhoto,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LogInAuthEvent value)? logIn,
     TResult? Function(_LogOutAuthEvent value)? logOut,
     TResult? Function(_UpdateNameAuthEvent value)? updateName,
     TResult? Function(_UpdatePhotoAuthEvent value)? updatePhoto,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LogInAuthEvent value)? logIn,
@@ -64,8 +60,7 @@ mixin _$AuthEvent {
     TResult Function(_UpdateNameAuthEvent value)? updateName,
     TResult Function(_UpdatePhotoAuthEvent value)? updatePhoto,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -83,13 +78,17 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$LogInAuthEventImplCopyWith<$Res> {
-  factory _$$LogInAuthEventImplCopyWith(_$LogInAuthEventImpl value,
-          $Res Function(_$LogInAuthEventImpl) then) =
-      __$$LogInAuthEventImplCopyWithImpl<$Res>;
+  factory _$$LogInAuthEventImplCopyWith(
+    _$LogInAuthEventImpl value,
+    $Res Function(_$LogInAuthEventImpl) then,
+  ) = __$$LogInAuthEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String login, String password});
 }
@@ -99,25 +98,29 @@ class __$$LogInAuthEventImplCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res, _$LogInAuthEventImpl>
     implements _$$LogInAuthEventImplCopyWith<$Res> {
   __$$LogInAuthEventImplCopyWithImpl(
-      _$LogInAuthEventImpl _value, $Res Function(_$LogInAuthEventImpl) _then)
-      : super(_value, _then);
+    _$LogInAuthEventImpl _value,
+    $Res Function(_$LogInAuthEventImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? login = null,
-    Object? password = null,
-  }) {
-    return _then(_$LogInAuthEventImpl(
-      login: null == login
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? login = null, Object? password = null}) {
+    return _then(
+      _$LogInAuthEventImpl(
+        login:
+            null == login
+                ? _value.login
+                : login // ignore: cast_nullable_to_non_nullable
+                    as String,
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
@@ -125,7 +128,7 @@ class __$$LogInAuthEventImplCopyWithImpl<$Res>
 
 class _$LogInAuthEventImpl extends _LogInAuthEvent {
   const _$LogInAuthEventImpl({required this.login, required this.password})
-      : super._();
+    : super._();
 
   @override
   final String login;
@@ -150,12 +153,16 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
   @override
   int get hashCode => Object.hash(runtimeType, login, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LogInAuthEventImplCopyWith<_$LogInAuthEventImpl> get copyWith =>
       __$$LogInAuthEventImplCopyWithImpl<_$LogInAuthEventImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -233,23 +240,28 @@ class _$LogInAuthEventImpl extends _LogInAuthEvent {
 }
 
 abstract class _LogInAuthEvent extends AuthEvent {
-  const factory _LogInAuthEvent(
-      {required final String login,
-      required final String password}) = _$LogInAuthEventImpl;
+  const factory _LogInAuthEvent({
+    required final String login,
+    required final String password,
+  }) = _$LogInAuthEventImpl;
   const _LogInAuthEvent._() : super._();
 
   String get login;
   String get password;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LogInAuthEventImplCopyWith<_$LogInAuthEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$LogOutAuthEventImplCopyWith<$Res> {
-  factory _$$LogOutAuthEventImplCopyWith(_$LogOutAuthEventImpl value,
-          $Res Function(_$LogOutAuthEventImpl) then) =
-      __$$LogOutAuthEventImplCopyWithImpl<$Res>;
+  factory _$$LogOutAuthEventImplCopyWith(
+    _$LogOutAuthEventImpl value,
+    $Res Function(_$LogOutAuthEventImpl) then,
+  ) = __$$LogOutAuthEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -257,8 +269,12 @@ class __$$LogOutAuthEventImplCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res, _$LogOutAuthEventImpl>
     implements _$$LogOutAuthEventImplCopyWith<$Res> {
   __$$LogOutAuthEventImplCopyWithImpl(
-      _$LogOutAuthEventImpl _value, $Res Function(_$LogOutAuthEventImpl) _then)
-      : super(_value, _then);
+    _$LogOutAuthEventImpl _value,
+    $Res Function(_$LogOutAuthEventImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -362,9 +378,10 @@ abstract class _LogOutAuthEvent extends AuthEvent {
 
 /// @nodoc
 abstract class _$$UpdateNameAuthEventImplCopyWith<$Res> {
-  factory _$$UpdateNameAuthEventImplCopyWith(_$UpdateNameAuthEventImpl value,
-          $Res Function(_$UpdateNameAuthEventImpl) then) =
-      __$$UpdateNameAuthEventImplCopyWithImpl<$Res>;
+  factory _$$UpdateNameAuthEventImplCopyWith(
+    _$UpdateNameAuthEventImpl value,
+    $Res Function(_$UpdateNameAuthEventImpl) then,
+  ) = __$$UpdateNameAuthEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String newName});
 }
@@ -373,21 +390,24 @@ abstract class _$$UpdateNameAuthEventImplCopyWith<$Res> {
 class __$$UpdateNameAuthEventImplCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res, _$UpdateNameAuthEventImpl>
     implements _$$UpdateNameAuthEventImplCopyWith<$Res> {
-  __$$UpdateNameAuthEventImplCopyWithImpl(_$UpdateNameAuthEventImpl _value,
-      $Res Function(_$UpdateNameAuthEventImpl) _then)
-      : super(_value, _then);
+  __$$UpdateNameAuthEventImplCopyWithImpl(
+    _$UpdateNameAuthEventImpl _value,
+    $Res Function(_$UpdateNameAuthEventImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? newName = null,
-  }) {
-    return _then(_$UpdateNameAuthEventImpl(
-      null == newName
-          ? _value.newName
-          : newName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? newName = null}) {
+    return _then(
+      _$UpdateNameAuthEventImpl(
+        null == newName
+            ? _value.newName
+            : newName // ignore: cast_nullable_to_non_nullable
+                as String,
+      ),
+    );
   }
 }
 
@@ -415,12 +435,16 @@ class _$UpdateNameAuthEventImpl extends _UpdateNameAuthEvent {
   @override
   int get hashCode => Object.hash(runtimeType, newName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateNameAuthEventImplCopyWith<_$UpdateNameAuthEventImpl> get copyWith =>
       __$$UpdateNameAuthEventImplCopyWithImpl<_$UpdateNameAuthEventImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -503,16 +527,20 @@ abstract class _UpdateNameAuthEvent extends AuthEvent {
   const _UpdateNameAuthEvent._() : super._();
 
   String get newName;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateNameAuthEventImplCopyWith<_$UpdateNameAuthEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$UpdatePhotoAuthEventImplCopyWith<$Res> {
-  factory _$$UpdatePhotoAuthEventImplCopyWith(_$UpdatePhotoAuthEventImpl value,
-          $Res Function(_$UpdatePhotoAuthEventImpl) then) =
-      __$$UpdatePhotoAuthEventImplCopyWithImpl<$Res>;
+  factory _$$UpdatePhotoAuthEventImplCopyWith(
+    _$UpdatePhotoAuthEventImpl value,
+    $Res Function(_$UpdatePhotoAuthEventImpl) then,
+  ) = __$$UpdatePhotoAuthEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String newPhoto});
 }
@@ -521,21 +549,24 @@ abstract class _$$UpdatePhotoAuthEventImplCopyWith<$Res> {
 class __$$UpdatePhotoAuthEventImplCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res, _$UpdatePhotoAuthEventImpl>
     implements _$$UpdatePhotoAuthEventImplCopyWith<$Res> {
-  __$$UpdatePhotoAuthEventImplCopyWithImpl(_$UpdatePhotoAuthEventImpl _value,
-      $Res Function(_$UpdatePhotoAuthEventImpl) _then)
-      : super(_value, _then);
+  __$$UpdatePhotoAuthEventImplCopyWithImpl(
+    _$UpdatePhotoAuthEventImpl _value,
+    $Res Function(_$UpdatePhotoAuthEventImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? newPhoto = null,
-  }) {
-    return _then(_$UpdatePhotoAuthEventImpl(
-      null == newPhoto
-          ? _value.newPhoto
-          : newPhoto // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? newPhoto = null}) {
+    return _then(
+      _$UpdatePhotoAuthEventImpl(
+        null == newPhoto
+            ? _value.newPhoto
+            : newPhoto // ignore: cast_nullable_to_non_nullable
+                as String,
+      ),
+    );
   }
 }
 
@@ -564,13 +595,17 @@ class _$UpdatePhotoAuthEventImpl extends _UpdatePhotoAuthEvent {
   @override
   int get hashCode => Object.hash(runtimeType, newPhoto);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdatePhotoAuthEventImplCopyWith<_$UpdatePhotoAuthEventImpl>
-      get copyWith =>
-          __$$UpdatePhotoAuthEventImplCopyWithImpl<_$UpdatePhotoAuthEventImpl>(
-              this, _$identity);
+  get copyWith =>
+      __$$UpdatePhotoAuthEventImplCopyWithImpl<_$UpdatePhotoAuthEventImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -653,9 +688,12 @@ abstract class _UpdatePhotoAuthEvent extends AuthEvent {
   const _UpdatePhotoAuthEvent._() : super._();
 
   String get newPhoto;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdatePhotoAuthEventImplCopyWith<_$UpdatePhotoAuthEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 AuthState _$AuthStateFromJson(Map<String, dynamic> json) {
@@ -672,8 +710,12 @@ AuthState _$AuthStateFromJson(Map<String, dynamic> json) {
       return _SuccessfulAuthState.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'AuthState',
-          'Invalid union type "${json['runtimeType']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'runtimeType',
+        'AuthState',
+        'Invalid union type "${json['runtimeType']}"!',
+      );
   }
 }
 
@@ -687,8 +729,7 @@ mixin _$AuthState {
     required TResult Function(UserEntity user) notAuthenticated,
     required TResult Function(UserEntity user, String message) error,
     required TResult Function(UserEntity user) successful,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity user)? authenticated,
@@ -696,8 +737,7 @@ mixin _$AuthState {
     TResult? Function(UserEntity user)? notAuthenticated,
     TResult? Function(UserEntity user, String message)? error,
     TResult? Function(UserEntity user)? successful,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity user)? authenticated,
@@ -706,18 +746,16 @@ mixin _$AuthState {
     TResult Function(UserEntity user, String message)? error,
     TResult Function(UserEntity user)? successful,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthenticatedAuthState value) authenticated,
     required TResult Function(_InProcessAuthState value) inProcess,
     required TResult Function(_NotAuthenticatedAuthState value)
-        notAuthenticated,
+    notAuthenticated,
     required TResult Function(_ErrorAuthState value) error,
     required TResult Function(_SuccessfulAuthState value) successful,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthenticatedAuthState value)? authenticated,
@@ -725,8 +763,7 @@ mixin _$AuthState {
     TResult? Function(_NotAuthenticatedAuthState value)? notAuthenticated,
     TResult? Function(_ErrorAuthState value)? error,
     TResult? Function(_SuccessfulAuthState value)? successful,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthenticatedAuthState value)? authenticated,
@@ -735,10 +772,14 @@ mixin _$AuthState {
     TResult Function(_ErrorAuthState value)? error,
     TResult Function(_SuccessfulAuthState value)? successful,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
+
+  /// Serializes this AuthState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthStateCopyWith<AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -763,19 +804,25 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ) as $Val);
+  $Res call({Object? user = null}) {
+    return _then(
+      _value.copyWith(
+            user:
+                null == user
+                    ? _value.user
+                    : user // ignore: cast_nullable_to_non_nullable
+                        as UserEntity,
+          )
+          as $Val,
+    );
   }
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserEntityCopyWith<$Res> get user {
@@ -789,9 +836,9 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 abstract class _$$AuthenticatedAuthStateImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
   factory _$$AuthenticatedAuthStateImplCopyWith(
-          _$AuthenticatedAuthStateImpl value,
-          $Res Function(_$AuthenticatedAuthStateImpl) then) =
-      __$$AuthenticatedAuthStateImplCopyWithImpl<$Res>;
+    _$AuthenticatedAuthStateImpl value,
+    $Res Function(_$AuthenticatedAuthStateImpl) then,
+  ) = __$$AuthenticatedAuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserEntity user});
@@ -805,21 +852,24 @@ class __$$AuthenticatedAuthStateImplCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res, _$AuthenticatedAuthStateImpl>
     implements _$$AuthenticatedAuthStateImplCopyWith<$Res> {
   __$$AuthenticatedAuthStateImplCopyWithImpl(
-      _$AuthenticatedAuthStateImpl _value,
-      $Res Function(_$AuthenticatedAuthStateImpl) _then)
-      : super(_value, _then);
+    _$AuthenticatedAuthStateImpl _value,
+    $Res Function(_$AuthenticatedAuthStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$AuthenticatedAuthStateImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
+  $Res call({Object? user = null}) {
+    return _then(
+      _$AuthenticatedAuthStateImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserEntity,
+      ),
+    );
   }
 }
 
@@ -827,8 +877,8 @@ class __$$AuthenticatedAuthStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthenticatedAuthStateImpl extends _AuthenticatedAuthState {
   const _$AuthenticatedAuthStateImpl({required this.user, final String? $type})
-      : $type = $type ?? 'authenticated',
-        super._();
+    : $type = $type ?? 'authenticated',
+      super._();
 
   factory _$AuthenticatedAuthStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthenticatedAuthStateImplFromJson(json);
@@ -852,16 +902,21 @@ class _$AuthenticatedAuthStateImpl extends _AuthenticatedAuthState {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthenticatedAuthStateImplCopyWith<_$AuthenticatedAuthStateImpl>
-      get copyWith => __$$AuthenticatedAuthStateImplCopyWithImpl<
-          _$AuthenticatedAuthStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$AuthenticatedAuthStateImplCopyWithImpl<_$AuthenticatedAuthStateImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -909,7 +964,7 @@ class _$AuthenticatedAuthStateImpl extends _AuthenticatedAuthState {
     required TResult Function(_AuthenticatedAuthState value) authenticated,
     required TResult Function(_InProcessAuthState value) inProcess,
     required TResult Function(_NotAuthenticatedAuthState value)
-        notAuthenticated,
+    notAuthenticated,
     required TResult Function(_ErrorAuthState value) error,
     required TResult Function(_SuccessfulAuthState value) successful,
   }) {
@@ -946,9 +1001,7 @@ class _$AuthenticatedAuthStateImpl extends _AuthenticatedAuthState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AuthenticatedAuthStateImplToJson(
-      this,
-    );
+    return _$$AuthenticatedAuthStateImplToJson(this);
   }
 }
 
@@ -962,18 +1015,22 @@ abstract class _AuthenticatedAuthState extends AuthState {
 
   @override
   UserEntity get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthenticatedAuthStateImplCopyWith<_$AuthenticatedAuthStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$InProcessAuthStateImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
-  factory _$$InProcessAuthStateImplCopyWith(_$InProcessAuthStateImpl value,
-          $Res Function(_$InProcessAuthStateImpl) then) =
-      __$$InProcessAuthStateImplCopyWithImpl<$Res>;
+  factory _$$InProcessAuthStateImplCopyWith(
+    _$InProcessAuthStateImpl value,
+    $Res Function(_$InProcessAuthStateImpl) then,
+  ) = __$$InProcessAuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserEntity user});
@@ -986,21 +1043,25 @@ abstract class _$$InProcessAuthStateImplCopyWith<$Res>
 class __$$InProcessAuthStateImplCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res, _$InProcessAuthStateImpl>
     implements _$$InProcessAuthStateImplCopyWith<$Res> {
-  __$$InProcessAuthStateImplCopyWithImpl(_$InProcessAuthStateImpl _value,
-      $Res Function(_$InProcessAuthStateImpl) _then)
-      : super(_value, _then);
+  __$$InProcessAuthStateImplCopyWithImpl(
+    _$InProcessAuthStateImpl _value,
+    $Res Function(_$InProcessAuthStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$InProcessAuthStateImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
+  $Res call({Object? user = null}) {
+    return _then(
+      _$InProcessAuthStateImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserEntity,
+      ),
+    );
   }
 }
 
@@ -1008,8 +1069,8 @@ class __$$InProcessAuthStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InProcessAuthStateImpl extends _InProcessAuthState {
   const _$InProcessAuthStateImpl({required this.user, final String? $type})
-      : $type = $type ?? 'inProcess',
-        super._();
+    : $type = $type ?? 'inProcess',
+      super._();
 
   factory _$InProcessAuthStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$InProcessAuthStateImplFromJson(json);
@@ -1033,16 +1094,20 @@ class _$InProcessAuthStateImpl extends _InProcessAuthState {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InProcessAuthStateImplCopyWith<_$InProcessAuthStateImpl> get copyWith =>
       __$$InProcessAuthStateImplCopyWithImpl<_$InProcessAuthStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -1090,7 +1155,7 @@ class _$InProcessAuthStateImpl extends _InProcessAuthState {
     required TResult Function(_AuthenticatedAuthState value) authenticated,
     required TResult Function(_InProcessAuthState value) inProcess,
     required TResult Function(_NotAuthenticatedAuthState value)
-        notAuthenticated,
+    notAuthenticated,
     required TResult Function(_ErrorAuthState value) error,
     required TResult Function(_SuccessfulAuthState value) successful,
   }) {
@@ -1127,9 +1192,7 @@ class _$InProcessAuthStateImpl extends _InProcessAuthState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InProcessAuthStateImplToJson(
-      this,
-    );
+    return _$$InProcessAuthStateImplToJson(this);
   }
 }
 
@@ -1143,8 +1206,11 @@ abstract class _InProcessAuthState extends AuthState {
 
   @override
   UserEntity get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InProcessAuthStateImplCopyWith<_$InProcessAuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1153,9 +1219,9 @@ abstract class _InProcessAuthState extends AuthState {
 abstract class _$$NotAuthenticatedAuthStateImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
   factory _$$NotAuthenticatedAuthStateImplCopyWith(
-          _$NotAuthenticatedAuthStateImpl value,
-          $Res Function(_$NotAuthenticatedAuthStateImpl) then) =
-      __$$NotAuthenticatedAuthStateImplCopyWithImpl<$Res>;
+    _$NotAuthenticatedAuthStateImpl value,
+    $Res Function(_$NotAuthenticatedAuthStateImpl) then,
+  ) = __$$NotAuthenticatedAuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserEntity user});
@@ -1169,31 +1235,35 @@ class __$$NotAuthenticatedAuthStateImplCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res, _$NotAuthenticatedAuthStateImpl>
     implements _$$NotAuthenticatedAuthStateImplCopyWith<$Res> {
   __$$NotAuthenticatedAuthStateImplCopyWithImpl(
-      _$NotAuthenticatedAuthStateImpl _value,
-      $Res Function(_$NotAuthenticatedAuthStateImpl) _then)
-      : super(_value, _then);
+    _$NotAuthenticatedAuthStateImpl _value,
+    $Res Function(_$NotAuthenticatedAuthStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$NotAuthenticatedAuthStateImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
+  $Res call({Object? user = null}) {
+    return _then(
+      _$NotAuthenticatedAuthStateImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserEntity,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$NotAuthenticatedAuthStateImpl extends _NotAuthenticatedAuthState {
-  const _$NotAuthenticatedAuthStateImpl(
-      {required this.user, final String? $type})
-      : $type = $type ?? 'notAuthenticated',
-        super._();
+  const _$NotAuthenticatedAuthStateImpl({
+    required this.user,
+    final String? $type,
+  }) : $type = $type ?? 'notAuthenticated',
+       super._();
 
   factory _$NotAuthenticatedAuthStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$NotAuthenticatedAuthStateImplFromJson(json);
@@ -1217,16 +1287,19 @@ class _$NotAuthenticatedAuthStateImpl extends _NotAuthenticatedAuthState {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NotAuthenticatedAuthStateImplCopyWith<_$NotAuthenticatedAuthStateImpl>
-      get copyWith => __$$NotAuthenticatedAuthStateImplCopyWithImpl<
-          _$NotAuthenticatedAuthStateImpl>(this, _$identity);
+  get copyWith => __$$NotAuthenticatedAuthStateImplCopyWithImpl<
+    _$NotAuthenticatedAuthStateImpl
+  >(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1274,7 +1347,7 @@ class _$NotAuthenticatedAuthStateImpl extends _NotAuthenticatedAuthState {
     required TResult Function(_AuthenticatedAuthState value) authenticated,
     required TResult Function(_InProcessAuthState value) inProcess,
     required TResult Function(_NotAuthenticatedAuthState value)
-        notAuthenticated,
+    notAuthenticated,
     required TResult Function(_ErrorAuthState value) error,
     required TResult Function(_SuccessfulAuthState value) successful,
   }) {
@@ -1311,9 +1384,7 @@ class _$NotAuthenticatedAuthStateImpl extends _NotAuthenticatedAuthState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NotAuthenticatedAuthStateImplToJson(
-      this,
-    );
+    return _$$NotAuthenticatedAuthStateImplToJson(this);
   }
 }
 
@@ -1327,18 +1398,22 @@ abstract class _NotAuthenticatedAuthState extends AuthState {
 
   @override
   UserEntity get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NotAuthenticatedAuthStateImplCopyWith<_$NotAuthenticatedAuthStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$ErrorAuthStateImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
-  factory _$$ErrorAuthStateImplCopyWith(_$ErrorAuthStateImpl value,
-          $Res Function(_$ErrorAuthStateImpl) then) =
-      __$$ErrorAuthStateImplCopyWithImpl<$Res>;
+  factory _$$ErrorAuthStateImplCopyWith(
+    _$ErrorAuthStateImpl value,
+    $Res Function(_$ErrorAuthStateImpl) then,
+  ) = __$$ErrorAuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserEntity user, String message});
@@ -1352,37 +1427,41 @@ class __$$ErrorAuthStateImplCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res, _$ErrorAuthStateImpl>
     implements _$$ErrorAuthStateImplCopyWith<$Res> {
   __$$ErrorAuthStateImplCopyWithImpl(
-      _$ErrorAuthStateImpl _value, $Res Function(_$ErrorAuthStateImpl) _then)
-      : super(_value, _then);
+    _$ErrorAuthStateImpl _value,
+    $Res Function(_$ErrorAuthStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? user = null,
-    Object? message = null,
-  }) {
-    return _then(_$ErrorAuthStateImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? user = null, Object? message = null}) {
+    return _then(
+      _$ErrorAuthStateImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserEntity,
+        message:
+            null == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ErrorAuthStateImpl extends _ErrorAuthState {
-  const _$ErrorAuthStateImpl(
-      {required this.user,
-      this.message = 'Произошла ошибка',
-      final String? $type})
-      : $type = $type ?? 'error',
-        super._();
+  const _$ErrorAuthStateImpl({
+    required this.user,
+    this.message = 'Произошла ошибка',
+    final String? $type,
+  }) : $type = $type ?? 'error',
+       super._();
 
   factory _$ErrorAuthStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ErrorAuthStateImplFromJson(json);
@@ -1410,16 +1489,20 @@ class _$ErrorAuthStateImpl extends _ErrorAuthState {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, user, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorAuthStateImplCopyWith<_$ErrorAuthStateImpl> get copyWith =>
       __$$ErrorAuthStateImplCopyWithImpl<_$ErrorAuthStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -1467,7 +1550,7 @@ class _$ErrorAuthStateImpl extends _ErrorAuthState {
     required TResult Function(_AuthenticatedAuthState value) authenticated,
     required TResult Function(_InProcessAuthState value) inProcess,
     required TResult Function(_NotAuthenticatedAuthState value)
-        notAuthenticated,
+    notAuthenticated,
     required TResult Function(_ErrorAuthState value) error,
     required TResult Function(_SuccessfulAuthState value) successful,
   }) {
@@ -1504,16 +1587,15 @@ class _$ErrorAuthStateImpl extends _ErrorAuthState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ErrorAuthStateImplToJson(
-      this,
-    );
+    return _$$ErrorAuthStateImplToJson(this);
   }
 }
 
 abstract class _ErrorAuthState extends AuthState {
-  const factory _ErrorAuthState(
-      {required final UserEntity user,
-      final String message}) = _$ErrorAuthStateImpl;
+  const factory _ErrorAuthState({
+    required final UserEntity user,
+    final String message,
+  }) = _$ErrorAuthStateImpl;
   const _ErrorAuthState._() : super._();
 
   factory _ErrorAuthState.fromJson(Map<String, dynamic> json) =
@@ -1522,8 +1604,11 @@ abstract class _ErrorAuthState extends AuthState {
   @override
   UserEntity get user;
   String get message;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorAuthStateImplCopyWith<_$ErrorAuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1531,9 +1616,10 @@ abstract class _ErrorAuthState extends AuthState {
 /// @nodoc
 abstract class _$$SuccessfulAuthStateImplCopyWith<$Res>
     implements $AuthStateCopyWith<$Res> {
-  factory _$$SuccessfulAuthStateImplCopyWith(_$SuccessfulAuthStateImpl value,
-          $Res Function(_$SuccessfulAuthStateImpl) then) =
-      __$$SuccessfulAuthStateImplCopyWithImpl<$Res>;
+  factory _$$SuccessfulAuthStateImplCopyWith(
+    _$SuccessfulAuthStateImpl value,
+    $Res Function(_$SuccessfulAuthStateImpl) then,
+  ) = __$$SuccessfulAuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserEntity user});
@@ -1546,21 +1632,25 @@ abstract class _$$SuccessfulAuthStateImplCopyWith<$Res>
 class __$$SuccessfulAuthStateImplCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res, _$SuccessfulAuthStateImpl>
     implements _$$SuccessfulAuthStateImplCopyWith<$Res> {
-  __$$SuccessfulAuthStateImplCopyWithImpl(_$SuccessfulAuthStateImpl _value,
-      $Res Function(_$SuccessfulAuthStateImpl) _then)
-      : super(_value, _then);
+  __$$SuccessfulAuthStateImplCopyWithImpl(
+    _$SuccessfulAuthStateImpl _value,
+    $Res Function(_$SuccessfulAuthStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$SuccessfulAuthStateImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
+  $Res call({Object? user = null}) {
+    return _then(
+      _$SuccessfulAuthStateImpl(
+        user:
+            null == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                    as UserEntity,
+      ),
+    );
   }
 }
 
@@ -1568,8 +1658,8 @@ class __$$SuccessfulAuthStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SuccessfulAuthStateImpl extends _SuccessfulAuthState {
   const _$SuccessfulAuthStateImpl({required this.user, final String? $type})
-      : $type = $type ?? 'successful',
-        super._();
+    : $type = $type ?? 'successful',
+      super._();
 
   factory _$SuccessfulAuthStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$SuccessfulAuthStateImplFromJson(json);
@@ -1593,16 +1683,20 @@ class _$SuccessfulAuthStateImpl extends _SuccessfulAuthState {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessfulAuthStateImplCopyWith<_$SuccessfulAuthStateImpl> get copyWith =>
       __$$SuccessfulAuthStateImplCopyWithImpl<_$SuccessfulAuthStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -1650,7 +1744,7 @@ class _$SuccessfulAuthStateImpl extends _SuccessfulAuthState {
     required TResult Function(_AuthenticatedAuthState value) authenticated,
     required TResult Function(_InProcessAuthState value) inProcess,
     required TResult Function(_NotAuthenticatedAuthState value)
-        notAuthenticated,
+    notAuthenticated,
     required TResult Function(_ErrorAuthState value) error,
     required TResult Function(_SuccessfulAuthState value) successful,
   }) {
@@ -1687,9 +1781,7 @@ class _$SuccessfulAuthStateImpl extends _SuccessfulAuthState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SuccessfulAuthStateImplToJson(
-      this,
-    );
+    return _$$SuccessfulAuthStateImplToJson(this);
   }
 }
 
@@ -1703,8 +1795,11 @@ abstract class _SuccessfulAuthState extends AuthState {
 
   @override
   UserEntity get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessfulAuthStateImplCopyWith<_$SuccessfulAuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

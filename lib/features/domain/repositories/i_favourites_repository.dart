@@ -1,8 +1,8 @@
 import 'package:bbt/features/domain/entities/favorites_book_entity.dart';
 
 abstract class IFavouritesRepository {
-  String addToFavourites(FavoritesBookEntity book);
-  void removeFromFavourites(FavoritesBookEntity book, int index);
-  void removeAllFavourites();
-  List<FavoritesBookEntity> showFavourites();
+  Future<String> addToFavourites(FavoritesBookEntity book);
+  Future<void> removeFromFavourites(String name, int price);
+  Future<void> removeAllFavourites();
+  Future<List<FavoritesBookEntity>> showFavourites();
 }

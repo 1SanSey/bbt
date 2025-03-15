@@ -29,12 +29,7 @@ class PullToRefreshIndicator extends RefreshIndicator {
     double offset = 0,
     this.distance = 50.0,
     this.backgroundColor,
-  }) : super(
-          key: key,
-          refreshStyle: RefreshStyle.front,
-          offset: offset,
-          height: height,
-        );
+  }) : super(key: key, refreshStyle: RefreshStyle.front, offset: offset, height: height);
 
   @override
   State<StatefulWidget> createState() {
@@ -75,10 +70,7 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<PullToRefreshInd
       duration: const Duration(milliseconds: 300),
     );
     _positionFactor = _positionController.drive(
-      Tween<Offset>(
-        begin: const Offset(0, -1),
-        end: Offset(0, widget.height / 44.0),
-      ),
+      Tween<Offset>(begin: const Offset(0, -1), end: Offset(0, widget.height / 44.0)),
     );
     super.initState();
   }
@@ -101,7 +93,8 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<PullToRefreshInd
         child: Align(
           alignment: Alignment.topCenter,
           child: RefreshProgressIndicator(
-            semanticsLabel: widget.semanticsLabel ??
+            semanticsLabel:
+                widget.semanticsLabel ??
                 MaterialLocalizations.of(context).refreshIndicatorSemanticLabel,
             semanticsValue: widget.semanticsValue,
             value: floating ? null : _valueAni.value,
@@ -144,11 +137,9 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<PullToRefreshInd
     _position = Scrollable.of(context).position;
     _valueColor = _positionController.drive(
       ColorTween(
-        begin: (widget.color ?? Theme.of(context).primaryColor).withOpacity(0),
-        end: (widget.color ?? Theme.of(context).primaryColor).withOpacity(1),
-      ).chain(
-        CurveTween(curve: const Interval(0, 1.0 / _kDragSizeFactorLimit)),
-      ),
+        begin: (widget.color ?? Theme.of(context).primaryColor).withValues(alpha: 0),
+        end: (widget.color ?? Theme.of(context).primaryColor).withValues(alpha: 255 * 1),
+      ).chain(CurveTween(curve: const Interval(0, 1.0 / _kDragSizeFactorLimit))),
     );
     super.didChangeDependencies();
   }

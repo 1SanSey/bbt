@@ -33,104 +33,144 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "BBTKirovApp": MessageLookupByLibrary.simpleMessage("BBT Kirov App"),
-        "aboutApp": MessageLookupByLibrary.simpleMessage("О приложении"),
-        "addToCart": MessageLookupByLibrary.simpleMessage("ДОБАВИТЬ В КОРЗИНУ"),
-        "addToFavourites":
-            MessageLookupByLibrary.simpleMessage("ДОБАВИТЬ В ИЗБРАННОЕ"),
-        "allOrders": MessageLookupByLibrary.simpleMessage("Все заказы"),
-        "applicationLegalese":
-            MessageLookupByLibrary.simpleMessage("Sergey Ogarkov © 2024"),
-        "applicationVersion": MessageLookupByLibrary.simpleMessage("2.0.0"),
-        "authError": MessageLookupByLibrary.simpleMessage(
-            "Возникла ошибка при авторизации."),
-        "authExecute": MessageLookupByLibrary.simpleMessage(
-            "Авторизуйтесь для возможности\n заказа книг через приложение"),
-        "authNeedAddToCart": MessageLookupByLibrary.simpleMessage(
-            "Авторизуйтесь для возможности заказа книг"),
-        "authNeedAddToFavourites": MessageLookupByLibrary.simpleMessage(
-            "Авторизуйтесь для возможности добавления книг в Избранное"),
-        "booksNotLoaded":
-            MessageLookupByLibrary.simpleMessage("Ошибка! Товары не загружены"),
-        "cameraPermissionDenied":
-            MessageLookupByLibrary.simpleMessage("Доступ к камере запрещён\'"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
-        "cart": MessageLookupByLibrary.simpleMessage("Корзина"),
-        "cartEmpty": MessageLookupByLibrary.simpleMessage("Ваша корзина пуста"),
-        "confirmPassword":
-            MessageLookupByLibrary.simpleMessage("Подтвердите пароль"),
-        "darkTheme": MessageLookupByLibrary.simpleMessage("Темная тема"),
-        "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
-        "deliveryAdress":
-            MessageLookupByLibrary.simpleMessage("Адрес доставки (самовывоз):"),
-        "editPassword":
-            MessageLookupByLibrary.simpleMessage("Введите новый пароль"),
-        "editUserInfo":
-            MessageLookupByLibrary.simpleMessage("Редактировать данные"),
-        "editUserName": MessageLookupByLibrary.simpleMessage("Изменить имя"),
-        "emptyFavourites":
-            MessageLookupByLibrary.simpleMessage("Список избранных книг пуст"),
-        "enter": MessageLookupByLibrary.simpleMessage("ВОЙТИ"),
-        "enterCapital": MessageLookupByLibrary.simpleMessage("Войти"),
-        "error": MessageLookupByLibrary.simpleMessage("Ошибка!"),
-        "exit": MessageLookupByLibrary.simpleMessage("Выход"),
-        "favourites": MessageLookupByLibrary.simpleMessage("Избранное"),
-        "fromCamera": MessageLookupByLibrary.simpleMessage("Сделать снимок"),
-        "fromGallery":
-            MessageLookupByLibrary.simpleMessage("Выбрать из галереи"),
-        "inputEmail":
-            MessageLookupByLibrary.simpleMessage("Введите email (логин)"),
-        "inputPassword": MessageLookupByLibrary.simpleMessage("Введите пароль"),
-        "inputUserName": MessageLookupByLibrary.simpleMessage(
-            "Ваше Имя и Фамилия или духовное имя"),
-        "lightTheme": MessageLookupByLibrary.simpleMessage("Светлая тема"),
-        "login": MessageLookupByLibrary.simpleMessage("Логин"),
-        "main": MessageLookupByLibrary.simpleMessage("Главная"),
-        "myOrders": MessageLookupByLibrary.simpleMessage("Мои заказы"),
-        "nameSuccessfulChange":
-            MessageLookupByLibrary.simpleMessage("Имя успешно изменено"),
-        "ok": MessageLookupByLibrary.simpleMessage("OK"),
-        "orderDate": MessageLookupByLibrary.simpleMessage("Дата заказа: "),
-        "orderFrom": MessageLookupByLibrary.simpleMessage("Заказ от "),
-        "orderStructure": MessageLookupByLibrary.simpleMessage("Состав заказа"),
-        "orderSum": m0,
-        "password": MessageLookupByLibrary.simpleMessage("Пароль"),
-        "passwordSuccessfulChange":
-            MessageLookupByLibrary.simpleMessage("Пароль успешно изменен"),
-        "passwordsNotMatch":
-            MessageLookupByLibrary.simpleMessage("Пароли не совпадают"),
-        "paymentMethod": MessageLookupByLibrary.simpleMessage("Способ оплаты:"),
-        "photoPermissionDenied":
-            MessageLookupByLibrary.simpleMessage("Доступ к Фото запрещён\'"),
-        "photoSuccessfulChange":
-            MessageLookupByLibrary.simpleMessage("Фото успешно изменено"),
-        "popularBooks":
-            MessageLookupByLibrary.simpleMessage("Популярные книги"),
-        "price": m1,
-        "quantity": m2,
-        "regError": MessageLookupByLibrary.simpleMessage(
-            "Возникла ошибка при регистрации."),
-        "registerForEnter": MessageLookupByLibrary.simpleMessage(
-            "Зарегистрируйтесь для возможности\n заказа книг через приложение"),
-        "resultsNotFound":
-            MessageLookupByLibrary.simpleMessage("Результаты не найдены"),
-        "save": MessageLookupByLibrary.simpleMessage("СОХРАНИТЬ"),
-        "searchFromName":
-            MessageLookupByLibrary.simpleMessage("Поиск по названию"),
-        "sendOrder": MessageLookupByLibrary.simpleMessage("ОТПРАВИТЬ ЗАКАЗ"),
-        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
-        "signUp": MessageLookupByLibrary.simpleMessage("ЗАРЕГИСТРИРОВАТЬСЯ"),
-        "successfully": MessageLookupByLibrary.simpleMessage("Успешно!"),
-        "successfullyRegister": MessageLookupByLibrary.simpleMessage(
-            "Вы успешно зарегистрировались."),
-        "toolbarEditPhotoTitle":
-            MessageLookupByLibrary.simpleMessage("Изменить фото"),
-        "totalSum": m3,
-        "transferAmount": m4,
-        "turnOnCameraPermission": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста, включите разрешение камеры в настройках"),
-        "turnOnPhotoPermission": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста, включите доступ к Фото в настройках"),
-        "uploadNew": MessageLookupByLibrary.simpleMessage("Загрузить новую")
-      };
+    "BBTKirovApp": MessageLookupByLibrary.simpleMessage("BBT Kirov App"),
+    "aboutApp": MessageLookupByLibrary.simpleMessage("О приложении"),
+    "addToCart": MessageLookupByLibrary.simpleMessage("ДОБАВИТЬ В КОРЗИНУ"),
+    "addToFavourites": MessageLookupByLibrary.simpleMessage(
+      "ДОБАВИТЬ В ИЗБРАННОЕ",
+    ),
+    "allOrders": MessageLookupByLibrary.simpleMessage("Все заказы"),
+    "applicationLegalese": MessageLookupByLibrary.simpleMessage(
+      "Sergey Ogarkov © 2025",
+    ),
+    "applicationVersion": MessageLookupByLibrary.simpleMessage("3.0.0"),
+    "authError": MessageLookupByLibrary.simpleMessage(
+      "Возникла ошибка при авторизации.",
+    ),
+    "authExecute": MessageLookupByLibrary.simpleMessage(
+      "Авторизуйтесь для возможности\n заказа книг через приложение",
+    ),
+    "authNeedAddToCart": MessageLookupByLibrary.simpleMessage(
+      "Авторизуйтесь для возможности заказа книг",
+    ),
+    "authNeedAddToFavourites": MessageLookupByLibrary.simpleMessage(
+      "Авторизуйтесь для возможности добавления книг в Избранное",
+    ),
+    "bookAddedToCart": MessageLookupByLibrary.simpleMessage(
+      "Товар добавлен в корзину",
+    ),
+    "bookAddedToFavourites": MessageLookupByLibrary.simpleMessage(
+      "Товар добавлен в Избранное",
+    ),
+    "booksNotLoaded": MessageLookupByLibrary.simpleMessage(
+      "Ошибка! Товары не загружены",
+    ),
+    "cameraPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "Доступ к камере запрещён\'",
+    ),
+    "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
+    "cart": MessageLookupByLibrary.simpleMessage("Корзина"),
+    "cartEmpty": MessageLookupByLibrary.simpleMessage("Ваша корзина пуста"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage(
+      "Подтвердите пароль",
+    ),
+    "darkTheme": MessageLookupByLibrary.simpleMessage("Темная тема"),
+    "defaultAddress": MessageLookupByLibrary.simpleMessage(
+      "ЦВК, г. Киров, ул. Орловская, 15",
+    ),
+    "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+    "deliveryAdress": MessageLookupByLibrary.simpleMessage(
+      "Адрес доставки (самовывоз):",
+    ),
+    "editPassword": MessageLookupByLibrary.simpleMessage(
+      "Введите новый пароль",
+    ),
+    "editUserInfo": MessageLookupByLibrary.simpleMessage(
+      "Редактировать данные",
+    ),
+    "editUserName": MessageLookupByLibrary.simpleMessage("Изменить имя"),
+    "emptyFavourites": MessageLookupByLibrary.simpleMessage(
+      "Список избранных книг пуст",
+    ),
+    "enter": MessageLookupByLibrary.simpleMessage("ВОЙТИ"),
+    "enterCapital": MessageLookupByLibrary.simpleMessage("Войти"),
+    "error": MessageLookupByLibrary.simpleMessage("Ошибка!"),
+    "exit": MessageLookupByLibrary.simpleMessage("Выход"),
+    "favourites": MessageLookupByLibrary.simpleMessage("Избранное"),
+    "fromCamera": MessageLookupByLibrary.simpleMessage("Сделать снимок"),
+    "fromGallery": MessageLookupByLibrary.simpleMessage("Выбрать из галереи"),
+    "inputEmail": MessageLookupByLibrary.simpleMessage("Введите email (логин)"),
+    "inputPassword": MessageLookupByLibrary.simpleMessage("Введите пароль"),
+    "inputUserName": MessageLookupByLibrary.simpleMessage(
+      "Ваше Имя и Фамилия или духовное имя",
+    ),
+    "lightTheme": MessageLookupByLibrary.simpleMessage("Светлая тема"),
+    "login": MessageLookupByLibrary.simpleMessage("Логин"),
+    "main": MessageLookupByLibrary.simpleMessage("Главная"),
+    "myOrders": MessageLookupByLibrary.simpleMessage("Мои заказы"),
+    "nameSuccessfulChange": MessageLookupByLibrary.simpleMessage(
+      "Имя успешно изменено",
+    ),
+    "ok": MessageLookupByLibrary.simpleMessage("OK"),
+    "orderDate": MessageLookupByLibrary.simpleMessage("Дата заказа: "),
+    "orderFrom": MessageLookupByLibrary.simpleMessage("Заказ от "),
+    "orderSended": MessageLookupByLibrary.simpleMessage(
+      "Ваш заказ отправлен в обработку",
+    ),
+    "orderStructure": MessageLookupByLibrary.simpleMessage("Состав заказа"),
+    "orderSum": m0,
+    "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "passwordSuccessfulChange": MessageLookupByLibrary.simpleMessage(
+      "Пароль успешно изменен",
+    ),
+    "passwordsNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Пароли не совпадают",
+    ),
+    "paymentCash": MessageLookupByLibrary.simpleMessage(
+      "Оплата наличными при получении",
+    ),
+    "paymentMethod": MessageLookupByLibrary.simpleMessage("Способ оплаты:"),
+    "photoPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "Доступ к Фото запрещён\'",
+    ),
+    "photoSuccessfulChange": MessageLookupByLibrary.simpleMessage(
+      "Фото успешно изменено",
+    ),
+    "popularBooks": MessageLookupByLibrary.simpleMessage("Популярные книги"),
+    "price": m1,
+    "quantity": m2,
+    "regError": MessageLookupByLibrary.simpleMessage(
+      "Возникла ошибка при регистрации.",
+    ),
+    "registerForEnter": MessageLookupByLibrary.simpleMessage(
+      "Зарегистрируйтесь для возможности\n заказа книг через приложение",
+    ),
+    "resultsNotFound": MessageLookupByLibrary.simpleMessage(
+      "Результаты не найдены",
+    ),
+    "save": MessageLookupByLibrary.simpleMessage("СОХРАНИТЬ"),
+    "searchFromName": MessageLookupByLibrary.simpleMessage("Поиск по названию"),
+    "sendOrder": MessageLookupByLibrary.simpleMessage("ОТПРАВИТЬ ЗАКАЗ"),
+    "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "signUp": MessageLookupByLibrary.simpleMessage("ЗАРЕГИСТРИРОВАТЬСЯ"),
+    "successfully": MessageLookupByLibrary.simpleMessage("Успешно!"),
+    "successfullyRegister": MessageLookupByLibrary.simpleMessage(
+      "Вы успешно зарегистрировались.",
+    ),
+    "toolbarEditPhotoTitle": MessageLookupByLibrary.simpleMessage(
+      "Изменить фото",
+    ),
+    "totalSum": m3,
+    "transferAmount": m4,
+    "transferToCard": MessageLookupByLibrary.simpleMessage(
+      "Перевод на карту по номеру телефона",
+    ),
+    "turnOnCameraPermission": MessageLookupByLibrary.simpleMessage(
+      "Пожалуйста, включите разрешение камеры в настройках",
+    ),
+    "turnOnPhotoPermission": MessageLookupByLibrary.simpleMessage(
+      "Пожалуйста, включите доступ к Фото в настройках",
+    ),
+    "uploadNew": MessageLookupByLibrary.simpleMessage("Загрузить новую"),
+  };
 }

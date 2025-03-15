@@ -6,6 +6,7 @@ import 'package:bbt/features/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:bbt/features/presentation/bloc/orders_bloc/send_order_bloc/send_order_bloc.dart';
 import 'package:bbt/features/presentation/ui/cart/pages/delivery_payment_widget.dart';
 import 'package:bbt/features/presentation/ui/cart/widgets/cart_book_card.dart';
+import 'package:bbt/features/presentation/ui/widgets/app_snack_bar.dart';
 import 'package:bbt/features/presentation/ui/widgets/current_user_builder.dart';
 import 'package:bbt/features/presentation/ui/widgets/error_text_widget.dart';
 import 'package:bbt/features/presentation/ui/widgets/header_widget.dart';
@@ -53,73 +54,65 @@ class _CartPageState extends State<CartPage> {
 
           return cartBooks.isNotEmpty
               ? Padding(
-                  padding: EdgeInsets.symmetric(horizontal: kIsWeb && width > 900 ? 16 : 8),
-                  child: CustomScrollView(
-                    slivers: [
-                      if (kIsWeb && width > 900) ...[
-                        SliverToBoxAdapter(child: HeaderWidget(focusNode: _focusNode)),
-                        SliverPadding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          sliver: SliverToBoxAdapter(
-                            child: Text(
-                              S.current.cart,
-                              style: const TextStyle(
-                                fontFamily: 'Tahoma',
-                                color: AppColors.greyColor2,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                padding: EdgeInsets.symmetric(horizontal: kIsWeb && width > 900 ? 16 : 8),
+                child: CustomScrollView(
+                  slivers: [
+                    if (kIsWeb && width > 900) ...[
+                      SliverToBoxAdapter(child: HeaderWidget(focusNode: _focusNode)),
                       SliverPadding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              return Row(
-                                children: [
-                                  Flexible(
-                                    child: CartBookCard(
-                                      book: cartBooks[index],
-                                      index: index,
-                                    ),
-                                  ),
-                                  if (kIsWeb && width > 900)
-                                    const Flexible(child: SizedBox.shrink()),
-                                ],
-                              );
-                            },
-                            childCount: cartBooks.length,
-                          ),
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8),
+                        sliver: SliverToBoxAdapter(
                           child: Text(
-                            S.current.totalSum(totalSum),
+                            S.current.cart,
                             style: const TextStyle(
+                              fontFamily: 'Tahoma',
                               color: AppColors.greyColor2,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold
+                              fontSize: 25,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
                       ),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 18),
-                            DeliveryPaymentWidget(sum: totalSum),
-                            Row(
-                              children: [
-                                Flexible(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 48),
-                                    child: CurrentUserBuilder(builder: (user) {
+                    ],
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return Row(
+                            children: [
+                              Flexible(child: CartBookCard(book: cartBooks[index], index: index + 1)),
+                              if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
+                            ],
+                          );
+                        }, childCount: cartBooks.length),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          S.current.totalSum(totalSum),
+                          style: const TextStyle(
+                            color: AppColors.greyColor2,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 18),
+                          DeliveryPaymentWidget(sum: totalSum),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 48),
+                                  child: CurrentUserBuilder(
+                                    builder: (user) {
                                       return ElevatedButton(
                                         onPressed: () {
                                           context
@@ -134,6 +127,7 @@ class _CartPageState extends State<CartPage> {
                                               ),
                                             )
                                             ..read<CartBloc>().add(RemoveAllCartEvent());
+                                          AppSnackBar.showSnack(context, S.current.orderSended);
                                           if (!kIsWeb) {
                                             AppMetrica.reportEvent('send order');
                                           }
@@ -142,26 +136,29 @@ class _CartPageState extends State<CartPage> {
                                           foregroundColor: Colors.white,
                                           backgroundColor: Theme.of(context).primaryColor,
                                           fixedSize: const Size(500, 50),
-                                          textStyle:
-                                              const TextStyle(color: Colors.white, fontSize: 18),
+                                          textStyle: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                          ),
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(8),
                                           ),
                                         ),
                                         child: Text(S.current.sendOrder),
                                       );
-                                    }),
+                                    },
                                   ),
                                 ),
-                                if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                              if (kIsWeb && width > 900) const Flexible(child: SizedBox.shrink()),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                )
+                    ),
+                  ],
+                ),
+              )
               : ErrorTextWidget(errorMessage: S.current.cartEmpty);
         },
       ),

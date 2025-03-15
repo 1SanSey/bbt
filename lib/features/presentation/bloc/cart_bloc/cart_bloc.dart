@@ -17,31 +17,31 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<RemoveAllCartEvent>(_removeAll);
   }
 
-  void _addToCart(AddToCartEvent event, Emitter<CartState> emit) {
-    final message = cart.addToCart(event.book);
+  Future<void> _addToCart(AddToCartEvent event, Emitter<CartState> emit) async {
+    final message = await cart.addToCart(event.book);
     emit(AddToCartState(book: event.book, message: message));
     emit(EmptyCartState());
   }
 
-  void _removeFromCart(RemoveFromCartEvent event, Emitter<CartState> emit) {
-    cart.removeFromCart(event.index);
+  Future<void> _removeFromCart(RemoveFromCartEvent event, Emitter<CartState> emit) async {
+    await cart.removeFromCart(event.book.name, event.book.price);
     add(ShowCartEvent());
   }
 
-  void _showCart(ShowCartEvent event, Emitter<CartState> emit) {
-    final List<CartBookEntity> books = cart.showCart();
-    final totalSum = cart.totalSum();
+  Future<void> _showCart(ShowCartEvent event, Emitter<CartState> emit) async {
+    final List<CartBookEntity> books = await cart.showCart();
+    final totalSum = await cart.totalSum();
 
     emit(ShowCartState(books: books, totalSum: totalSum));
   }
 
-  void _changeQuantityCart(ChangeQuantityCartEvent event, Emitter<CartState> emit) {
-    cart.changeQuantityCart(event.index, event.value);
+  Future<void> _changeQuantityCart(ChangeQuantityCartEvent event, Emitter<CartState> emit) async {
+    await cart.changeQuantityCart(event.book.name, event.book.price, event.value);
     add(ShowCartEvent());
   }
 
-  void _removeAll(RemoveAllCartEvent event, Emitter<CartState> emit) {
-    cart.removeAllCart();
+  Future<void> _removeAll(RemoveAllCartEvent event, Emitter<CartState> emit) async {
+    await cart.removeAllCart();
     emit(EmptyCartState());
   }
 }

@@ -17,9 +17,8 @@ class AddToFavouritesEvent extends FavouritesEvent {
 
 class RemoveFromFavouritesEvent extends FavouritesEvent {
   final FavoritesBookEntity book;
-  final int index;
 
-  const RemoveFromFavouritesEvent({required this.book, required this.index});
+  const RemoveFromFavouritesEvent({required this.book});
 }
 
 class RemoveFavouritesEvent extends FavouritesEvent {}

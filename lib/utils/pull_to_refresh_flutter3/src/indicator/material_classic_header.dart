@@ -40,12 +40,7 @@ class MaterialClassicHeader extends RefreshIndicator {
     double offset = 0,
     this.distance = 50.0,
     this.backgroundColor,
-  }) : super(
-          key: key,
-          refreshStyle: RefreshStyle.front,
-          offset: offset,
-          height: height,
-        );
+  }) : super(key: key, refreshStyle: RefreshStyle.front, offset: offset, height: height);
 
   @override
   State<StatefulWidget> createState() {
@@ -75,8 +70,10 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
       // frequently setState will decline the performance
       if (mounted && _position!.pixels <= 0) setState(() {});
     });
-    _positionController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
+    _positionController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
     _scaleFactor = AnimationController(
       vsync: this,
       value: 1,
@@ -84,8 +81,9 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
       upperBound: 1,
       duration: const Duration(milliseconds: 300),
     );
-    _positionFactor = _positionController
-        .drive(Tween<Offset>(begin: const Offset(0, -1), end: Offset(0, widget.height / 44.0)));
+    _positionFactor = _positionController.drive(
+      Tween<Offset>(begin: const Offset(0, -1), end: Offset(0, widget.height / 44.0)),
+    );
     super.initState();
   }
 
@@ -107,7 +105,8 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
         child: Align(
           alignment: Alignment.topCenter,
           child: RefreshProgressIndicator(
-            semanticsLabel: widget.semanticsLabel ??
+            semanticsLabel:
+                widget.semanticsLabel ??
                 MaterialLocalizations.of(context).refreshIndicatorSemanticLabel,
             semanticsValue: widget.semanticsValue,
             value: floating ? null : _valueAni.value,
@@ -150,8 +149,8 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
     _position = Scrollable.of(context).position;
     _valueColor = _positionController.drive(
       ColorTween(
-        begin: (widget.color ?? Theme.of(context).primaryColor).withOpacity(0),
-        end: (widget.color ?? Theme.of(context).primaryColor).withOpacity(1),
+        begin: (widget.color ?? Theme.of(context).primaryColor).withValues(alpha: 0),
+        end: (widget.color ?? Theme.of(context).primaryColor).withValues(alpha: 255 * 1),
       ).chain(CurveTween(curve: const Interval(0, 1.0 / _kDragSizeFactorLimit))),
     );
     super.didChangeDependencies();
@@ -187,15 +186,15 @@ class WaterDropMaterialHeader extends MaterialClassicHeader {
     Color color = Colors.white,
     Color? backgroundColor,
   }) : super(
-          key: key,
-          height: 80,
-          color: color,
-          distance: distance,
-          offset: offset,
-          backgroundColor: backgroundColor,
-          semanticsValue: semanticsValue,
-          semanticsLabel: semanticsLabel,
-        );
+         key: key,
+         height: 80,
+         color: color,
+         distance: distance,
+         offset: offset,
+         backgroundColor: backgroundColor,
+         semanticsValue: semanticsValue,
+         semanticsLabel: semanticsLabel,
+       );
 
   @override
   State<StatefulWidget> createState() {
@@ -224,8 +223,9 @@ class _WaterDropMaterialHeaderState extends _MaterialClassicHeaderState {
       lowerBound: 0,
       value: 0,
     );
-    _positionFactor = _positionController
-        .drive(Tween<Offset>(begin: const Offset(0, -0.5), end: const Offset(0, 1.5)));
+    _positionFactor = _positionController.drive(
+      Tween<Offset>(begin: const Offset(0, -0.5), end: const Offset(0, 1.5)),
+    );
   }
 
   @override
@@ -233,8 +233,8 @@ class _WaterDropMaterialHeaderState extends _MaterialClassicHeaderState {
     super.didChangeDependencies();
     _valueColor = _positionController.drive(
       ColorTween(
-        begin: (widget.color ?? Theme.of(context).primaryColor).withOpacity(0),
-        end: (widget.color ?? Theme.of(context).primaryColor).withOpacity(1),
+        begin: (widget.color ?? Theme.of(context).primaryColor).withValues(alpha: 0),
+        end: (widget.color ?? Theme.of(context).primaryColor).withValues(alpha: 255 * 1),
       ).chain(CurveTween(curve: const Interval(0, 1.0 / _kDragSizeFactorLimit))),
     );
   }
@@ -243,18 +243,21 @@ class _WaterDropMaterialHeaderState extends _MaterialClassicHeaderState {
   Future<void> readyToRefresh() {
     _bezierController!.value = 1.01;
     _showWater = true;
-    _bezierController!
-        .animateTo(1.5, curve: Curves.bounceOut, duration: const Duration(milliseconds: 550));
+    _bezierController!.animateTo(
+      1.5,
+      curve: Curves.bounceOut,
+      duration: const Duration(milliseconds: 550),
+    );
 
     return _positionController
         .animateTo(
-      widget.distance / widget.height,
-      curve: Curves.bounceOut,
-      duration: const Duration(milliseconds: 550),
-    )
+          widget.distance / widget.height,
+          curve: Curves.bounceOut,
+          duration: const Duration(milliseconds: 550),
+        )
         .then((_) {
-      _showWater = false;
-    });
+          _showWater = false;
+        });
   }
 
   @override
@@ -302,13 +305,14 @@ class _WaterDropMaterialHeaderState extends _MaterialClassicHeaderState {
           ),
           CustomPaint(
             child: _buildIndicator(widget.backgroundColor ?? Theme.of(context).primaryColor),
-            painter: _showWater
-                ? _WaterPainter(
-                    ratio: widget.distance / widget.height,
-                    color: widget.backgroundColor ?? Theme.of(context).primaryColor,
-                    listener: _positionFactor,
-                  )
-                : null,
+            painter:
+                _showWater
+                    ? _WaterPainter(
+                      ratio: widget.distance / widget.height,
+                      color: widget.backgroundColor ?? Theme.of(context).primaryColor,
+                      listener: _positionFactor,
+                    )
+                    : null,
           ),
         ],
       ),
@@ -329,15 +333,16 @@ class _WaterPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()..color = color!;
-    final Path path = Path()
-      ..moveTo(size.width / 2 - 20.0, offset.dy * 100.0 + 20.0)
-      ..conicTo(
-        size.width / 2,
-        offset.dy * 100.0 - 70.0 * (ratio! - offset.dy),
-        size.width / 2 + 20.0,
-        offset.dy * 100.0 + 20.0,
-        10.0 * (ratio! - offset.dy),
-      );
+    final Path path =
+        Path()
+          ..moveTo(size.width / 2 - 20.0, offset.dy * 100.0 + 20.0)
+          ..conicTo(
+            size.width / 2,
+            offset.dy * 100.0 - 70.0 * (ratio! - offset.dy),
+            size.width / 2 + 20.0,
+            offset.dy * 100.0 + 20.0,
+            10.0 * (ratio! - offset.dy),
+          );
     canvas.drawPath(path, paint);
   }
 
@@ -360,9 +365,10 @@ class _BezierPainter extends CustomPainter {
     final double middleX = size.width / 2;
     final Paint paint = Paint()..color = color!;
     if (value < 0.5) {
-      final Path path = Path()
-        ..moveTo(0, 0)
-        ..quadraticBezierTo(middleX, value * 70.0, size.width, 0);
+      final Path path =
+          Path()
+            ..moveTo(0, 0)
+            ..quadraticBezierTo(middleX, value * 70.0, size.width, 0);
       canvas.drawPath(path, paint);
     } else if (value <= 1.0) {
       final Path path = Path();
@@ -381,9 +387,10 @@ class _BezierPainter extends CustomPainter {
         ..lineTo(0, 0);
       canvas.drawPath(path, paint);
     } else {
-      final Path path = Path()
-        ..moveTo(0, 0)
-        ..conicTo(middleX, 60.0 * (1.5 - value), size.width, 0, 5);
+      final Path path =
+          Path()
+            ..moveTo(0, 0)
+            ..conicTo(middleX, 60.0 * (1.5 - value), size.width, 0, 5);
       canvas.drawPath(path, paint);
     }
   }

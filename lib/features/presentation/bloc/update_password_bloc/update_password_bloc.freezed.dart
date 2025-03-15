@@ -12,7 +12,8 @@ part of 'update_password_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$UpdatePasswordEvent {
@@ -21,37 +22,33 @@ mixin _$UpdatePasswordEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String password) update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String password)? update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String password)? update,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdatePassEvent value) update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdatePassEvent value)? update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdatePassEvent value)? update,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdatePasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UpdatePasswordEventCopyWith<UpdatePasswordEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -59,8 +56,9 @@ mixin _$UpdatePasswordEvent {
 /// @nodoc
 abstract class $UpdatePasswordEventCopyWith<$Res> {
   factory $UpdatePasswordEventCopyWith(
-          UpdatePasswordEvent value, $Res Function(UpdatePasswordEvent) then) =
-      _$UpdatePasswordEventCopyWithImpl<$Res, UpdatePasswordEvent>;
+    UpdatePasswordEvent value,
+    $Res Function(UpdatePasswordEvent) then,
+  ) = _$UpdatePasswordEventCopyWithImpl<$Res, UpdatePasswordEvent>;
   @useResult
   $Res call({String id, String password});
 }
@@ -75,31 +73,36 @@ class _$UpdatePasswordEventCopyWithImpl<$Res, $Val extends UpdatePasswordEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UpdatePasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? id = null, Object? password = null}) {
+    return _then(
+      _value.copyWith(
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            password:
+                null == password
+                    ? _value.password
+                    : password // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$UpdatePassEventImplCopyWith<$Res>
     implements $UpdatePasswordEventCopyWith<$Res> {
-  factory _$$UpdatePassEventImplCopyWith(_$UpdatePassEventImpl value,
-          $Res Function(_$UpdatePassEventImpl) then) =
-      __$$UpdatePassEventImplCopyWithImpl<$Res>;
+  factory _$$UpdatePassEventImplCopyWith(
+    _$UpdatePassEventImpl value,
+    $Res Function(_$UpdatePassEventImpl) then,
+  ) = __$$UpdatePassEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String password});
@@ -110,25 +113,29 @@ class __$$UpdatePassEventImplCopyWithImpl<$Res>
     extends _$UpdatePasswordEventCopyWithImpl<$Res, _$UpdatePassEventImpl>
     implements _$$UpdatePassEventImplCopyWith<$Res> {
   __$$UpdatePassEventImplCopyWithImpl(
-      _$UpdatePassEventImpl _value, $Res Function(_$UpdatePassEventImpl) _then)
-      : super(_value, _then);
+    _$UpdatePassEventImpl _value,
+    $Res Function(_$UpdatePassEventImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of UpdatePasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? password = null,
-  }) {
-    return _then(_$UpdatePassEventImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? id = null, Object? password = null}) {
+    return _then(
+      _$UpdatePassEventImpl(
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        password:
+            null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
@@ -136,7 +143,7 @@ class __$$UpdatePassEventImplCopyWithImpl<$Res>
 
 class _$UpdatePassEventImpl extends _UpdatePassEvent {
   const _$UpdatePassEventImpl({required this.id, required this.password})
-      : super._();
+    : super._();
 
   @override
   final String id;
@@ -161,12 +168,16 @@ class _$UpdatePassEventImpl extends _UpdatePassEvent {
   @override
   int get hashCode => Object.hash(runtimeType, id, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdatePasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdatePassEventImplCopyWith<_$UpdatePassEventImpl> get copyWith =>
       __$$UpdatePassEventImplCopyWithImpl<_$UpdatePassEventImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -226,17 +237,21 @@ class _$UpdatePassEventImpl extends _UpdatePassEvent {
 }
 
 abstract class _UpdatePassEvent extends UpdatePasswordEvent {
-  const factory _UpdatePassEvent(
-      {required final String id,
-      required final String password}) = _$UpdatePassEventImpl;
+  const factory _UpdatePassEvent({
+    required final String id,
+    required final String password,
+  }) = _$UpdatePassEventImpl;
   const _UpdatePassEvent._() : super._();
 
   @override
   String get id;
   @override
   String get password;
+
+  /// Create a copy of UpdatePasswordEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdatePassEventImplCopyWith<_$UpdatePassEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -249,16 +264,14 @@ mixin _$UpdatePasswordState {
     required TResult Function() updating,
     required TResult Function() updated,
     required TResult Function(String message) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? updated,
     TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
@@ -266,24 +279,21 @@ mixin _$UpdatePasswordState {
     TResult Function()? updated,
     TResult Function(String message)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_EmptyPassState value) empty,
     required TResult Function(_UpdatingPassState value) updating,
     required TResult Function(_UpdatedPassState value) updated,
     required TResult Function(_ErrorPassState value) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EmptyPassState value)? empty,
     TResult? Function(_UpdatingPassState value)? updating,
     TResult? Function(_UpdatedPassState value)? updated,
     TResult? Function(_ErrorPassState value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmptyPassState value)? empty,
@@ -291,15 +301,15 @@ mixin _$UpdatePasswordState {
     TResult Function(_UpdatedPassState value)? updated,
     TResult Function(_ErrorPassState value)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UpdatePasswordStateCopyWith<$Res> {
   factory $UpdatePasswordStateCopyWith(
-          UpdatePasswordState value, $Res Function(UpdatePasswordState) then) =
-      _$UpdatePasswordStateCopyWithImpl<$Res, UpdatePasswordState>;
+    UpdatePasswordState value,
+    $Res Function(UpdatePasswordState) then,
+  ) = _$UpdatePasswordStateCopyWithImpl<$Res, UpdatePasswordState>;
 }
 
 /// @nodoc
@@ -311,13 +321,17 @@ class _$UpdatePasswordStateCopyWithImpl<$Res, $Val extends UpdatePasswordState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UpdatePasswordState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$EmptyPassStateImplCopyWith<$Res> {
-  factory _$$EmptyPassStateImplCopyWith(_$EmptyPassStateImpl value,
-          $Res Function(_$EmptyPassStateImpl) then) =
-      __$$EmptyPassStateImplCopyWithImpl<$Res>;
+  factory _$$EmptyPassStateImplCopyWith(
+    _$EmptyPassStateImpl value,
+    $Res Function(_$EmptyPassStateImpl) then,
+  ) = __$$EmptyPassStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -325,8 +339,12 @@ class __$$EmptyPassStateImplCopyWithImpl<$Res>
     extends _$UpdatePasswordStateCopyWithImpl<$Res, _$EmptyPassStateImpl>
     implements _$$EmptyPassStateImplCopyWith<$Res> {
   __$$EmptyPassStateImplCopyWithImpl(
-      _$EmptyPassStateImpl _value, $Res Function(_$EmptyPassStateImpl) _then)
-      : super(_value, _then);
+    _$EmptyPassStateImpl _value,
+    $Res Function(_$EmptyPassStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UpdatePasswordState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -430,18 +448,23 @@ abstract class _EmptyPassState extends UpdatePasswordState {
 
 /// @nodoc
 abstract class _$$UpdatingPassStateImplCopyWith<$Res> {
-  factory _$$UpdatingPassStateImplCopyWith(_$UpdatingPassStateImpl value,
-          $Res Function(_$UpdatingPassStateImpl) then) =
-      __$$UpdatingPassStateImplCopyWithImpl<$Res>;
+  factory _$$UpdatingPassStateImplCopyWith(
+    _$UpdatingPassStateImpl value,
+    $Res Function(_$UpdatingPassStateImpl) then,
+  ) = __$$UpdatingPassStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$UpdatingPassStateImplCopyWithImpl<$Res>
     extends _$UpdatePasswordStateCopyWithImpl<$Res, _$UpdatingPassStateImpl>
     implements _$$UpdatingPassStateImplCopyWith<$Res> {
-  __$$UpdatingPassStateImplCopyWithImpl(_$UpdatingPassStateImpl _value,
-      $Res Function(_$UpdatingPassStateImpl) _then)
-      : super(_value, _then);
+  __$$UpdatingPassStateImplCopyWithImpl(
+    _$UpdatingPassStateImpl _value,
+    $Res Function(_$UpdatingPassStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UpdatePasswordState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -545,18 +568,23 @@ abstract class _UpdatingPassState extends UpdatePasswordState {
 
 /// @nodoc
 abstract class _$$UpdatedPassStateImplCopyWith<$Res> {
-  factory _$$UpdatedPassStateImplCopyWith(_$UpdatedPassStateImpl value,
-          $Res Function(_$UpdatedPassStateImpl) then) =
-      __$$UpdatedPassStateImplCopyWithImpl<$Res>;
+  factory _$$UpdatedPassStateImplCopyWith(
+    _$UpdatedPassStateImpl value,
+    $Res Function(_$UpdatedPassStateImpl) then,
+  ) = __$$UpdatedPassStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$UpdatedPassStateImplCopyWithImpl<$Res>
     extends _$UpdatePasswordStateCopyWithImpl<$Res, _$UpdatedPassStateImpl>
     implements _$$UpdatedPassStateImplCopyWith<$Res> {
-  __$$UpdatedPassStateImplCopyWithImpl(_$UpdatedPassStateImpl _value,
-      $Res Function(_$UpdatedPassStateImpl) _then)
-      : super(_value, _then);
+  __$$UpdatedPassStateImplCopyWithImpl(
+    _$UpdatedPassStateImpl _value,
+    $Res Function(_$UpdatedPassStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UpdatePasswordState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -660,9 +688,10 @@ abstract class _UpdatedPassState extends UpdatePasswordState {
 
 /// @nodoc
 abstract class _$$ErrorPassStateImplCopyWith<$Res> {
-  factory _$$ErrorPassStateImplCopyWith(_$ErrorPassStateImpl value,
-          $Res Function(_$ErrorPassStateImpl) then) =
-      __$$ErrorPassStateImplCopyWithImpl<$Res>;
+  factory _$$ErrorPassStateImplCopyWith(
+    _$ErrorPassStateImpl value,
+    $Res Function(_$ErrorPassStateImpl) then,
+  ) = __$$ErrorPassStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
@@ -672,29 +701,33 @@ class __$$ErrorPassStateImplCopyWithImpl<$Res>
     extends _$UpdatePasswordStateCopyWithImpl<$Res, _$ErrorPassStateImpl>
     implements _$$ErrorPassStateImplCopyWith<$Res> {
   __$$ErrorPassStateImplCopyWithImpl(
-      _$ErrorPassStateImpl _value, $Res Function(_$ErrorPassStateImpl) _then)
-      : super(_value, _then);
+    _$ErrorPassStateImpl _value,
+    $Res Function(_$ErrorPassStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of UpdatePasswordState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorPassStateImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? message = null}) {
+    return _then(
+      _$ErrorPassStateImpl(
+        message:
+            null == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ErrorPassStateImpl extends _ErrorPassState {
-  const _$ErrorPassStateImpl(
-      {this.message = 'Произошла ошибка при обновлении пароля'})
-      : super._();
+  const _$ErrorPassStateImpl({
+    this.message = 'Произошла ошибка при обновлении пароля',
+  }) : super._();
 
   @override
   @JsonKey()
@@ -716,12 +749,16 @@ class _$ErrorPassStateImpl extends _ErrorPassState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdatePasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorPassStateImplCopyWith<_$ErrorPassStateImpl> get copyWith =>
       __$$ErrorPassStateImplCopyWithImpl<_$ErrorPassStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
@@ -803,7 +840,10 @@ abstract class _ErrorPassState extends UpdatePasswordState {
   const _ErrorPassState._() : super._();
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UpdatePasswordState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorPassStateImplCopyWith<_$ErrorPassStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
+
 import 'package:bbt/service_locator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
@@ -9,16 +10,15 @@ class LoggerService {
   static final _customOutput = CustomOutput();
 
   static Logger get inject => Logger(
-        printer: PrettyPrinter(
-          methodCount: 0,
-          errorMethodCount: 5,
-          lineLength: 50,
-          colors: kIsWeb ? true : !Platform.isIOS,
-          printEmojis: true,
-          printTime: false,
-        ),
-        output: _customOutput,
-      );
+    printer: PrettyPrinter(
+      methodCount: 0,
+      errorMethodCount: 5,
+      lineLength: 50,
+      colors: kIsWeb ? true : !Platform.isIOS,
+      printEmojis: true,
+    ),
+    output: _customOutput,
+  );
 
   static List<OutputEvent> get history => _customOutput.eventsHistory;
 }

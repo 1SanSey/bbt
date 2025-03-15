@@ -42,21 +42,23 @@ void main() {
       await AppConfig.load();
       await di.init();
       await InitDatasources.instance.initParse();
-      await InitDatasources.instance.initHive();
       if (!kIsWeb) {
         await InitDatasources.instance.initAppMetrica();
       }
 
       HydratedBloc.storage = await HydratedStorage.build(
         storageDirectory:
-            kIsWeb ? HydratedStorage.webStorageDirectory : await getTemporaryDirectory(),
+            kIsWeb
+                ? HydratedStorageDirectory.web
+                : HydratedStorageDirectory((await getTemporaryDirectory()).path),
       );
 
       Bloc.observer = AppBlocObserver.instance();
 
-      await SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
-      );
+      await SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
 
       usePathUrlStrategy();
       GoRouter.optionURLReflectsImperativeAPIs = true;

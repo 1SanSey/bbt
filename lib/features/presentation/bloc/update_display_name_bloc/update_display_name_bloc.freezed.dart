@@ -12,7 +12,8 @@ part of 'update_display_name_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$UpdateDisplayNameEvent {
@@ -21,53 +22,52 @@ mixin _$UpdateDisplayNameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String newName) update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String newName)? update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String newName)? update,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateEvent value) update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateEvent value)? update,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateEvent value)? update,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateDisplayNameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UpdateDisplayNameEventCopyWith<UpdateDisplayNameEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UpdateDisplayNameEventCopyWith<$Res> {
-  factory $UpdateDisplayNameEventCopyWith(UpdateDisplayNameEvent value,
-          $Res Function(UpdateDisplayNameEvent) then) =
-      _$UpdateDisplayNameEventCopyWithImpl<$Res, UpdateDisplayNameEvent>;
+  factory $UpdateDisplayNameEventCopyWith(
+    UpdateDisplayNameEvent value,
+    $Res Function(UpdateDisplayNameEvent) then,
+  ) = _$UpdateDisplayNameEventCopyWithImpl<$Res, UpdateDisplayNameEvent>;
   @useResult
   $Res call({String id, String newName});
 }
 
 /// @nodoc
-class _$UpdateDisplayNameEventCopyWithImpl<$Res,
-        $Val extends UpdateDisplayNameEvent>
+class _$UpdateDisplayNameEventCopyWithImpl<
+  $Res,
+  $Val extends UpdateDisplayNameEvent
+>
     implements $UpdateDisplayNameEventCopyWith<$Res> {
   _$UpdateDisplayNameEventCopyWithImpl(this._value, this._then);
 
@@ -76,22 +76,26 @@ class _$UpdateDisplayNameEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UpdateDisplayNameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? newName = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      newName: null == newName
-          ? _value.newName
-          : newName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? id = null, Object? newName = null}) {
+    return _then(
+      _value.copyWith(
+            id:
+                null == id
+                    ? _value.id
+                    : id // ignore: cast_nullable_to_non_nullable
+                        as String,
+            newName:
+                null == newName
+                    ? _value.newName
+                    : newName // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -99,8 +103,9 @@ class _$UpdateDisplayNameEventCopyWithImpl<$Res,
 abstract class _$$UpdateEventImplCopyWith<$Res>
     implements $UpdateDisplayNameEventCopyWith<$Res> {
   factory _$$UpdateEventImplCopyWith(
-          _$UpdateEventImpl value, $Res Function(_$UpdateEventImpl) then) =
-      __$$UpdateEventImplCopyWithImpl<$Res>;
+    _$UpdateEventImpl value,
+    $Res Function(_$UpdateEventImpl) then,
+  ) = __$$UpdateEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String newName});
@@ -111,25 +116,29 @@ class __$$UpdateEventImplCopyWithImpl<$Res>
     extends _$UpdateDisplayNameEventCopyWithImpl<$Res, _$UpdateEventImpl>
     implements _$$UpdateEventImplCopyWith<$Res> {
   __$$UpdateEventImplCopyWithImpl(
-      _$UpdateEventImpl _value, $Res Function(_$UpdateEventImpl) _then)
-      : super(_value, _then);
+    _$UpdateEventImpl _value,
+    $Res Function(_$UpdateEventImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of UpdateDisplayNameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? newName = null,
-  }) {
-    return _then(_$UpdateEventImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      newName: null == newName
-          ? _value.newName
-          : newName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? id = null, Object? newName = null}) {
+    return _then(
+      _$UpdateEventImpl(
+        id:
+            null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                    as String,
+        newName:
+            null == newName
+                ? _value.newName
+                : newName // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
@@ -137,7 +146,7 @@ class __$$UpdateEventImplCopyWithImpl<$Res>
 
 class _$UpdateEventImpl extends _UpdateEvent {
   const _$UpdateEventImpl({required this.id, required this.newName})
-      : super._();
+    : super._();
 
   @override
   final String id;
@@ -161,7 +170,9 @@ class _$UpdateEventImpl extends _UpdateEvent {
   @override
   int get hashCode => Object.hash(runtimeType, id, newName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateDisplayNameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateEventImplCopyWith<_$UpdateEventImpl> get copyWith =>
@@ -225,17 +236,21 @@ class _$UpdateEventImpl extends _UpdateEvent {
 }
 
 abstract class _UpdateEvent extends UpdateDisplayNameEvent {
-  const factory _UpdateEvent(
-      {required final String id,
-      required final String newName}) = _$UpdateEventImpl;
+  const factory _UpdateEvent({
+    required final String id,
+    required final String newName,
+  }) = _$UpdateEventImpl;
   const _UpdateEvent._() : super._();
 
   @override
   String get id;
   @override
   String get newName;
+
+  /// Create a copy of UpdateDisplayNameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateEventImplCopyWith<_$UpdateEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -248,16 +263,14 @@ mixin _$UpdateDisplayNameState {
     required TResult Function() updating,
     required TResult Function() updated,
     required TResult Function(String message) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? updating,
     TResult? Function()? updated,
     TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
@@ -265,24 +278,21 @@ mixin _$UpdateDisplayNameState {
     TResult Function()? updated,
     TResult Function(String message)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_EmptyState value) empty,
     required TResult Function(_UpdatingState value) updating,
     required TResult Function(_UpdatedState value) updated,
     required TResult Function(_ErrorState value) error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EmptyState value)? empty,
     TResult? Function(_UpdatingState value)? updating,
     TResult? Function(_UpdatedState value)? updated,
     TResult? Function(_ErrorState value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmptyState value)? empty,
@@ -290,20 +300,22 @@ mixin _$UpdateDisplayNameState {
     TResult Function(_UpdatedState value)? updated,
     TResult Function(_ErrorState value)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UpdateDisplayNameStateCopyWith<$Res> {
-  factory $UpdateDisplayNameStateCopyWith(UpdateDisplayNameState value,
-          $Res Function(UpdateDisplayNameState) then) =
-      _$UpdateDisplayNameStateCopyWithImpl<$Res, UpdateDisplayNameState>;
+  factory $UpdateDisplayNameStateCopyWith(
+    UpdateDisplayNameState value,
+    $Res Function(UpdateDisplayNameState) then,
+  ) = _$UpdateDisplayNameStateCopyWithImpl<$Res, UpdateDisplayNameState>;
 }
 
 /// @nodoc
-class _$UpdateDisplayNameStateCopyWithImpl<$Res,
-        $Val extends UpdateDisplayNameState>
+class _$UpdateDisplayNameStateCopyWithImpl<
+  $Res,
+  $Val extends UpdateDisplayNameState
+>
     implements $UpdateDisplayNameStateCopyWith<$Res> {
   _$UpdateDisplayNameStateCopyWithImpl(this._value, this._then);
 
@@ -311,13 +323,17 @@ class _$UpdateDisplayNameStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UpdateDisplayNameState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 abstract class _$$EmptyStateImplCopyWith<$Res> {
   factory _$$EmptyStateImplCopyWith(
-          _$EmptyStateImpl value, $Res Function(_$EmptyStateImpl) then) =
-      __$$EmptyStateImplCopyWithImpl<$Res>;
+    _$EmptyStateImpl value,
+    $Res Function(_$EmptyStateImpl) then,
+  ) = __$$EmptyStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -325,8 +341,12 @@ class __$$EmptyStateImplCopyWithImpl<$Res>
     extends _$UpdateDisplayNameStateCopyWithImpl<$Res, _$EmptyStateImpl>
     implements _$$EmptyStateImplCopyWith<$Res> {
   __$$EmptyStateImplCopyWithImpl(
-      _$EmptyStateImpl _value, $Res Function(_$EmptyStateImpl) _then)
-      : super(_value, _then);
+    _$EmptyStateImpl _value,
+    $Res Function(_$EmptyStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UpdateDisplayNameState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -431,8 +451,9 @@ abstract class _EmptyState extends UpdateDisplayNameState {
 /// @nodoc
 abstract class _$$UpdatingStateImplCopyWith<$Res> {
   factory _$$UpdatingStateImplCopyWith(
-          _$UpdatingStateImpl value, $Res Function(_$UpdatingStateImpl) then) =
-      __$$UpdatingStateImplCopyWithImpl<$Res>;
+    _$UpdatingStateImpl value,
+    $Res Function(_$UpdatingStateImpl) then,
+  ) = __$$UpdatingStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -440,8 +461,12 @@ class __$$UpdatingStateImplCopyWithImpl<$Res>
     extends _$UpdateDisplayNameStateCopyWithImpl<$Res, _$UpdatingStateImpl>
     implements _$$UpdatingStateImplCopyWith<$Res> {
   __$$UpdatingStateImplCopyWithImpl(
-      _$UpdatingStateImpl _value, $Res Function(_$UpdatingStateImpl) _then)
-      : super(_value, _then);
+    _$UpdatingStateImpl _value,
+    $Res Function(_$UpdatingStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UpdateDisplayNameState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -546,8 +571,9 @@ abstract class _UpdatingState extends UpdateDisplayNameState {
 /// @nodoc
 abstract class _$$UpdatedStateImplCopyWith<$Res> {
   factory _$$UpdatedStateImplCopyWith(
-          _$UpdatedStateImpl value, $Res Function(_$UpdatedStateImpl) then) =
-      __$$UpdatedStateImplCopyWithImpl<$Res>;
+    _$UpdatedStateImpl value,
+    $Res Function(_$UpdatedStateImpl) then,
+  ) = __$$UpdatedStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -555,8 +581,12 @@ class __$$UpdatedStateImplCopyWithImpl<$Res>
     extends _$UpdateDisplayNameStateCopyWithImpl<$Res, _$UpdatedStateImpl>
     implements _$$UpdatedStateImplCopyWith<$Res> {
   __$$UpdatedStateImplCopyWithImpl(
-      _$UpdatedStateImpl _value, $Res Function(_$UpdatedStateImpl) _then)
-      : super(_value, _then);
+    _$UpdatedStateImpl _value,
+    $Res Function(_$UpdatedStateImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of UpdateDisplayNameState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -661,8 +691,9 @@ abstract class _UpdatedState extends UpdateDisplayNameState {
 /// @nodoc
 abstract class _$$ErrorStateImplCopyWith<$Res> {
   factory _$$ErrorStateImplCopyWith(
-          _$ErrorStateImpl value, $Res Function(_$ErrorStateImpl) then) =
-      __$$ErrorStateImplCopyWithImpl<$Res>;
+    _$ErrorStateImpl value,
+    $Res Function(_$ErrorStateImpl) then,
+  ) = __$$ErrorStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
@@ -672,29 +703,33 @@ class __$$ErrorStateImplCopyWithImpl<$Res>
     extends _$UpdateDisplayNameStateCopyWithImpl<$Res, _$ErrorStateImpl>
     implements _$$ErrorStateImplCopyWith<$Res> {
   __$$ErrorStateImplCopyWithImpl(
-      _$ErrorStateImpl _value, $Res Function(_$ErrorStateImpl) _then)
-      : super(_value, _then);
+    _$ErrorStateImpl _value,
+    $Res Function(_$ErrorStateImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of UpdateDisplayNameState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorStateImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? message = null}) {
+    return _then(
+      _$ErrorStateImpl(
+        message:
+            null == message
+                ? _value.message
+                : message // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ErrorStateImpl extends _ErrorState {
-  const _$ErrorStateImpl(
-      {this.message = 'Произошла ошибка при обновлении имени пользователя'})
-      : super._();
+  const _$ErrorStateImpl({
+    this.message = 'Произошла ошибка при обновлении имени пользователя',
+  }) : super._();
 
   @override
   @JsonKey()
@@ -716,7 +751,9 @@ class _$ErrorStateImpl extends _ErrorState {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateDisplayNameState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
@@ -802,7 +839,10 @@ abstract class _ErrorState extends UpdateDisplayNameState {
   const _ErrorState._() : super._();
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UpdateDisplayNameState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,44 +1,47 @@
 // ignore_for_file: avoid_final_parameters, sort_unnamed_constructors_first
 
 import 'package:bbt/core/app_config.dart';
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
+import 'package:flutter/foundation.dart'; // Для kIsWeb
+import 'package:parse_server_sdk/parse_server_sdk.dart'; // Для ParseObject, ParseFile, ParseWebFile
 
 part 'user_entity.freezed.dart';
 part 'user_entity.g.dart';
 
 @freezed
-class UserEntity with _$UserEntity {
-  const UserEntity._();
+abstract class UserEntity with _$UserEntity {
+  const UserEntity._(); // Приватный конструктор для дополнительных методов
+
+  // Дополнительные методы
   bool get isAdmin => email == AppConfig.emailAdmin;
   bool get isEmpty => uid.isEmpty && email.isEmpty;
+
+  // Основной фабричный конструктор
   const factory UserEntity({
-    required final String uid,
-    required final String displayName,
-    required final String photoURL,
-    required final String email,
+    required String uid,
+    required String displayName,
+    required String photoURL,
+    required String email,
   }) = _UserEntity;
 
+  // Конструктор для создания из JSON
   factory UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);
 
+  // Конструктор для пустого объекта
   factory UserEntity.empty() {
-    return const UserEntity(
-      uid: '',
-      displayName: '',
-      photoURL: '',
-      email: '',
-    );
+    return const UserEntity(uid: '', displayName: '', photoURL: '', email: '');
   }
 
+  // Конструктор для создания из ParseObject
   factory UserEntity.fromDb(ParseObject user) {
     return UserEntity(
       uid: user.get<String>('objectId') ?? '',
       email: user.get<String>('username') ?? '',
       displayName: user.get<String>('displayName') ?? '',
-      photoURL: kIsWeb
-          ? user.get<ParseWebFile>('userphoto')?.url ?? ''
-          : user.get<ParseFile>('userphoto')?.url ?? '',
+      photoURL:
+          kIsWeb
+              ? user.get<ParseWebFile>('userphoto')?.url ?? ''
+              : user.get<ParseFile>('userphoto')?.url ?? '',
     );
   }
 }

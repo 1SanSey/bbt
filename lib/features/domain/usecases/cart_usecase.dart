@@ -6,27 +6,27 @@ class CartUsecase {
 
   CartUsecase(this.cartRepository);
 
-  String addToCart(CartBookEntity book) {
+  Future<String> addToCart(CartBookEntity book) async {
     return cartRepository.addToCart(book);
   }
 
-  void removeFromCart(int index) {
-    cartRepository.removeFromCart(index);
+  Future<void> removeFromCart(String name, int price) async {
+    await cartRepository.removeFromCart(name, price);
   }
 
-  void changeQuantityCart(int index, int value) {
-    cartRepository.changeQuantityCart(index, value);
+  Future<void> changeQuantityCart(String name, int price, int value) async {
+    await cartRepository.changeQuantityCart(name, price, value);
   }
 
-  List<CartBookEntity> showCart() {
+  Future<List<CartBookEntity>> showCart() async {
     return cartRepository.showCart();
   }
 
-  int totalSum() {
+  Future<int> totalSum() async {
     return cartRepository.totalSum();
   }
 
-  void removeAllCart() {
-    cartRepository.removeAllCart();
+  Future<void> removeAllCart() async {
+    await cartRepository.removeAllCart();
   }
 }

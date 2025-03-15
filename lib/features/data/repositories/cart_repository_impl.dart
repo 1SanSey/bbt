@@ -8,45 +8,42 @@ class CartRepositoryImpl implements ICartRepository {
   final IBooksLocalDatasource localDataSource;
   final IOrdersRemoteDatasource remoteDataSource;
 
-  CartRepositoryImpl({
-    required this.remoteDataSource,
-    required this.localDataSource,
-  });
+  CartRepositoryImpl({required this.remoteDataSource, required this.localDataSource});
 
   @override
-  String addToCart(CartBookEntity book) {
-    final hiveBook = CartBookModel(
+  Future<String> addToCart(CartBookEntity book) async {
+    final bookForDb = CartBookModel(
       name: book.name,
       price: book.price,
       quantity: book.quantity,
       image: book.image,
     );
 
-    return localDataSource.addToCart(hiveBook);
+    return localDataSource.addToCart(bookForDb);
   }
 
   @override
-  void removeFromCart(int index) {
-    localDataSource.removeFromCart(index);
+  Future<void> removeFromCart(String name, int price) async {
+    await localDataSource.removeFromCart(name, price);
   }
 
   @override
-  List<CartBookEntity> showCart() {
+  Future<List<CartBookEntity>> showCart() async {
     return localDataSource.showCart();
   }
 
   @override
-  void changeQuantityCart(int index, int value) {
-    localDataSource.changeQuantityCart(index, value);
+  Future<void> changeQuantityCart(String name, int price, int value) async {
+    await localDataSource.changeQuantityCart(name, price, value);
   }
 
   @override
-  int totalSum() {
+  Future<int> totalSum() async {
     return localDataSource.totalSum();
   }
 
   @override
-  void removeAllCart() {
+  Future<void> removeAllCart() async {
     return localDataSource.removeAllCart();
   }
 }
