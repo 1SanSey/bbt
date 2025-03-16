@@ -65,4 +65,19 @@ class AuthRepositoryImpl implements IAuthRepository {
       return Left(InternetConnectionFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> currentUser() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final currentUser = await remoteDataSource.currentUser();
+
+        return Right(currentUser);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(InternetConnectionFailure());
+    }
+  }
 }

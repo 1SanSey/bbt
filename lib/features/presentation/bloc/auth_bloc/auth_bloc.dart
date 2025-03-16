@@ -17,6 +17,7 @@ class AuthEvent with _$AuthEvent {
     required String password,
   }) = _LogInAuthEvent;
   const factory AuthEvent.logOut() = _LogOutAuthEvent;
+  const factory AuthEvent.currentUser() = _CurrentUserEvent;
   const factory AuthEvent.updateName(String newName) = _UpdateNameAuthEvent;
   const factory AuthEvent.updatePhoto(String newPhoto) = _UpdatePhotoAuthEvent;
 }
@@ -87,6 +88,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       (event, emitter) => event.map<Future<void>>(
         logIn: (event) => _logIn(event, emitter),
         logOut: (event) => _logOut(event, emitter),
+        currentUser: (event) => _currentUser(event, emitter),
         updateName: (event) => _updateName(event, emitter),
         updatePhoto: (event) => _updatePhoto(event, emitter),
       ),
@@ -152,6 +154,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       );
     } on FormatException {
       emitter(AuthState.error(user: state.user, message: 'Нельзя залогиниться - нет интернета'));
+      rethrow;
     } on Object {
       emitter(AuthState.error(user: state.user, message: 'Ошибка аутентификации'));
       rethrow;
@@ -162,6 +165,33 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
           orElse: () => AuthState.authenticated(user: state.user),
         ),
       );
+    }
+  }
+
+  Future<void> _currentUser(_, Emitter<AuthState> emitter) async {
+    try {
+      emitter(AuthState.inProcess(user: state.user));
+      final user = await _repository.currentUser();
+      user.fold(
+        (failure) => emitter(
+          AuthState.error(user: UserEntity.empty(), message: mapFailureToMessage(failure)),
+        ),
+        (currentUser) {
+          emitter(
+            currentUser.isEmpty
+                ? AuthState.notAuthenticated(
+                    user: currentUser,
+                  )
+                : AuthState.authenticated(user: currentUser),
+          );
+        },
+      );
+    } on FormatException {
+      emitter(AuthState.error(user: state.user, message: 'Нельзя залогиниться - нет интернета'));
+      rethrow;
+    } on Object {
+      emitter(AuthState.error(user: state.user, message: 'Ошибка аутентификации'));
+      rethrow;
     }
   }
 

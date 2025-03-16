@@ -12,8 +12,7 @@ part of 'update_user_photo_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UpdateUserPhotoState {
@@ -24,7 +23,8 @@ mixin _$UpdateUserPhotoState {
     required TResult Function() canceled,
     required TResult Function(String? photo) done,
     required TResult Function(String error) error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
@@ -32,7 +32,8 @@ mixin _$UpdateUserPhotoState {
     TResult? Function()? canceled,
     TResult? Function(String? photo)? done,
     TResult? Function(String error)? error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
@@ -41,7 +42,8 @@ mixin _$UpdateUserPhotoState {
     TResult Function(String? photo)? done,
     TResult Function(String error)? error,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_EmptyProfilePhotoState value) empty,
@@ -49,7 +51,8 @@ mixin _$UpdateUserPhotoState {
     required TResult Function(_CanceledProfilePhotoState value) canceled,
     required TResult Function(_DoneProfilePhotoState value) done,
     required TResult Function(_ErrorProfilePhotoState value) error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EmptyProfilePhotoState value)? empty,
@@ -57,7 +60,8 @@ mixin _$UpdateUserPhotoState {
     TResult? Function(_CanceledProfilePhotoState value)? canceled,
     TResult? Function(_DoneProfilePhotoState value)? done,
     TResult? Function(_ErrorProfilePhotoState value)? error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmptyProfilePhotoState value)? empty,
@@ -66,22 +70,20 @@ mixin _$UpdateUserPhotoState {
     TResult Function(_DoneProfilePhotoState value)? done,
     TResult Function(_ErrorProfilePhotoState value)? error,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UpdateUserPhotoStateCopyWith<$Res> {
-  factory $UpdateUserPhotoStateCopyWith(
-    UpdateUserPhotoState value,
-    $Res Function(UpdateUserPhotoState) then,
-  ) = _$UpdateUserPhotoStateCopyWithImpl<$Res, UpdateUserPhotoState>;
+  factory $UpdateUserPhotoStateCopyWith(UpdateUserPhotoState value,
+          $Res Function(UpdateUserPhotoState) then) =
+      _$UpdateUserPhotoStateCopyWithImpl<$Res, UpdateUserPhotoState>;
 }
 
 /// @nodoc
-class _$UpdateUserPhotoStateCopyWithImpl<
-  $Res,
-  $Val extends UpdateUserPhotoState
->
+class _$UpdateUserPhotoStateCopyWithImpl<$Res,
+        $Val extends UpdateUserPhotoState>
     implements $UpdateUserPhotoStateCopyWith<$Res> {
   _$UpdateUserPhotoStateCopyWithImpl(this._value, this._then);
 
@@ -97,20 +99,20 @@ class _$UpdateUserPhotoStateCopyWithImpl<
 /// @nodoc
 abstract class _$$EmptyProfilePhotoStateImplCopyWith<$Res> {
   factory _$$EmptyProfilePhotoStateImplCopyWith(
-    _$EmptyProfilePhotoStateImpl value,
-    $Res Function(_$EmptyProfilePhotoStateImpl) then,
-  ) = __$$EmptyProfilePhotoStateImplCopyWithImpl<$Res>;
+          _$EmptyProfilePhotoStateImpl value,
+          $Res Function(_$EmptyProfilePhotoStateImpl) then) =
+      __$$EmptyProfilePhotoStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$EmptyProfilePhotoStateImplCopyWithImpl<$Res>
-    extends
-        _$UpdateUserPhotoStateCopyWithImpl<$Res, _$EmptyProfilePhotoStateImpl>
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
+        _$EmptyProfilePhotoStateImpl>
     implements _$$EmptyProfilePhotoStateImplCopyWith<$Res> {
   __$$EmptyProfilePhotoStateImplCopyWithImpl(
-    _$EmptyProfilePhotoStateImpl _value,
-    $Res Function(_$EmptyProfilePhotoStateImpl) _then,
-  ) : super(_value, _then);
+      _$EmptyProfilePhotoStateImpl _value,
+      $Res Function(_$EmptyProfilePhotoStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UpdateUserPhotoState
   /// with the given fields replaced by the non-null parameter values.
@@ -232,23 +234,20 @@ abstract class _EmptyProfilePhotoState extends UpdateUserPhotoState {
 /// @nodoc
 abstract class _$$UpdatingProfilePhotoStateImplCopyWith<$Res> {
   factory _$$UpdatingProfilePhotoStateImplCopyWith(
-    _$UpdatingProfilePhotoStateImpl value,
-    $Res Function(_$UpdatingProfilePhotoStateImpl) then,
-  ) = __$$UpdatingProfilePhotoStateImplCopyWithImpl<$Res>;
+          _$UpdatingProfilePhotoStateImpl value,
+          $Res Function(_$UpdatingProfilePhotoStateImpl) then) =
+      __$$UpdatingProfilePhotoStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$UpdatingProfilePhotoStateImplCopyWithImpl<$Res>
-    extends
-        _$UpdateUserPhotoStateCopyWithImpl<
-          $Res,
-          _$UpdatingProfilePhotoStateImpl
-        >
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
+        _$UpdatingProfilePhotoStateImpl>
     implements _$$UpdatingProfilePhotoStateImplCopyWith<$Res> {
   __$$UpdatingProfilePhotoStateImplCopyWithImpl(
-    _$UpdatingProfilePhotoStateImpl _value,
-    $Res Function(_$UpdatingProfilePhotoStateImpl) _then,
-  ) : super(_value, _then);
+      _$UpdatingProfilePhotoStateImpl _value,
+      $Res Function(_$UpdatingProfilePhotoStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UpdateUserPhotoState
   /// with the given fields replaced by the non-null parameter values.
@@ -371,23 +370,20 @@ abstract class _UpdatingProfilePhotoState extends UpdateUserPhotoState {
 /// @nodoc
 abstract class _$$CanceledProfilePhotoStateImplCopyWith<$Res> {
   factory _$$CanceledProfilePhotoStateImplCopyWith(
-    _$CanceledProfilePhotoStateImpl value,
-    $Res Function(_$CanceledProfilePhotoStateImpl) then,
-  ) = __$$CanceledProfilePhotoStateImplCopyWithImpl<$Res>;
+          _$CanceledProfilePhotoStateImpl value,
+          $Res Function(_$CanceledProfilePhotoStateImpl) then) =
+      __$$CanceledProfilePhotoStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$CanceledProfilePhotoStateImplCopyWithImpl<$Res>
-    extends
-        _$UpdateUserPhotoStateCopyWithImpl<
-          $Res,
-          _$CanceledProfilePhotoStateImpl
-        >
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
+        _$CanceledProfilePhotoStateImpl>
     implements _$$CanceledProfilePhotoStateImplCopyWith<$Res> {
   __$$CanceledProfilePhotoStateImplCopyWithImpl(
-    _$CanceledProfilePhotoStateImpl _value,
-    $Res Function(_$CanceledProfilePhotoStateImpl) _then,
-  ) : super(_value, _then);
+      _$CanceledProfilePhotoStateImpl _value,
+      $Res Function(_$CanceledProfilePhotoStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UpdateUserPhotoState
   /// with the given fields replaced by the non-null parameter values.
@@ -510,37 +506,35 @@ abstract class _CanceledProfilePhotoState extends UpdateUserPhotoState {
 /// @nodoc
 abstract class _$$DoneProfilePhotoStateImplCopyWith<$Res> {
   factory _$$DoneProfilePhotoStateImplCopyWith(
-    _$DoneProfilePhotoStateImpl value,
-    $Res Function(_$DoneProfilePhotoStateImpl) then,
-  ) = __$$DoneProfilePhotoStateImplCopyWithImpl<$Res>;
+          _$DoneProfilePhotoStateImpl value,
+          $Res Function(_$DoneProfilePhotoStateImpl) then) =
+      __$$DoneProfilePhotoStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String? photo});
 }
 
 /// @nodoc
 class __$$DoneProfilePhotoStateImplCopyWithImpl<$Res>
-    extends
-        _$UpdateUserPhotoStateCopyWithImpl<$Res, _$DoneProfilePhotoStateImpl>
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
+        _$DoneProfilePhotoStateImpl>
     implements _$$DoneProfilePhotoStateImplCopyWith<$Res> {
-  __$$DoneProfilePhotoStateImplCopyWithImpl(
-    _$DoneProfilePhotoStateImpl _value,
-    $Res Function(_$DoneProfilePhotoStateImpl) _then,
-  ) : super(_value, _then);
+  __$$DoneProfilePhotoStateImplCopyWithImpl(_$DoneProfilePhotoStateImpl _value,
+      $Res Function(_$DoneProfilePhotoStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UpdateUserPhotoState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? photo = freezed}) {
-    return _then(
-      _$DoneProfilePhotoStateImpl(
-        photo:
-            freezed == photo
-                ? _value.photo
-                : photo // ignore: cast_nullable_to_non_nullable
-                    as String?,
-      ),
-    );
+  $Res call({
+    Object? photo = freezed,
+  }) {
+    return _then(_$DoneProfilePhotoStateImpl(
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
@@ -583,11 +577,8 @@ class _$DoneProfilePhotoStateImpl extends _DoneProfilePhotoState
   @override
   @pragma('vm:prefer-inline')
   _$$DoneProfilePhotoStateImplCopyWith<_$DoneProfilePhotoStateImpl>
-  get copyWith =>
-      __$$DoneProfilePhotoStateImplCopyWithImpl<_$DoneProfilePhotoStateImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$DoneProfilePhotoStateImplCopyWithImpl<
+          _$DoneProfilePhotoStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -681,43 +672,42 @@ abstract class _DoneProfilePhotoState extends UpdateUserPhotoState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DoneProfilePhotoStateImplCopyWith<_$DoneProfilePhotoStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$ErrorProfilePhotoStateImplCopyWith<$Res> {
   factory _$$ErrorProfilePhotoStateImplCopyWith(
-    _$ErrorProfilePhotoStateImpl value,
-    $Res Function(_$ErrorProfilePhotoStateImpl) then,
-  ) = __$$ErrorProfilePhotoStateImplCopyWithImpl<$Res>;
+          _$ErrorProfilePhotoStateImpl value,
+          $Res Function(_$ErrorProfilePhotoStateImpl) then) =
+      __$$ErrorProfilePhotoStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
 class __$$ErrorProfilePhotoStateImplCopyWithImpl<$Res>
-    extends
-        _$UpdateUserPhotoStateCopyWithImpl<$Res, _$ErrorProfilePhotoStateImpl>
+    extends _$UpdateUserPhotoStateCopyWithImpl<$Res,
+        _$ErrorProfilePhotoStateImpl>
     implements _$$ErrorProfilePhotoStateImplCopyWith<$Res> {
   __$$ErrorProfilePhotoStateImplCopyWithImpl(
-    _$ErrorProfilePhotoStateImpl _value,
-    $Res Function(_$ErrorProfilePhotoStateImpl) _then,
-  ) : super(_value, _then);
+      _$ErrorProfilePhotoStateImpl _value,
+      $Res Function(_$ErrorProfilePhotoStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UpdateUserPhotoState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? error = null}) {
-    return _then(
-      _$ErrorProfilePhotoStateImpl(
-        error:
-            null == error
-                ? _value.error
-                : error // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$ErrorProfilePhotoStateImpl(
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -760,11 +750,8 @@ class _$ErrorProfilePhotoStateImpl extends _ErrorProfilePhotoState
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorProfilePhotoStateImplCopyWith<_$ErrorProfilePhotoStateImpl>
-  get copyWith =>
-      __$$ErrorProfilePhotoStateImplCopyWithImpl<_$ErrorProfilePhotoStateImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$ErrorProfilePhotoStateImplCopyWithImpl<
+          _$ErrorProfilePhotoStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -858,7 +845,7 @@ abstract class _ErrorProfilePhotoState extends UpdateUserPhotoState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorProfilePhotoStateImplCopyWith<_$ErrorProfilePhotoStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -867,42 +854,45 @@ mixin _$UpdateUserPhotoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-      String id,
-      ImageSource source,
-      String toolbarTitle,
-    )
-    editById,
+            String id, ImageSource source, String toolbarTitle)
+        editById,
     required TResult Function(String id) removeById,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, ImageSource source, String toolbarTitle)?
-    editById,
+        editById,
     TResult? Function(String id)? removeById,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, ImageSource source, String toolbarTitle)?
-    editById,
+        editById,
     TResult Function(String id)? removeById,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_EditByIdEvent value) editById,
     required TResult Function(_RemoveByIdEvent value) removeById,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_EditByIdEvent value)? editById,
     TResult? Function(_RemoveByIdEvent value)? removeById,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EditByIdEvent value)? editById,
     TResult Function(_RemoveByIdEvent value)? removeById,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of UpdateUserPhotoEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -913,19 +903,16 @@ mixin _$UpdateUserPhotoEvent {
 
 /// @nodoc
 abstract class $UpdateUserPhotoEventCopyWith<$Res> {
-  factory $UpdateUserPhotoEventCopyWith(
-    UpdateUserPhotoEvent value,
-    $Res Function(UpdateUserPhotoEvent) then,
-  ) = _$UpdateUserPhotoEventCopyWithImpl<$Res, UpdateUserPhotoEvent>;
+  factory $UpdateUserPhotoEventCopyWith(UpdateUserPhotoEvent value,
+          $Res Function(UpdateUserPhotoEvent) then) =
+      _$UpdateUserPhotoEventCopyWithImpl<$Res, UpdateUserPhotoEvent>;
   @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class _$UpdateUserPhotoEventCopyWithImpl<
-  $Res,
-  $Val extends UpdateUserPhotoEvent
->
+class _$UpdateUserPhotoEventCopyWithImpl<$Res,
+        $Val extends UpdateUserPhotoEvent>
     implements $UpdateUserPhotoEventCopyWith<$Res> {
   _$UpdateUserPhotoEventCopyWithImpl(this._value, this._then);
 
@@ -938,17 +925,15 @@ class _$UpdateUserPhotoEventCopyWithImpl<
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null}) {
-    return _then(
-      _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -956,9 +941,8 @@ class _$UpdateUserPhotoEventCopyWithImpl<
 abstract class _$$EditByIdEventImplCopyWith<$Res>
     implements $UpdateUserPhotoEventCopyWith<$Res> {
   factory _$$EditByIdEventImplCopyWith(
-    _$EditByIdEventImpl value,
-    $Res Function(_$EditByIdEventImpl) then,
-  ) = __$$EditByIdEventImplCopyWithImpl<$Res>;
+          _$EditByIdEventImpl value, $Res Function(_$EditByIdEventImpl) then) =
+      __$$EditByIdEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, ImageSource source, String toolbarTitle});
@@ -969,9 +953,8 @@ class __$$EditByIdEventImplCopyWithImpl<$Res>
     extends _$UpdateUserPhotoEventCopyWithImpl<$Res, _$EditByIdEventImpl>
     implements _$$EditByIdEventImplCopyWith<$Res> {
   __$$EditByIdEventImplCopyWithImpl(
-    _$EditByIdEventImpl _value,
-    $Res Function(_$EditByIdEventImpl) _then,
-  ) : super(_value, _then);
+      _$EditByIdEventImpl _value, $Res Function(_$EditByIdEventImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UpdateUserPhotoEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -982,22 +965,20 @@ class __$$EditByIdEventImplCopyWithImpl<$Res>
     Object? source = null,
     Object? toolbarTitle = null,
   }) {
-    return _then(
-      _$EditByIdEventImpl(
-        null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                as String,
-        null == source
-            ? _value.source
-            : source // ignore: cast_nullable_to_non_nullable
-                as ImageSource,
-        null == toolbarTitle
-            ? _value.toolbarTitle
-            : toolbarTitle // ignore: cast_nullable_to_non_nullable
-                as String,
-      ),
-    );
+    return _then(_$EditByIdEventImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == source
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
+      null == toolbarTitle
+          ? _value.toolbarTitle
+          : toolbarTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -1005,7 +986,7 @@ class __$$EditByIdEventImplCopyWithImpl<$Res>
 
 class _$EditByIdEventImpl extends _EditByIdEvent with DiagnosticableTreeMixin {
   const _$EditByIdEventImpl(this.id, this.source, this.toolbarTitle)
-    : super._();
+      : super._();
 
   @override
   final String id;
@@ -1055,11 +1036,8 @@ class _$EditByIdEventImpl extends _EditByIdEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-      String id,
-      ImageSource source,
-      String toolbarTitle,
-    )
-    editById,
+            String id, ImageSource source, String toolbarTitle)
+        editById,
     required TResult Function(String id) removeById,
   }) {
     return editById(id, source, toolbarTitle);
@@ -1069,7 +1047,7 @@ class _$EditByIdEventImpl extends _EditByIdEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, ImageSource source, String toolbarTitle)?
-    editById,
+        editById,
     TResult? Function(String id)? removeById,
   }) {
     return editById?.call(id, source, toolbarTitle);
@@ -1079,7 +1057,7 @@ class _$EditByIdEventImpl extends _EditByIdEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, ImageSource source, String toolbarTitle)?
-    editById,
+        editById,
     TResult Function(String id)? removeById,
     required TResult orElse(),
   }) {
@@ -1122,11 +1100,8 @@ class _$EditByIdEventImpl extends _EditByIdEvent with DiagnosticableTreeMixin {
 }
 
 abstract class _EditByIdEvent extends UpdateUserPhotoEvent {
-  const factory _EditByIdEvent(
-    final String id,
-    final ImageSource source,
-    final String toolbarTitle,
-  ) = _$EditByIdEventImpl;
+  const factory _EditByIdEvent(final String id, final ImageSource source,
+      final String toolbarTitle) = _$EditByIdEventImpl;
   const _EditByIdEvent._() : super._();
 
   @override
@@ -1145,10 +1120,9 @@ abstract class _EditByIdEvent extends UpdateUserPhotoEvent {
 /// @nodoc
 abstract class _$$RemoveByIdEventImplCopyWith<$Res>
     implements $UpdateUserPhotoEventCopyWith<$Res> {
-  factory _$$RemoveByIdEventImplCopyWith(
-    _$RemoveByIdEventImpl value,
-    $Res Function(_$RemoveByIdEventImpl) then,
-  ) = __$$RemoveByIdEventImplCopyWithImpl<$Res>;
+  factory _$$RemoveByIdEventImplCopyWith(_$RemoveByIdEventImpl value,
+          $Res Function(_$RemoveByIdEventImpl) then) =
+      __$$RemoveByIdEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id});
@@ -1159,23 +1133,22 @@ class __$$RemoveByIdEventImplCopyWithImpl<$Res>
     extends _$UpdateUserPhotoEventCopyWithImpl<$Res, _$RemoveByIdEventImpl>
     implements _$$RemoveByIdEventImplCopyWith<$Res> {
   __$$RemoveByIdEventImplCopyWithImpl(
-    _$RemoveByIdEventImpl _value,
-    $Res Function(_$RemoveByIdEventImpl) _then,
-  ) : super(_value, _then);
+      _$RemoveByIdEventImpl _value, $Res Function(_$RemoveByIdEventImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UpdateUserPhotoEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null}) {
-    return _then(
-      _$RemoveByIdEventImpl(
-        null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                as String,
-      ),
-    );
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$RemoveByIdEventImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -1219,19 +1192,14 @@ class _$RemoveByIdEventImpl extends _RemoveByIdEvent
   @pragma('vm:prefer-inline')
   _$$RemoveByIdEventImplCopyWith<_$RemoveByIdEventImpl> get copyWith =>
       __$$RemoveByIdEventImplCopyWithImpl<_$RemoveByIdEventImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-      String id,
-      ImageSource source,
-      String toolbarTitle,
-    )
-    editById,
+            String id, ImageSource source, String toolbarTitle)
+        editById,
     required TResult Function(String id) removeById,
   }) {
     return removeById(id);
@@ -1241,7 +1209,7 @@ class _$RemoveByIdEventImpl extends _RemoveByIdEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, ImageSource source, String toolbarTitle)?
-    editById,
+        editById,
     TResult? Function(String id)? removeById,
   }) {
     return removeById?.call(id);
@@ -1251,7 +1219,7 @@ class _$RemoveByIdEventImpl extends _RemoveByIdEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, ImageSource source, String toolbarTitle)?
-    editById,
+        editById,
     TResult Function(String id)? removeById,
     required TResult orElse(),
   }) {

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
+import 'package:bbt/features/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:bbt/features/presentation/bloc/home_books_bloc/home_books_bloc.dart';
 import 'package:bbt/features/presentation/ui/cart/pages/cart_page.dart';
 import 'package:bbt/features/presentation/ui/category/pages/category_page.dart';
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _titles = [S.current.BBTKirovApp, S.current.favourites, S.current.cart];
     _titleHandler = _titles.first;
     _tabController.addListener(changeTitle);
+    context.read<AuthBloc>().add(const AuthEvent.currentUser());
     context.read<HomeBooksBloc>().add(
           const HomeLoadBooksEvent(isFirstFetch: true),
         );

@@ -1,13 +1,18 @@
 import 'package:bbt/core/error/exception.dart';
+import 'package:bbt/core/logger/logger_service.dart';
 import 'package:bbt/features/data/i_datasources/i_books_remote_datasource.dart';
 import 'package:bbt/features/data/models/book_model.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
   @override
-  Future<List<BookModel>> fetchAllBooks() async {
+  Future<List<BookModel>> fetchAllBooks({int limit = 200}) async {
     final books = <BookModel>[];
-    final apiResponse = await ParseObject('Books').getAll();
+    // final apiResponse = await ParseObject('Books').getAll();
+   final QueryBuilder<ParseObject> query = QueryBuilder<ParseObject>(ParseObject('Books'))
+      ..setLimit(limit);
+
+    final apiResponse = await query.query();
     if (apiResponse.success && apiResponse.results != null) {
       for (final object in apiResponse.results as List<ParseObject>) {
         books.add(BookModel.fromDb(object));
@@ -15,6 +20,8 @@ class BooksRemoteDatasourceImpl extends IBooksRemoteDatasource {
     } else {
       throw ServerException(error: apiResponse.error?.message);
     }
+
+    logw('BooksRemoteDatasourceImpl ${books.length}');
 
     return books;
   }

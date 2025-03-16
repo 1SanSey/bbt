@@ -5,6 +5,7 @@ abstract class IUserRemoteDatasource {
   Future<UserEntity> userLogin({required String login, required String password});
   Future<({String login, String password})> userRegister(
       {required String login, required String userName, required String password});
+  Future<UserEntity> currentUser();
   Future<UserEntity> userLogout();
   Future<UserEntity> getUser(String id);
   Future<void> updateDisplayName(String id, String newName);

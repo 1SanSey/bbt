@@ -12,52 +12,56 @@ part of 'registration_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RegistrationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String login, String password, String userName)
-    register,
+        register,
     required TResult Function() toInitial,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String login, String password, String userName)? register,
     TResult? Function()? toInitial,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String login, String password, String userName)? register,
     TResult Function()? toInitial,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_RegistrationEvent value) register,
     required TResult Function(_ToInitialRegistrationEvent value) toInitial,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_RegistrationEvent value)? register,
     TResult? Function(_ToInitialRegistrationEvent value)? toInitial,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_RegistrationEvent value)? register,
     TResult Function(_ToInitialRegistrationEvent value)? toInitial,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RegistrationEventCopyWith<$Res> {
   factory $RegistrationEventCopyWith(
-    RegistrationEvent value,
-    $Res Function(RegistrationEvent) then,
-  ) = _$RegistrationEventCopyWithImpl<$Res, RegistrationEvent>;
+          RegistrationEvent value, $Res Function(RegistrationEvent) then) =
+      _$RegistrationEventCopyWithImpl<$Res, RegistrationEvent>;
 }
 
 /// @nodoc
@@ -76,10 +80,9 @@ class _$RegistrationEventCopyWithImpl<$Res, $Val extends RegistrationEvent>
 
 /// @nodoc
 abstract class _$$RegistrationEventImplCopyWith<$Res> {
-  factory _$$RegistrationEventImplCopyWith(
-    _$RegistrationEventImpl value,
-    $Res Function(_$RegistrationEventImpl) then,
-  ) = __$$RegistrationEventImplCopyWithImpl<$Res>;
+  factory _$$RegistrationEventImplCopyWith(_$RegistrationEventImpl value,
+          $Res Function(_$RegistrationEventImpl) then) =
+      __$$RegistrationEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String login, String password, String userName});
 }
@@ -88,10 +91,9 @@ abstract class _$$RegistrationEventImplCopyWith<$Res> {
 class __$$RegistrationEventImplCopyWithImpl<$Res>
     extends _$RegistrationEventCopyWithImpl<$Res, _$RegistrationEventImpl>
     implements _$$RegistrationEventImplCopyWith<$Res> {
-  __$$RegistrationEventImplCopyWithImpl(
-    _$RegistrationEventImpl _value,
-    $Res Function(_$RegistrationEventImpl) _then,
-  ) : super(_value, _then);
+  __$$RegistrationEventImplCopyWithImpl(_$RegistrationEventImpl _value,
+      $Res Function(_$RegistrationEventImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RegistrationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -102,36 +104,29 @@ class __$$RegistrationEventImplCopyWithImpl<$Res>
     Object? password = null,
     Object? userName = null,
   }) {
-    return _then(
-      _$RegistrationEventImpl(
-        login:
-            null == login
-                ? _value.login
-                : login // ignore: cast_nullable_to_non_nullable
-                    as String,
-        password:
-            null == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
-                    as String,
-        userName:
-            null == userName
-                ? _value.userName
-                : userName // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+    return _then(_$RegistrationEventImpl(
+      login: null == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$RegistrationEventImpl extends _RegistrationEvent {
-  const _$RegistrationEventImpl({
-    required this.login,
-    required this.password,
-    required this.userName,
-  }) : super._();
+  const _$RegistrationEventImpl(
+      {required this.login, required this.password, required this.userName})
+      : super._();
 
   @override
   final String login;
@@ -167,15 +162,13 @@ class _$RegistrationEventImpl extends _RegistrationEvent {
   @pragma('vm:prefer-inline')
   _$$RegistrationEventImplCopyWith<_$RegistrationEventImpl> get copyWith =>
       __$$RegistrationEventImplCopyWithImpl<_$RegistrationEventImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String login, String password, String userName)
-    register,
+        register,
     required TResult Function() toInitial,
   }) {
     return register(login, password, userName);
@@ -236,11 +229,10 @@ class _$RegistrationEventImpl extends _RegistrationEvent {
 }
 
 abstract class _RegistrationEvent extends RegistrationEvent {
-  const factory _RegistrationEvent({
-    required final String login,
-    required final String password,
-    required final String userName,
-  }) = _$RegistrationEventImpl;
+  const factory _RegistrationEvent(
+      {required final String login,
+      required final String password,
+      required final String userName}) = _$RegistrationEventImpl;
   const _RegistrationEvent._() : super._();
 
   String get login;
@@ -257,20 +249,20 @@ abstract class _RegistrationEvent extends RegistrationEvent {
 /// @nodoc
 abstract class _$$ToInitialRegistrationEventImplCopyWith<$Res> {
   factory _$$ToInitialRegistrationEventImplCopyWith(
-    _$ToInitialRegistrationEventImpl value,
-    $Res Function(_$ToInitialRegistrationEventImpl) then,
-  ) = __$$ToInitialRegistrationEventImplCopyWithImpl<$Res>;
+          _$ToInitialRegistrationEventImpl value,
+          $Res Function(_$ToInitialRegistrationEventImpl) then) =
+      __$$ToInitialRegistrationEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$ToInitialRegistrationEventImplCopyWithImpl<$Res>
-    extends
-        _$RegistrationEventCopyWithImpl<$Res, _$ToInitialRegistrationEventImpl>
+    extends _$RegistrationEventCopyWithImpl<$Res,
+        _$ToInitialRegistrationEventImpl>
     implements _$$ToInitialRegistrationEventImplCopyWith<$Res> {
   __$$ToInitialRegistrationEventImplCopyWithImpl(
-    _$ToInitialRegistrationEventImpl _value,
-    $Res Function(_$ToInitialRegistrationEventImpl) _then,
-  ) : super(_value, _then);
+      _$ToInitialRegistrationEventImpl _value,
+      $Res Function(_$ToInitialRegistrationEventImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RegistrationEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -300,7 +292,7 @@ class _$ToInitialRegistrationEventImpl extends _ToInitialRegistrationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String login, String password, String userName)
-    register,
+        register,
     required TResult Function() toInitial,
   }) {
     return toInitial();
@@ -373,16 +365,18 @@ mixin _$RegistrationState {
     required TResult Function() initial,
     required TResult Function() inProcess,
     required TResult Function(({String login, String password}) credential)
-    successful,
+        successful,
     required TResult Function(String message) error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProcess,
     TResult? Function(({String login, String password}) credential)? successful,
     TResult? Function(String message)? error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
@@ -390,21 +384,24 @@ mixin _$RegistrationState {
     TResult Function(({String login, String password}) credential)? successful,
     TResult Function(String message)? error,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialRegistrationState value) initial,
     required TResult Function(_InProcessRegistrationState value) inProcess,
     required TResult Function(_SuccessfulRegistrationState value) successful,
     required TResult Function(_ErrorRegistrationState value) error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialRegistrationState value)? initial,
     TResult? Function(_InProcessRegistrationState value)? inProcess,
     TResult? Function(_SuccessfulRegistrationState value)? successful,
     TResult? Function(_ErrorRegistrationState value)? error,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialRegistrationState value)? initial,
@@ -412,15 +409,15 @@ mixin _$RegistrationState {
     TResult Function(_SuccessfulRegistrationState value)? successful,
     TResult Function(_ErrorRegistrationState value)? error,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RegistrationStateCopyWith<$Res> {
   factory $RegistrationStateCopyWith(
-    RegistrationState value,
-    $Res Function(RegistrationState) then,
-  ) = _$RegistrationStateCopyWithImpl<$Res, RegistrationState>;
+          RegistrationState value, $Res Function(RegistrationState) then) =
+      _$RegistrationStateCopyWithImpl<$Res, RegistrationState>;
 }
 
 /// @nodoc
@@ -440,20 +437,20 @@ class _$RegistrationStateCopyWithImpl<$Res, $Val extends RegistrationState>
 /// @nodoc
 abstract class _$$InitialRegistrationStateImplCopyWith<$Res> {
   factory _$$InitialRegistrationStateImplCopyWith(
-    _$InitialRegistrationStateImpl value,
-    $Res Function(_$InitialRegistrationStateImpl) then,
-  ) = __$$InitialRegistrationStateImplCopyWithImpl<$Res>;
+          _$InitialRegistrationStateImpl value,
+          $Res Function(_$InitialRegistrationStateImpl) then) =
+      __$$InitialRegistrationStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$InitialRegistrationStateImplCopyWithImpl<$Res>
-    extends
-        _$RegistrationStateCopyWithImpl<$Res, _$InitialRegistrationStateImpl>
+    extends _$RegistrationStateCopyWithImpl<$Res,
+        _$InitialRegistrationStateImpl>
     implements _$$InitialRegistrationStateImplCopyWith<$Res> {
   __$$InitialRegistrationStateImplCopyWithImpl(
-    _$InitialRegistrationStateImpl _value,
-    $Res Function(_$InitialRegistrationStateImpl) _then,
-  ) : super(_value, _then);
+      _$InitialRegistrationStateImpl _value,
+      $Res Function(_$InitialRegistrationStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RegistrationState
   /// with the given fields replaced by the non-null parameter values.
@@ -485,7 +482,7 @@ class _$InitialRegistrationStateImpl extends _InitialRegistrationState {
     required TResult Function() initial,
     required TResult Function() inProcess,
     required TResult Function(({String login, String password}) credential)
-    successful,
+        successful,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -563,20 +560,20 @@ abstract class _InitialRegistrationState extends RegistrationState {
 /// @nodoc
 abstract class _$$InProcessRegistrationStateImplCopyWith<$Res> {
   factory _$$InProcessRegistrationStateImplCopyWith(
-    _$InProcessRegistrationStateImpl value,
-    $Res Function(_$InProcessRegistrationStateImpl) then,
-  ) = __$$InProcessRegistrationStateImplCopyWithImpl<$Res>;
+          _$InProcessRegistrationStateImpl value,
+          $Res Function(_$InProcessRegistrationStateImpl) then) =
+      __$$InProcessRegistrationStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$InProcessRegistrationStateImplCopyWithImpl<$Res>
-    extends
-        _$RegistrationStateCopyWithImpl<$Res, _$InProcessRegistrationStateImpl>
+    extends _$RegistrationStateCopyWithImpl<$Res,
+        _$InProcessRegistrationStateImpl>
     implements _$$InProcessRegistrationStateImplCopyWith<$Res> {
   __$$InProcessRegistrationStateImplCopyWithImpl(
-    _$InProcessRegistrationStateImpl _value,
-    $Res Function(_$InProcessRegistrationStateImpl) _then,
-  ) : super(_value, _then);
+      _$InProcessRegistrationStateImpl _value,
+      $Res Function(_$InProcessRegistrationStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RegistrationState
   /// with the given fields replaced by the non-null parameter values.
@@ -608,7 +605,7 @@ class _$InProcessRegistrationStateImpl extends _InProcessRegistrationState {
     required TResult Function() initial,
     required TResult Function() inProcess,
     required TResult Function(({String login, String password}) credential)
-    successful,
+        successful,
     required TResult Function(String message) error,
   }) {
     return inProcess();
@@ -687,37 +684,36 @@ abstract class _InProcessRegistrationState extends RegistrationState {
 /// @nodoc
 abstract class _$$SuccessfulRegistrationStateImplCopyWith<$Res> {
   factory _$$SuccessfulRegistrationStateImplCopyWith(
-    _$SuccessfulRegistrationStateImpl value,
-    $Res Function(_$SuccessfulRegistrationStateImpl) then,
-  ) = __$$SuccessfulRegistrationStateImplCopyWithImpl<$Res>;
+          _$SuccessfulRegistrationStateImpl value,
+          $Res Function(_$SuccessfulRegistrationStateImpl) then) =
+      __$$SuccessfulRegistrationStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({({String login, String password}) credential});
 }
 
 /// @nodoc
 class __$$SuccessfulRegistrationStateImplCopyWithImpl<$Res>
-    extends
-        _$RegistrationStateCopyWithImpl<$Res, _$SuccessfulRegistrationStateImpl>
+    extends _$RegistrationStateCopyWithImpl<$Res,
+        _$SuccessfulRegistrationStateImpl>
     implements _$$SuccessfulRegistrationStateImplCopyWith<$Res> {
   __$$SuccessfulRegistrationStateImplCopyWithImpl(
-    _$SuccessfulRegistrationStateImpl _value,
-    $Res Function(_$SuccessfulRegistrationStateImpl) _then,
-  ) : super(_value, _then);
+      _$SuccessfulRegistrationStateImpl _value,
+      $Res Function(_$SuccessfulRegistrationStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RegistrationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? credential = null}) {
-    return _then(
-      _$SuccessfulRegistrationStateImpl(
-        credential:
-            null == credential
-                ? _value.credential
-                : credential // ignore: cast_nullable_to_non_nullable
-                    as ({String login, String password}),
-      ),
-    );
+  $Res call({
+    Object? credential = null,
+  }) {
+    return _then(_$SuccessfulRegistrationStateImpl(
+      credential: null == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as ({String login, String password}),
+    ));
   }
 }
 
@@ -725,7 +721,7 @@ class __$$SuccessfulRegistrationStateImplCopyWithImpl<$Res>
 
 class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
   const _$SuccessfulRegistrationStateImpl({required this.credential})
-    : super._();
+      : super._();
 
   @override
   final ({String login, String password}) credential;
@@ -753,9 +749,8 @@ class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessfulRegistrationStateImplCopyWith<_$SuccessfulRegistrationStateImpl>
-  get copyWith => __$$SuccessfulRegistrationStateImplCopyWithImpl<
-    _$SuccessfulRegistrationStateImpl
-  >(this, _$identity);
+      get copyWith => __$$SuccessfulRegistrationStateImplCopyWithImpl<
+          _$SuccessfulRegistrationStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -763,7 +758,7 @@ class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
     required TResult Function() initial,
     required TResult Function() inProcess,
     required TResult Function(({String login, String password}) credential)
-    successful,
+        successful,
     required TResult Function(String message) error,
   }) {
     return successful(credential);
@@ -834,9 +829,9 @@ class _$SuccessfulRegistrationStateImpl extends _SuccessfulRegistrationState {
 }
 
 abstract class _SuccessfulRegistrationState extends RegistrationState {
-  const factory _SuccessfulRegistrationState({
-    required final ({String login, String password}) credential,
-  }) = _$SuccessfulRegistrationStateImpl;
+  const factory _SuccessfulRegistrationState(
+          {required final ({String login, String password}) credential}) =
+      _$SuccessfulRegistrationStateImpl;
   const _SuccessfulRegistrationState._() : super._();
 
   ({String login, String password}) get credential;
@@ -845,15 +840,15 @@ abstract class _SuccessfulRegistrationState extends RegistrationState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessfulRegistrationStateImplCopyWith<_$SuccessfulRegistrationStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$ErrorRegistrationStateImplCopyWith<$Res> {
   factory _$$ErrorRegistrationStateImplCopyWith(
-    _$ErrorRegistrationStateImpl value,
-    $Res Function(_$ErrorRegistrationStateImpl) then,
-  ) = __$$ErrorRegistrationStateImplCopyWithImpl<$Res>;
+          _$ErrorRegistrationStateImpl value,
+          $Res Function(_$ErrorRegistrationStateImpl) then) =
+      __$$ErrorRegistrationStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
@@ -863,24 +858,23 @@ class __$$ErrorRegistrationStateImplCopyWithImpl<$Res>
     extends _$RegistrationStateCopyWithImpl<$Res, _$ErrorRegistrationStateImpl>
     implements _$$ErrorRegistrationStateImplCopyWith<$Res> {
   __$$ErrorRegistrationStateImplCopyWithImpl(
-    _$ErrorRegistrationStateImpl _value,
-    $Res Function(_$ErrorRegistrationStateImpl) _then,
-  ) : super(_value, _then);
+      _$ErrorRegistrationStateImpl _value,
+      $Res Function(_$ErrorRegistrationStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of RegistrationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? message = null}) {
-    return _then(
-      _$ErrorRegistrationStateImpl(
-        message:
-            null == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ErrorRegistrationStateImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -888,7 +882,7 @@ class __$$ErrorRegistrationStateImplCopyWithImpl<$Res>
 
 class _$ErrorRegistrationStateImpl extends _ErrorRegistrationState {
   const _$ErrorRegistrationStateImpl({this.message = 'Произошла ошибка'})
-    : super._();
+      : super._();
 
   @override
   @JsonKey()
@@ -916,11 +910,8 @@ class _$ErrorRegistrationStateImpl extends _ErrorRegistrationState {
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorRegistrationStateImplCopyWith<_$ErrorRegistrationStateImpl>
-  get copyWith =>
-      __$$ErrorRegistrationStateImplCopyWithImpl<_$ErrorRegistrationStateImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$ErrorRegistrationStateImplCopyWithImpl<
+          _$ErrorRegistrationStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -928,7 +919,7 @@ class _$ErrorRegistrationStateImpl extends _ErrorRegistrationState {
     required TResult Function() initial,
     required TResult Function() inProcess,
     required TResult Function(({String login, String password}) credential)
-    successful,
+        successful,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1009,5 +1000,5 @@ abstract class _ErrorRegistrationState extends RegistrationState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorRegistrationStateImplCopyWith<_$ErrorRegistrationStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }

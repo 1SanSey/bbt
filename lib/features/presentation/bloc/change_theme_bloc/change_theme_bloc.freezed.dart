@@ -12,43 +12,49 @@ part of 'change_theme_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ThemeEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({required TResult Function() change}) =>
+  TResult when<TResult extends Object?>({
+    required TResult Function() change,
+  }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({TResult? Function()? change}) =>
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? change,
+  }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? change,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Change value) change,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Change value)? change,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Change value)? change,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ThemeEventCopyWith<$Res> {
   factory $ThemeEventCopyWith(
-    ThemeEvent value,
-    $Res Function(ThemeEvent) then,
-  ) = _$ThemeEventCopyWithImpl<$Res, ThemeEvent>;
+          ThemeEvent value, $Res Function(ThemeEvent) then) =
+      _$ThemeEventCopyWithImpl<$Res, ThemeEvent>;
 }
 
 /// @nodoc
@@ -68,9 +74,8 @@ class _$ThemeEventCopyWithImpl<$Res, $Val extends ThemeEvent>
 /// @nodoc
 abstract class _$$ChangeImplCopyWith<$Res> {
   factory _$$ChangeImplCopyWith(
-    _$ChangeImpl value,
-    $Res Function(_$ChangeImpl) then,
-  ) = __$$ChangeImplCopyWithImpl<$Res>;
+          _$ChangeImpl value, $Res Function(_$ChangeImpl) then) =
+      __$$ChangeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -78,9 +83,8 @@ class __$$ChangeImplCopyWithImpl<$Res>
     extends _$ThemeEventCopyWithImpl<$Res, _$ChangeImpl>
     implements _$$ChangeImplCopyWith<$Res> {
   __$$ChangeImplCopyWithImpl(
-    _$ChangeImpl _value,
-    $Res Function(_$ChangeImpl) _then,
-  ) : super(_value, _then);
+      _$ChangeImpl _value, $Res Function(_$ChangeImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of ThemeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -107,13 +111,17 @@ class _$ChangeImpl extends _Change {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({required TResult Function() change}) {
+  TResult when<TResult extends Object?>({
+    required TResult Function() change,
+  }) {
     return change();
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({TResult? Function()? change}) {
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? change,
+  }) {
     return change?.call();
   }
 
@@ -171,12 +179,8 @@ ThemeState _$ThemeStateFromJson(Map<String, dynamic> json) {
       return _Dark.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-        json,
-        'runtimeType',
-        'ThemeState',
-        'Invalid union type "${json['runtimeType']}"!',
-      );
+      throw CheckedFromJsonException(json, 'runtimeType', 'ThemeState',
+          'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
@@ -186,34 +190,40 @@ mixin _$ThemeState {
   TResult when<TResult extends Object?>({
     required TResult Function() light,
     required TResult Function() dark,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? light,
     TResult? Function()? dark,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? light,
     TResult Function()? dark,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Light value) light,
     required TResult Function(_Dark value) dark,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Light value)? light,
     TResult? Function(_Dark value)? dark,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Light value)? light,
     TResult Function(_Dark value)? dark,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this ThemeState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -222,9 +232,8 @@ mixin _$ThemeState {
 /// @nodoc
 abstract class $ThemeStateCopyWith<$Res> {
   factory $ThemeStateCopyWith(
-    ThemeState value,
-    $Res Function(ThemeState) then,
-  ) = _$ThemeStateCopyWithImpl<$Res, ThemeState>;
+          ThemeState value, $Res Function(ThemeState) then) =
+      _$ThemeStateCopyWithImpl<$Res, ThemeState>;
 }
 
 /// @nodoc
@@ -244,9 +253,8 @@ class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
 /// @nodoc
 abstract class _$$LightImplCopyWith<$Res> {
   factory _$$LightImplCopyWith(
-    _$LightImpl value,
-    $Res Function(_$LightImpl) then,
-  ) = __$$LightImplCopyWithImpl<$Res>;
+          _$LightImpl value, $Res Function(_$LightImpl) then) =
+      __$$LightImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -254,9 +262,8 @@ class __$$LightImplCopyWithImpl<$Res>
     extends _$ThemeStateCopyWithImpl<$Res, _$LightImpl>
     implements _$$LightImplCopyWith<$Res> {
   __$$LightImplCopyWithImpl(
-    _$LightImpl _value,
-    $Res Function(_$LightImpl) _then,
-  ) : super(_value, _then);
+      _$LightImpl _value, $Res Function(_$LightImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of ThemeState
   /// with the given fields replaced by the non-null parameter values.
@@ -266,8 +273,8 @@ class __$$LightImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LightImpl extends _Light {
   const _$LightImpl({final String? $type})
-    : $type = $type ?? 'light',
-      super._();
+      : $type = $type ?? 'light',
+        super._();
 
   factory _$LightImpl.fromJson(Map<String, dynamic> json) =>
       _$$LightImplFromJson(json);
@@ -354,7 +361,9 @@ class _$LightImpl extends _Light {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LightImplToJson(this);
+    return _$$LightImplToJson(
+      this,
+    );
   }
 }
 
@@ -368,9 +377,8 @@ abstract class _Light extends ThemeState {
 /// @nodoc
 abstract class _$$DarkImplCopyWith<$Res> {
   factory _$$DarkImplCopyWith(
-    _$DarkImpl value,
-    $Res Function(_$DarkImpl) then,
-  ) = __$$DarkImplCopyWithImpl<$Res>;
+          _$DarkImpl value, $Res Function(_$DarkImpl) then) =
+      __$$DarkImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -378,7 +386,7 @@ class __$$DarkImplCopyWithImpl<$Res>
     extends _$ThemeStateCopyWithImpl<$Res, _$DarkImpl>
     implements _$$DarkImplCopyWith<$Res> {
   __$$DarkImplCopyWithImpl(_$DarkImpl _value, $Res Function(_$DarkImpl) _then)
-    : super(_value, _then);
+      : super(_value, _then);
 
   /// Create a copy of ThemeState
   /// with the given fields replaced by the non-null parameter values.
@@ -387,7 +395,9 @@ class __$$DarkImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DarkImpl extends _Dark {
-  const _$DarkImpl({final String? $type}) : $type = $type ?? 'dark', super._();
+  const _$DarkImpl({final String? $type})
+      : $type = $type ?? 'dark',
+        super._();
 
   factory _$DarkImpl.fromJson(Map<String, dynamic> json) =>
       _$$DarkImplFromJson(json);
@@ -474,7 +484,9 @@ class _$DarkImpl extends _Dark {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DarkImplToJson(this);
+    return _$$DarkImplToJson(
+      this,
+    );
   }
 }
 

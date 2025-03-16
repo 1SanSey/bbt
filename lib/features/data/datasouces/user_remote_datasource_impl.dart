@@ -199,4 +199,13 @@ class UserRemoteDatasourceImpl extends IUserRemoteDatasource {
       throw ServerException(error: e.toString());
     }
   }
+
+  @override
+  Future<UserEntity> currentUser() async {
+    final parseUser = await ParseUser.currentUser() as ParseUser?;
+    return parseUser != null
+        ? UserEntity.fromDb(parseUser)
+            .copyWith(photoURL: await getPhoto(UserEntity.fromDb(parseUser).uid) ?? '')
+        : UserEntity.empty();
+  }
 }
